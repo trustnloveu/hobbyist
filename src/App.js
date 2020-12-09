@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+// 3rd party libraries
+import React from "react";
+import { Route, Redirect, Switch } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+
+// components
+import NavBar from "./components/navBar";
+import Home from "./components/home";
+import Categories from "./components/categories";
+import Login from "./components/user/login";
+import Logout from "./components/user/logout";
+import Register from "./components/user/register";
+import MyPage from "./components/user/myPage";
+
+// css
+import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
+
+// user info from the server
+// const user = auth.getCurrentUser();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <ToastContainer />
+      <NavBar />
+      <main>
+        <Switch>
+          <Route path="/home" component={Home} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/login" component={Login} />
+          <Route path="/categories" component={Categories} />
+          <Route path="/register" component={Register} />
+          <Route path="/myPage" component={MyPage} />
+          <Redirect from="/" exatc to="/home" />
+          <Redirect to="/not-found" />
+        </Switch>
+      </main>
+    </React.Fragment>
   );
 }
 

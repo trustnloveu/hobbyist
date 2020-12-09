@@ -1,0 +1,37 @@
+a {
+  text-decoration: none;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  background-color: #f38181;
+}
+.nav_lists {
+}
+
+.nav_lists ul {
+  display: flex;
+  list-style: none;
+}
+
+.nav_item {
+  margin-right: 10px;
+  padding: 7px 14px;
+}
+
+.nav_item:hover {
+  transition: 0.5s;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.nav_item svg {
+  color: #36454f;
+}
+
+.nav_title {
+  margin-left: 3px;
+  color: #36454f;
+}
