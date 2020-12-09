@@ -17,10 +17,16 @@
 .input_con {
   display: block;
 }
+
+.input_label_con {
+  margin-top: 10px;
+  text-indent: 5px;
+}
+
 .input_target {
   width: 300px;
   height: 30px;
-  margin-top: 10px;
+  margin-top: 5px;
   border-radius: 5px;
   border: 1px solid #eaffd0;
   text-indent: 5px;
@@ -40,4 +46,22 @@
 
 .input_label {
   cursor: pointer;
+}
+
+.form_button {
+  width: 300px;
+  height: 30px;
+  margin: 20px auto 0 auto;
+  border: none;
+  border-radius: 5px;
+}
+
+.form_button:hover {
+  cursor: pointer;
+  transition: ease-in-out;
+  background-color: #95e1d3;
+}
+
+.form_button:focus {
+  outline: none;
 }

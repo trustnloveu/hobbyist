@@ -3,6 +3,7 @@ import React, { Component } from "react";
 
 // components
 import Input from "./input";
+import Button from "./button";
 
 class Form extends Component {
   state = {
@@ -15,7 +16,8 @@ class Form extends Component {
   };
 
   // render components
-  renderInput(type, label, classNameObj, name = "text") {
+  // input
+  renderInput(classNameObj, name, label, placeholder, type = "text") {
     const { data, errors } = this.state;
     return (
       <Input
@@ -26,7 +28,7 @@ class Form extends Component {
         value={data[name]}
         error={errors[name]}
         classNameObj={classNameObj}
-        // placeholder={placeholder}
+        placeholder={placeholder}
       />
     );
   }
