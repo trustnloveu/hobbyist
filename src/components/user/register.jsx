@@ -4,6 +4,7 @@ import Joi from "joi-browser";
 // components
 import Form from "../common/form";
 import Button from "../common/button";
+import Title from "../common/title";
 
 // css
 import "../../css/userService.css";
@@ -16,7 +17,6 @@ class Register extends Form {
       repeat_password: "",
       name: "",
       phone: "",
-      agree: false,
     },
     errors: {},
   };
@@ -42,6 +42,7 @@ class Register extends Form {
   render() {
     return (
       <div className="user_service_con">
+        <Title className="register_title" label="회원가입" />
         <form onSubmot={this.doSubmit}>
           {this.renderInput(
             this.inputClassName,
@@ -75,7 +76,11 @@ class Register extends Form {
             "전화번호",
             "Ex) 010-1234-1234"
           )}
-          <Button className="form_button" label="회원가입" />
+          <Button
+            conClass="input_con"
+            btnClass="form_button"
+            label="회원가입"
+          />
         </form>
       </div>
     );

@@ -1,6 +1,22 @@
+/* multi class */
+.alert_mark {
+  color: red;
+}
+
+.btn {
+}
+
+.btn:hover {
+  outline: none;
+}
+
+.btn:focus {
+  outline: none;
+}
+
 /* registeration form layout */
 .user_service_con {
-  width: 800px;
+  width: 400px;
   margin: 20px auto;
   padding: 30px 40px;
   border: 1px solid #95e1d3;
@@ -13,23 +29,32 @@
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
+/* title */
+.register_title {
+  text-indent: 3px;
+  font-size: 17pt;
+  font-weight: 600;
+  color: darkgray;
+}
+
 /* input */
 .input_con {
   display: block;
 }
 
 .input_label_con {
-  margin-top: 10px;
+  margin-top: 20px;
   text-indent: 5px;
 }
 
 .input_target {
-  width: 300px;
-  height: 30px;
-  margin-top: 5px;
+  width: 100%;
+  height: 35px;
+  margin-top: 7px;
   border-radius: 5px;
-  border: 1px solid #eaffd0;
+  border: 1px solid indigo;
   text-indent: 5px;
+  box-sizing: border-box;
 }
 
 .input_target:focus {
@@ -41,25 +66,23 @@
 .invalid_msg {
 }
 
-.alert_mark {
-}
-
 .input_label {
   cursor: pointer;
 }
 
 .form_button {
-  width: 300px;
-  height: 30px;
+  width: 100%;
+  height: 40px;
   margin: 20px auto 0 auto;
   border: none;
   border-radius: 5px;
+  background-color: #95e1d3;
 }
 
 .form_button:hover {
   cursor: pointer;
   transition: ease-in-out;
-  background-color: #95e1d3;
+  background-color: #f38181;
 }
 
 .form_button:focus {
