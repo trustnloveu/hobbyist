@@ -77,7 +77,7 @@ class Register extends Form {
           )}
           <Button
             conClass="input_con"
-            btnClass="form_button"
+            btnClass="register_btn"
             label="회원가입"
           />
         </form>

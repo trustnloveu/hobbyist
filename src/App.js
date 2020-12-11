@@ -3,7 +3,7 @@ import React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-// components
+// user components
 import NavBar from "./components/navBar";
 import Home from "./components/home";
 import Categories from "./components/categories";
