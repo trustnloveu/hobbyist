@@ -17,7 +17,15 @@ const NavBar = () => {
   return (
     <nav className="navbar">
       <Link to="/home">
-        <div>Hobbyist</div>
+        <div>
+          <img
+            src="/logo.png"
+            alt="logo"
+            style={{
+              width: "250px",
+            }}
+          />
+        </div>
       </Link>
       <div className="nav_lists">
         <ul>

@@ -1,9 +1,12 @@
 import React from "react";
 import Joi from "joi-browser";
+import { toast } from "react-toastify";
+
+// server
+import * as userService from "../../services/userService";
 
 // components
 import Form from "../common/form";
-import Button from "../common/button";
 
 // css
 import "../../css/userService.css";
@@ -23,11 +26,8 @@ class Register extends Form {
   // schema
   schema = {
     email: Joi.string().email().required().label("아이디(Email)"),
-    password: Joi.string()
-      // .pattern(new RegExp("^[a-zA-Z0-9]{7,20}$"))
-      .required()
-      .label("비밀번호"),
-    repeat_password: Joi.ref("password"),
+    password: Joi.string().required().label("비밀번호"),
+    repeat_password: Joi.valid(Joi.ref("password")).label("비밀번호 확인"),
     name: Joi.string().required().min(2).max(10).label("닉네임"),
     phone: Joi.string().required().label("전화번호"),
   };
@@ -35,13 +35,23 @@ class Register extends Form {
   // submit
   doSubmit = async () => {
     try {
-    } catch (ex) {}
+      const response = await userService.registerUser(this.state.data);
+      window.location = "/";
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        const errors = { ...this.state.errors };
+        errors.invalidInfo = ex.response.data;
+        this.setState({ errors });
+        toast(`${this.state.errors.invalidInfo}`);
+      }
+    }
   };
 
+  // render
   render() {
     return (
       <div className="user_service_con">
-        <form onSubmot={this.doSubmit}>
+        <form onSubmit={this.doSubmit}>
           {this.renderTitle("form_title", "회원가입")}
           {this.renderInput(
             this.inputClassName,
@@ -75,11 +85,7 @@ class Register extends Form {
             "전화번호",
             "Ex) 010-1234-1234"
           )}
-          <Button
-            conClass="input_con"
-            btnClass="register_btn"
-            label="회원가입"
-          />
+          {this.renderButton("input_con", "register_btn", "회원가입")}
         </form>
       </div>
     );

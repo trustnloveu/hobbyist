@@ -1,9 +1,9 @@
 import React from "react";
 
-const Button = (props) => {
+const Button = ({ conClass, btnClass, label }) => {
   return (
-    <div className={props.conClass}>
-      <button className={props.btnClass}>{props.label}</button>
+    <div className={conClass}>
+      <button className={btnClass}>{label}</button>
     </div>
   );
 };

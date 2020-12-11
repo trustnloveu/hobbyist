@@ -38,11 +38,12 @@ const MainSlider = () => {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
-    config: config.molasses,
+    config: config.default,
   });
 
   useEffect(
-    () => void setInterval(() => setIndex((state) => (state + 1) % 4), 4000, [])
+    () => void setInterval(() => setIndex((state) => (state + 1) % 4), 4000),
+    []
   );
 
   return transitions.map(({ item, props, key }) => (

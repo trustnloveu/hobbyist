@@ -2,11 +2,7 @@ import React from "react";
 import MainSlider from "./mainSlider";
 
 const Home = () => {
-  return (
-    <div>
-      <MainSlider />
-    </div>
-  );
+  return <MainSlider />;
 };
 
 export default Home;

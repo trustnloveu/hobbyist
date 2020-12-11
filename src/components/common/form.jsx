@@ -3,6 +3,7 @@ import Joi from "joi-browser";
 
 // components
 import Input from "./input";
+import Button from "./button";
 
 class Form extends Component {
   state = {
@@ -13,28 +14,24 @@ class Form extends Component {
   // validate
   validate = () => {
     const options = { abortEarly: false };
-    const { error } = Joi.validate(this.state.data, this.schema, options);
-
+    const { error } = Joi.validate(this.state.data, this.schema, options); // result > error
     if (!error) return null;
 
     const errors = {};
-    for (const item of error.details) {
-      errors[item.path[0]] = item.message;
-    }
+    for (let item of error.details) errors[item.path[0]] = item.message; // for of || map
+    return errors;
   };
 
-  // validateProperty
-  validateProperty = ({ name, value }) => {
-    const obj = { [name]: value };
-    const schema = { [name]: this.schema[name] };
+  // validate property
+  validateProperty = ({ name: propertyName, value }) => {
+    const obj = { [propertyName]: value };
+    const schema = { [propertyName]: this.schema[propertyName] };
     const { error } = Joi.validate(obj, schema);
     return error ? error.details[0].message : null;
   };
 
-  // handle events
+  // handle event
   handleChange = ({ currentTarget: input }) => {
-    console.log("123");
-
     const errors = { ...this.state.errors };
     const errorMsg = this.validateProperty(input);
 
@@ -47,7 +44,22 @@ class Form extends Component {
     this.setState({ data, errors });
   };
 
+  // submit event
+  handleSubmit = (e) => {
+    e.preventDafult();
+
+    const errors = this.validate();
+    this.setState({ errors: errors || {} });
+    if (errors) return;
+
+    this.doSubmit();
+  };
+
   // render components
+  //title
+  renderTitle(className, label) {
+    return <div className={className}>{label}</div>;
+  }
   // input
   renderInput(classNameObj, name, label, placeholder, type = "text") {
     const { data, errors } = this.state;
@@ -56,18 +68,18 @@ class Form extends Component {
         type={type}
         name={name}
         label={label}
+        classNameObj={classNameObj}
+        placeholder={placeholder}
         onChange={this.handleChange}
         value={data[name]}
         error={errors[name]}
-        classNameObj={classNameObj}
-        placeholder={placeholder}
       />
     );
   }
 
-  //title
-  renderTitle(className, label) {
-    return <div className={className}>{label}</div>;
+  //button
+  renderButton(conClass, btnClass, label) {
+    return <Button conClass={conClass} btnClass={btnClass} label={label} />;
   }
 }
 

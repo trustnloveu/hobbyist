@@ -101,3 +101,9 @@
 .register_btn:focus {
   outline: none;
 }
+
+.login_btn:disabled,
+.register_btn:disabled {
+  background-color: grey;
+  cursor: auto;
+}

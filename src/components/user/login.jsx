@@ -2,8 +2,6 @@ import React from "react";
 import Joi from "joi-browser";
 
 import Form from "../common/form";
-import Button from "../common/button";
-// classNameObj, name, label, placeholder, type = "text"
 class Login extends Form {
   state = {
     data: {
@@ -14,12 +12,10 @@ class Login extends Form {
   };
 
   // schema
+  // .pattern(new RegExp("^[a-zA-Z0-9]{7,20}$"))
   schema = {
     email: Joi.string().email().required().label("아이디(Email)"),
-    password: Joi.string()
-      // .pattern(new RegExp("^[a-zA-Z0-9]{7,20}$"))
-      .required()
-      .label("비밀번호"),
+    password: Joi.string().required().label("비밀번호"),
   };
 
   doSubmit = () => {
@@ -50,12 +46,8 @@ class Login extends Form {
               <span>아이디 기억하기</span>
             </label>
           </div>
-          <Button conClass="input_con" btnClass="login_btn" label="로그인" />
-          <Button
-            conClass="input_con"
-            btnClass="register_btn"
-            label="회원가입"
-          />
+          {this.renderButton("input_con", "login_btn", "로그인")}
+          {this.renderButton("input_con", "register_btn", "회원가입")}
         </form>
       </div>
     );
