@@ -4,7 +4,6 @@ import Joi from "joi-browser";
 // components
 import Form from "../common/form";
 import Button from "../common/button";
-import Title from "../common/title";
 
 // css
 import "../../css/userService.css";
@@ -42,8 +41,8 @@ class Register extends Form {
   render() {
     return (
       <div className="user_service_con">
-        <Title className="register_title" label="회원가입" />
         <form onSubmot={this.doSubmit}>
+          {this.renderTitle("form_title", "회원가입")}
           {this.renderInput(
             this.inputClassName,
             "email",

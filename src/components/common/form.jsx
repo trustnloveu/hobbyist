@@ -64,6 +64,11 @@ class Form extends Component {
       />
     );
   }
+
+  //title
+  renderTitle(className, label) {
+    return <div className={className}>{label}</div>;
+  }
 }
 
 export default Form;
