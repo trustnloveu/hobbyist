@@ -10,6 +10,7 @@ import Form from "../common/form";
 
 // css
 import "../../css/userService.css";
+import auth from "../../services/authService";
 
 class Register extends Form {
   state = {
@@ -25,18 +26,33 @@ class Register extends Form {
 
   // schema
   schema = {
-    email: Joi.string().email().required().label("아이디(Email)"),
+    email: Joi.string()
+      .email({ tlds: { allow: false } })
+      .required()
+      .label("아이디(Email)"),
     password: Joi.string().required().label("비밀번호"),
-    repeat_password: Joi.valid(Joi.ref("password")).label("비밀번호 확인"),
+    repeat_password: Joi.string()
+      // .required()
+      .valid(Joi.ref("비밀번호"))
+      .label("비밀번호 확인"),
     name: Joi.string().required().min(2).max(10).label("닉네임"),
     phone: Joi.string().required().label("전화번호"),
   };
+  // email: Joi.string()
+  //   .email({ tlds: { allow: false } })
+  //   .required()
+  //   .min(5)
+  //   .max(255),
+  // password: Joi.string().required().min(5).max(1024),
+  // name: Joi.string().required().min(2).max(50),
+  // phone: Joi.string().required().min(9).max(20),
 
   // submit
   doSubmit = async () => {
     try {
       const response = await userService.registerUser(this.state.data);
-      window.location = "/";
+      auth.loginWithJwt(response.headers["x-auth-token"]);
+      // window.location = "/";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
@@ -51,7 +67,7 @@ class Register extends Form {
   render() {
     return (
       <div className="user_service_con">
-        <form onSubmit={this.doSubmit}>
+        <form onSubmit={this.handleSubmit}>
           {this.renderTitle("form_title", "회원가입")}
           {this.renderInput(
             this.inputClassName,

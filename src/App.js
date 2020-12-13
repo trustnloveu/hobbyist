@@ -12,18 +12,21 @@ import Logout from "./components/user/logout";
 import Register from "./components/user/register";
 import MyPage from "./components/user/myPage";
 
+// module
+import auth from "./services/authService";
+
 // css
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 
 // user info from the server
-// const user = auth.getCurrentUser();
+const user = auth.getCurrentUser();
 
 function App() {
   return (
     <React.Fragment>
       <ToastContainer />
-      <NavBar />
+      <NavBar user={user} />
       <main>
         <Switch>
           <Route path="/home" component={Home} />

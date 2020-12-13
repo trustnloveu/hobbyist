@@ -10,6 +10,9 @@ import reportWebVitals from "./reportWebVitals";
 // css
 import "./index.css";
 
+console.log(`실행 환경: ${process.env.REACT_APP_NAME}`);
+console.log(`실행 환경: ${process.env.NODE_ENV}`);
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

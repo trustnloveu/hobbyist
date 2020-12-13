@@ -1,7 +1,14 @@
+// library
 import React from "react";
 import Joi from "joi-browser";
+import { toast } from "react-toastify";
 
+// component
 import Form from "../common/form";
+
+// module
+import auth from "../../services/authService";
+
 class Login extends Form {
   state = {
     data: {
@@ -18,14 +25,30 @@ class Login extends Form {
     password: Joi.string().required().label("비밀번호"),
   };
 
-  doSubmit = () => {
+  doSubmit = async () => {
     console.log("login clicked");
+    try {
+      // validate
+      const { data } = this.state;
+      await auth.login(data.email, data.password);
+      console.log("123");
+      // push
+      const { state } = this.props.location;
+      window.location = state ? state.from.pathname : "/";
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        const errors = { ...this.state.errors };
+        errors.invalidInfo = ex.response.data;
+        this.setState({ errors });
+        toast.error(`${this.state.errors.invalidInfo}`);
+      }
+    }
   };
 
   render() {
     return (
       <div className="user_service_con">
-        <form>
+        <form onSubmit={this.handleSubmit}>
           {this.renderTitle("form_title", "로그인")}
           {this.renderInput(
             this.inputClassName,

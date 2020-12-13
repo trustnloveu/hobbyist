@@ -2,7 +2,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 // default url
-// axios.defaults.baseURL = precess.env.REACT_APP_API_URL;
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 // error interceptor
 axios.interceptors.response.use(null, (error) => {
@@ -20,7 +20,7 @@ axios.interceptors.response.use(null, (error) => {
 
 // set JSON Web Token to header
 function setJwt(jwt) {
-  axios.defaults.hearders.common["x-auth-token"] = jwt;
+  axios.defaults.headers.common["x-auth-token"] = jwt;
 }
 
 export default {

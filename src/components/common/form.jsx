@@ -19,6 +19,7 @@ class Form extends Component {
 
     const errors = {};
     for (let item of error.details) errors[item.path[0]] = item.message; // for of || map
+
     return errors;
   };
 
@@ -46,17 +47,18 @@ class Form extends Component {
 
   // submit event
   handleSubmit = (e) => {
-    e.preventDafult();
+    e.preventDefault();
 
     const errors = this.validate();
     this.setState({ errors: errors || {} });
-    if (errors) return;
+    // if (errors) return;
+    if (errors) console.log(errors);
 
     this.doSubmit();
   };
 
   // render components
-  //title
+  // title
   renderTitle(className, label) {
     return <div className={className}>{label}</div>;
   }
@@ -77,7 +79,7 @@ class Form extends Component {
     );
   }
 
-  //button
+  // button
   renderButton(conClass, btnClass, label) {
     return <Button conClass={conClass} btnClass={btnClass} label={label} />;
   }

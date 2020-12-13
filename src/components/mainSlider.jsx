@@ -49,7 +49,7 @@ const MainSlider = () => {
   return transitions.map(({ item, props, key }) => (
     <animated.div
       key={key}
-      class="slide_background"
+      className="slide_background"
       style={{
         ...props,
         backgroundImage: `url(https://images.unsplash.com/${item.url}&auto=format&fit=crop)`,
