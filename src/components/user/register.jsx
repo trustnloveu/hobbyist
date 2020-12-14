@@ -1,5 +1,7 @@
 import React from "react";
 import Joi from "joi-browser";
+// import Joi from "joi";
+// import * as Yup from "yup";
 import { toast } from "react-toastify";
 
 // server
@@ -26,33 +28,37 @@ class Register extends Form {
 
   // schema
   schema = {
-    email: Joi.string()
-      .email({ tlds: { allow: false } })
-      .required()
-      .label("아이디(Email)"),
+    email: Joi.string().min(5).max(255).required().label("아이디(Email)"),
     password: Joi.string().required().label("비밀번호"),
-    repeat_password: Joi.string()
-      // .required()
-      .valid(Joi.ref("비밀번호"))
-      .label("비밀번호 확인"),
-    name: Joi.string().required().min(2).max(10).label("닉네임"),
-    phone: Joi.string().required().label("전화번호"),
+    repeat_password: Joi.string().required().label("비밀번호 확인"),
+    name: Joi.string().required().min(2).max(50).label("닉네임"),
+    phone: Joi.string().required().min(9).max(20).label("전화번호"),
   };
-  // email: Joi.string()
-  //   .email({ tlds: { allow: false } })
-  //   .required()
-  //   .min(5)
-  //   .max(255),
-  // password: Joi.string().required().min(5).max(1024),
-  // name: Joi.string().required().min(2).max(50),
-  // phone: Joi.string().required().min(9).max(20),
+
+  // schema = {
+  //   email: Yup.string().email().required("이메일이 입력되지 않았습니다."),
+  //   password: Yup.string().required("이메일이 입력되지 않았습니다."),
+  //   repeat_password: Yup.ref("password"),
+  //   name: Yup.string().required(),
+  //   phone: Yup.string().required(),
+  // };
 
   // submit
   doSubmit = async () => {
     try {
+      // 비밀번호 일치 검사
+      const { password } = this.state.data;
+      const { repeat_password } = this.state.data;
+      if (password !== repeat_password) {
+        toast("입력하신 두 비밀번호가 일치하지 않습니다.");
+        return;
+      }
+
       const response = await userService.registerUser(this.state.data);
       auth.loginWithJwt(response.headers["x-auth-token"]);
-      // window.location = "/";
+
+      // redirect
+      window.location = "/";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
