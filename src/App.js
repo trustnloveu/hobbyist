@@ -1,5 +1,5 @@
 // 3rd party libraries
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
@@ -20,9 +20,15 @@ import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 
 // user info from the server
-const user = auth.getCurrentUser();
+// const user = auth.getCurrentUser();
 
 function App() {
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    setUser(auth.getCurrentUser());
+  }, []);
+
   return (
     <React.Fragment>
       <ToastContainer />

@@ -29,8 +29,12 @@ class Register extends Form {
   // schema
   schema = {
     email: Joi.string().min(5).max(255).required().label("아이디(Email)"),
-    password: Joi.string().required().label("비밀번호"),
-    repeat_password: Joi.string().required().label("비밀번호 확인"),
+    password: Joi.string().required().min(5).max(1024).label("비밀번호"),
+    repeat_password: Joi.string()
+      .required()
+      .min(5)
+      .max(1024)
+      .label("비밀번호 확인"),
     name: Joi.string().required().min(2).max(50).label("닉네임"),
     phone: Joi.string().required().min(9).max(20).label("전화번호"),
   };
@@ -49,15 +53,14 @@ class Register extends Form {
       // 비밀번호 일치 검사
       const { password } = this.state.data;
       const { repeat_password } = this.state.data;
-      if (password !== repeat_password) {
-        toast("입력하신 두 비밀번호가 일치하지 않습니다.");
-        return;
-      }
+      if (password !== repeat_password)
+        return toast("입력하신 두 비밀번호가 일치하지 않습니다.");
 
+      // registration > login with token > home
       const response = await userService.registerUser(this.state.data);
+      console.log(response);
+      console.log(response.headers["x-auth-token"]);
       auth.loginWithJwt(response.headers["x-auth-token"]);
-
-      // redirect
       window.location = "/";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {

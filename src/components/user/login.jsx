@@ -21,8 +21,13 @@ class Login extends Form {
   // schema
   // .pattern(new RegExp("^[a-zA-Z0-9]{7,20}$"))
   schema = {
-    email: Joi.string().email().required().label("아이디(Email)"),
-    password: Joi.string().required().label("비밀번호"),
+    email: Joi.string()
+      .email()
+      .required()
+      .min(5)
+      .max(1024)
+      .label("아이디(Email)"),
+    password: Joi.string().required().min(5).max(1024).label("비밀번호"),
   };
 
   doSubmit = async () => {
@@ -31,7 +36,7 @@ class Login extends Form {
       // validate
       const { data } = this.state;
       await auth.login(data.email, data.password);
-      console.log("123");
+
       // push
       const { state } = this.props.location;
       window.location = state ? state.from.pathname : "/";

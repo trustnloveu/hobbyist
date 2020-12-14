@@ -1,7 +1,10 @@
-import React from "react";
+import auth from "../../services/authService";
 
 const Logout = () => {
-  return <h1>logout</h1>;
+  auth.logout();
+  window.location = "/";
+
+  return null;
 };
 
 export default Logout;
