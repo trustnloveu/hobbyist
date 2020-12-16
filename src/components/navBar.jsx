@@ -23,6 +23,8 @@ const NavBar = ({ user }) => {
             alt="logo"
             style={{
               width: "250px",
+              margin: "-15px",
+              overflow: "hidden",
             }}
           />
         </div>

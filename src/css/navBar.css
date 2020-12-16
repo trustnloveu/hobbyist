@@ -5,8 +5,9 @@ a {
 .navbar {
   display: flex;
   justify-content: space-between;
-  height: 100px;
-  background-color: #f38181;
+  height: 70px;
+  /* background-color: #f38181; */
+  background-color: transparent;
 }
 .nav_lists {
 }
@@ -23,8 +24,12 @@ a {
 
 .nav_item:hover {
   transition: 0.5s;
-  background-color: white;
+  background-color: #f38181;
   border-radius: 5px;
+}
+
+.nav_item:hover .nav_title {
+  transition: 0.5s;
 }
 
 .nav_item svg {

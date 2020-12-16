@@ -1,7 +1,9 @@
 import React from "react";
 
+import CategorySlide from "./slides/categorySlide";
+
 const Categories = () => {
-  return <h1>Categories</h1>;
+  return <CategorySlide />;
 };
 
 export default Categories;

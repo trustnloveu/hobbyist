@@ -3,7 +3,7 @@ import { useTransition, animated, config } from "react-spring";
 
 // import PropTypes from "prop-types";
 
-import "../css/slide.css";
+import "../../css/slide.css";
 
 // images
 const slides = [
@@ -42,7 +42,7 @@ const MainSlider = () => {
   });
 
   useEffect(
-    () => void setInterval(() => setIndex((state) => (state + 1) % 4), 4000),
+    () => void setInterval(() => setIndex((state) => (state + 1) % 4), 3000),
     []
   );
 

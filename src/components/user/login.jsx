@@ -68,12 +68,6 @@ class Login extends Form {
             "비밀번호 입력",
             "password"
           )}
-          <div>
-            <label>
-              <input type="checkbox" name="storeAccount" />
-              <span>아이디 기억하기</span>
-            </label>
-          </div>
           {this.renderButton("input_con", "login_btn", "로그인")}
           {this.renderButton("input_con", "register_btn", "회원가입")}
         </form>

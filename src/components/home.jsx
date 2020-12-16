@@ -1,5 +1,10 @@
 import React from "react";
-import MainSlider from "./mainSlider";
+
+// jquery
+// import $ from "jquery";
+
+// components
+import MainSlider from "./slides/mainSlider";
 
 const Home = () => {
   return <MainSlider />;
