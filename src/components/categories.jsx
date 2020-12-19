@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getCategories } from "../services/categoryService";
+import { getCategories, getCategory } from "../services/categoryService";
 
 // components
 import CategorySlide from "./slides/categorySlide";
@@ -19,13 +19,22 @@ const Categories = () => {
     getList();
   }, []);
 
+  // const clickHandler = async (id) => {
+  //   const category = await getCategory(id);
+  //   console.log(category);
+  // };
+
   return (
     <>
       <CategorySlide />
       <ul className="category_list">
         <li className="category_title">관심 있는 카테고리를 선택해보세요.</li>
         {categories.map((category) => (
-          <Li key={category._id} context={category.name} />
+          <Li
+            key={category._id}
+            context={category.name}
+            pathId={category._id}
+          />
         ))}
       </ul>
     </>

@@ -18,6 +18,7 @@ import auth from "./services/authService";
 // css
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
+import CategoryBoard from "./components/categoryBoard";
 
 // user info from the server
 // const user = auth.getCurrentUser();
@@ -38,6 +39,7 @@ function App() {
           <Route path="/home" component={Home} />
           <Route path="/logout" component={Logout} />
           <Route path="/login" component={Login} />
+          <Route path="/categories/:id" component={CategoryBoard} />
           <Route path="/categories" component={Categories} />
           <Route path="/register" component={Register} />
           <Route path="/myPage" component={MyPage} />
