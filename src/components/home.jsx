@@ -1,6 +1,5 @@
 import React from "react";
 
-// jquery
 // import $ from "jquery";
 
 // components
