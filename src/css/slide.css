@@ -1,11 +1,11 @@
-.slide_background,
-.home_slide,
+/* main slide & category slide*/
+
+.main_slide,
 .category_slide {
   position: absolute;
   top: 70px;
   left: 0;
   width: 100vw;
-  height: 500px;
   background-size: cover;
   background-position: center;
   will-change: opacity;
@@ -14,7 +14,15 @@
   align-items: center;
 }
 
-.slide_background h1 {
+.main_slide {
+  height: 550px;
+}
+
+.category_slide {
+  height: 400px;
+}
+
+.main_slide h1 {
   font-size: 120px;
   color: #fff;
   text-shadow: 0px 6px 6px rgba(0, 0, 0, 0.4);

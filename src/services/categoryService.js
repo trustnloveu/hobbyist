@@ -2,7 +2,7 @@ import http from "./httpService";
 
 const apiEndpint = "/categories";
 
-// URL + id
+// Endpoint = url + id
 function categoryUrl(id) {
   return `${apiEndpint}/${id}`;
 }
