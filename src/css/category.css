@@ -1,10 +1,15 @@
-.category_list {
+.category_list,
+.category_search_list {
   position: inherit;
-  margin: 420px auto 0 auto;
+  margin: 20px auto;
   list-style: none;
   width: 650px;
   text-align: center;
   padding: 0;
+}
+
+.category_search_list {
+  margin-top: 420px;
 }
 
 .category_title {
@@ -12,4 +17,8 @@
   margin: 20px;
   text-decoration: underline;
   text-underline-position: under;
+}
+
+.extra_margin_b {
+  margin-bottom: 420px;
 }

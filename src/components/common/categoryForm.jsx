@@ -7,7 +7,7 @@ import Li from "./categoryList";
 // css
 import "../../css/category.css";
 
-const CategoriesForm = ({ label }) => {
+const CategoriesForm = ({ label, location }) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -24,7 +24,11 @@ const CategoriesForm = ({ label }) => {
   // };
 
   return (
-    <ul className="category_list">
+    <ul
+      className={
+        location === "searchMenu" ? "category_search_list" : "category_list"
+      }
+    >
       <li className="category_title">{label}</li>
       {categories.map((category) => (
         <Li key={category._id} context={category.name} pathId={category._id} />

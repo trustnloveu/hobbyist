@@ -1,27 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { getCategory } from "../services/categoryService";
 
+import FilterBox from "./common/filterList";
 import CategoryForm from "./common/categoryForm";
 
 const CategoryBoard = (props) => {
   const categoryLabel = "다른 카테고리도 확인해보세요.";
-
-  const [category, setCategory] = useState();
+  const [categoryName, setCategoryName] = useState();
 
   useEffect(() => {
-    async function getData() {
+    async function getName() {
       const result = await getCategory(props.match.params.id);
-      setCategory(result.data);
+      setCategoryName(result.data.name);
     }
-    getData();
-  }, []);
+    getName();
+  }, [props.match.params.id]);
 
   return (
     <>
-      <div>
-        group board
-        <h3></h3>
-      </div>
+      <FilterBox label={categoryName} />
       <CategoryForm label={categoryLabel} />
     </>
   );

@@ -10,7 +10,7 @@ const Categories = () => {
   return (
     <>
       <CategorySlide />
-      <CategoriesForm label={label} />
+      <CategoriesForm label={label} location="searchMenu" />
     </>
   );
 };
