@@ -9,7 +9,7 @@
 }
 
 .category_search_list {
-  margin-top: 420px;
+  margin: 480px auto 100px auto;
 }
 
 .category_title {
@@ -17,8 +17,4 @@
   margin: 20px;
   text-decoration: underline;
   text-underline-position: under;
-}
-
-.extra_margin_b {
-  margin-bottom: 420px;
 }

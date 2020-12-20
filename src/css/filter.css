@@ -1,0 +1,40 @@
+.filter_container {
+  display: flex;
+  border-bottom: 1px solid #364f6b;
+  padding-bottom: 15px;
+}
+
+.filter_option {
+  margin-right: 30px;
+  width: 150px;
+  height: 50px;
+  text-align: center;
+  font-size: 14pt;
+  background-color: #fc5185;
+  border-radius: 20px;
+  color: whitesmoke;
+  line-height: 48.5px;
+}
+
+.filter_option i {
+  margin-left: 5px;
+}
+
+.filter_option:hover {
+  transition: 0.5s;
+  background-color: #3fc1c9;
+  cursor: pointer;
+}
+
+.dropdown_container {
+  display: flex;
+}
+
+.dropdown {
+  margin-right: 30px;
+  width: 150px;
+  text-align: center;
+  font-size: 11pt;
+  background-color: #fc5185;
+  color: #364f6b;
+}
