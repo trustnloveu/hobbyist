@@ -11,6 +11,7 @@ import Login from "./components/user/login";
 import Logout from "./components/user/logout";
 import Register from "./components/user/register";
 import MyPage from "./components/user/myPage";
+import CategoryBoard from "./components/categoryBoard";
 
 // module
 import auth from "./services/authService";
@@ -18,7 +19,6 @@ import auth from "./services/authService";
 // css
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
-import CategoryBoard from "./components/categoryBoard";
 
 // user info from the server
 // const user = auth.getCurrentUser();

@@ -71,6 +71,7 @@ const Filter = () => {
         >
           날짜
           <FontAwesomeIcon icon={faCalendarDay} />
+          <Dropdown options={filterOptions.dateFilter} visible={visibleDate} />
         </div>
         <div
           className="filter_option"
@@ -78,6 +79,10 @@ const Filter = () => {
         >
           지역
           <FontAwesomeIcon icon={faMapMarkedAlt} />
+          <Dropdown
+            options={filterOptions.regionFilter}
+            visible={visibleRegion}
+          />
         </div>
         <div
           className="filter_option"
@@ -85,12 +90,11 @@ const Filter = () => {
         >
           참여자 수
           <FontAwesomeIcon icon={faUserFriends} />
+          <Dropdown
+            options={filterOptions.groupFilter}
+            visible={visibleGroup}
+          />
         </div>
-      </div>
-      <div className="dropdown_container">
-        <Dropdown options={filterOptions.dateFilter} visible={visibleDate} />
-        <Dropdown options={filterOptions.regionFilter} />
-        <Dropdown options={filterOptions.memberFilter} />
       </div>
     </>
   );
