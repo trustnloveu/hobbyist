@@ -4,13 +4,13 @@ import React, { useState } from "react";
 import Dropdown from "../dropdown/dropdown";
 
 // icon
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 import { faMapMarkedAlt } from "@fortawesome/free-solid-svg-icons";
 import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
 
 // css
 import "../../css/filter.css";
+import FilterMenu from "./filterMenu";
 
 const Filter = () => {
   const filterOptions = {
@@ -23,6 +23,7 @@ const Filter = () => {
       thisMonth: "이번달",
     },
     regionFilter: {
+      anywhere: "상관없음",
       seoul: "서울",
       busan: "부산",
       daegu: "대구",
@@ -38,6 +39,7 @@ const Filter = () => {
       gyeongsang: "경상",
     },
     groupFilter: {
+      anygroup: "상관없음",
       small: "소그룹(5명 이하)",
       medium: "중그룹(5~20명)",
       large: "대그룹(20명 이상)",
@@ -52,51 +54,49 @@ const Filter = () => {
     switch (option) {
       case "date":
         setVisibleDate(!visibleDate);
+        setVisibleRegion(false);
+        setVisibleGroup(false);
         break;
       case "region":
         setVisibleRegion(!visibleRegion);
+        setVisibleDate(false);
+        setVisibleGroup(false);
         break;
       case "group":
         setVisibleGroup(!visibleGroup);
+        setVisibleDate(false);
+        setVisibleRegion(false);
         break;
     }
   };
 
   return (
-    <>
-      <div className="filter_container">
-        <div
-          className="filter_option"
-          onClick={() => filterToggleHandler("date")}
-        >
-          날짜
-          <FontAwesomeIcon icon={faCalendarDay} />
-          <Dropdown options={filterOptions.dateFilter} visible={visibleDate} />
-        </div>
-        <div
-          className="filter_option"
-          onClick={() => filterToggleHandler("region")}
-        >
-          지역
-          <FontAwesomeIcon icon={faMapMarkedAlt} />
-          <Dropdown
-            options={filterOptions.regionFilter}
-            visible={visibleRegion}
-          />
-        </div>
-        <div
-          className="filter_option"
-          onClick={() => filterToggleHandler("group")}
-        >
-          참여자 수
-          <FontAwesomeIcon icon={faUserFriends} />
-          <Dropdown
-            options={filterOptions.groupFilter}
-            visible={visibleGroup}
-          />
-        </div>
-      </div>
-    </>
+    <div className="filter_container">
+      <FilterMenu
+        className="filter_option"
+        options={filterOptions.dateFilter}
+        onClick={() => filterToggleHandler("date")}
+        visible={visibleDate}
+        icon={faCalendarDay}
+        label="날짜"
+      />
+      <FilterMenu
+        className="filter_option"
+        options={filterOptions.regionFilter}
+        onClick={() => filterToggleHandler("region")}
+        visible={visibleRegion}
+        icon={faMapMarkedAlt}
+        label="지역"
+      />
+      <FilterMenu
+        className="filter_option"
+        options={filterOptions.groupFilter}
+        onClick={() => filterToggleHandler("group")}
+        visible={visibleGroup}
+        icon={faUserFriends}
+        label="참여자 수"
+      />
+    </div>
   );
 };
 

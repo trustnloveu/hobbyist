@@ -31,10 +31,23 @@
 }
 
 .dropdown {
+  position: relative;
   margin-right: 30px;
   width: 150px;
   text-align: center;
   font-size: 11pt;
   background-color: #fc5185;
   color: #364f6b;
+  border-radius: 7px;
+  margin-top: 5px;
+}
+
+.dropdown div {
+  background-color: #95e1d3;
+  height: 35px;
+  line-height: 35px;
+}
+
+.dropdown div:hover {
+  background-color: #fc5185;
 }
