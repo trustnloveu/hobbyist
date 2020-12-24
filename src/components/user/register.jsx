@@ -1,7 +1,5 @@
 import React from "react";
 import Joi from "joi-browser";
-// import Joi from "joi";
-// import * as Yup from "yup";
 import { toast } from "react-toastify";
 
 // server
@@ -50,6 +48,8 @@ class Register extends Form {
 
       // registration > login with token > home
       const response = await userService.registerUser(this.state.data);
+      console.log(response);
+      console.log(response.headers["x-auth-token"]);
       auth.loginWithJwt(response.headers["x-auth-token"]);
       window.location = "/";
     } catch (ex) {

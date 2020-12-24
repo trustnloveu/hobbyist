@@ -1,5 +1,5 @@
 import React from "react";
-import * as Yup from "yup";
+import Joi from "joi";
 import { toast } from "react-toastify";
 
 import Form from "./common/form";
@@ -21,19 +21,27 @@ class NewGroup extends Form {
   };
 
   // schema
-  schema = {
-    title: Yup.string()
-      .min(1, "최소 1글자 이상의 그룹명을 적어주세요.")
-      .max(20, "최대 20자 이내의 그룹명을 적어주세요.")
-      .required("그룹명을 적어주세요."),
-    category: Yup.string().required("그룹 카테고리를 지정해주세요."),
-    location: Yup.string().required("모임 지역을 선택해주세요."),
-    description: Yup.string().required("모임에 대한 자세한 내용을 적어주세요."),
-    startTime: Yup.string().required(),
-    endTime: Yup.string().required(),
-    meetingDate: Yup.string().required(),
-    launchedDate: Yup.date().default(() => new Date()),
-  };
+  schema = Joi.object({
+    title: Joi.string().min(1).max(20).required().messages({
+      "string.empty": `최소 1글자 이상의 그룹명을 적어주세요.`,
+      "string.min": `최소 1글자 이상의 그룹명을 적어주세요.`,
+      "string.max": `최대 20자 이내의 그룹명을 적어주세요.`,
+      "any.required": `그룹명을 적어주세요.`,
+    }),
+    category: Joi.string().required().messages({
+      "any.required": `그룹 카테고리를 지정해주세요.`,
+    }),
+    location: Joi.string().required().messages({
+      "any.required": `모임 지역을 선택해주세요.`,
+    }),
+    description: Joi.string().required().messages({
+      "any.required": `모임에 대한 자세한 내용을 적어주세요.`,
+    }),
+    startTime: Joi.string().required(),
+    endTime: Joi.string().required(),
+    meetingDate: Joi.string().required(),
+    launchedDate: Joi.date().default(() => new Date()),
+  });
 
   // submit
   doSubmit = async () => {
@@ -69,6 +77,9 @@ class NewGroup extends Form {
             "그룹소개",
             "모임에 대한 설명을 적어주세요."
           )}
+          <input type="date" placeholder="시작 시간" />
+          <input type="date" placeholder="끝나는 시간" />
+          {this.renderButton("", "", "그룹 만들기")}
         </form>
       </div>
     );
