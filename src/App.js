@@ -12,6 +12,7 @@ import Logout from "./components/user/logout";
 import Register from "./components/user/register";
 import MyPage from "./components/user/myPage";
 import CategoryBoard from "./components/categoryBoard";
+import NewGroup from "./components/newGroup";
 
 // module
 import auth from "./services/authService";
@@ -37,6 +38,7 @@ function App() {
       <main>
         <Switch>
           <Route path="/home" component={Home} />
+          <Route path="/createNewGroup" component={NewGroup} />
           <Route path="/logout" component={Logout} />
           <Route path="/login" component={Login} />
           <Route path="/categories/:id" component={CategoryBoard} />

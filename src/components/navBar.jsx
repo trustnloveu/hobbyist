@@ -14,20 +14,16 @@ import "../css/navBar.css";
 
 // { user }
 const NavBar = ({ user }) => {
+  const logoStyle = {
+    width: "250px",
+    margin: "-15px",
+    overflow: "hidden",
+  };
+
   return (
     <nav className="navbar">
       <Link to="/home">
-        <div>
-          <img
-            src="/logo.png"
-            alt="logo"
-            style={{
-              width: "250px",
-              margin: "-15px",
-              overflow: "hidden",
-            }}
-          />
-        </div>
+        <img src="/logo.png" alt="logo" style={logoStyle} />
       </Link>
       <div className="nav_lists">
         <ul>
@@ -38,7 +34,7 @@ const NavBar = ({ user }) => {
             </NavLink>
           </li>
           <li className="nav_item">
-            <NavLink to={user ? "/new" : "/login"}>
+            <NavLink to={user ? "/createNewGroup" : "/login"}>
               <FontAwesomeIcon icon={faUsers} />
               <span className="nav_title">새 그룹 시작하기</span>
             </NavLink>

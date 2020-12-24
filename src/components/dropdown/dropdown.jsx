@@ -12,7 +12,9 @@ const Dropdown = ({ options, visible }) => {
   }, [visible]);
 
   const filter = filters.map((filter, index) => (
-    <div key={index}>{filter}</div>
+    <div key={index} onClick={() => console.log({ filter })}>
+      {filter}
+    </div>
   ));
 
   return (

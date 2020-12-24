@@ -39,14 +39,6 @@ class Register extends Form {
     phone: Joi.string().required().min(9).max(20).label("전화번호"),
   };
 
-  // schema = {
-  //   email: Yup.string().email().required("이메일이 입력되지 않았습니다."),
-  //   password: Yup.string().required("이메일이 입력되지 않았습니다."),
-  //   repeat_password: Yup.ref("password"),
-  //   name: Yup.string().required(),
-  //   phone: Yup.string().required(),
-  // };
-
   // submit
   doSubmit = async () => {
     try {
@@ -58,8 +50,6 @@ class Register extends Form {
 
       // registration > login with token > home
       const response = await userService.registerUser(this.state.data);
-      console.log(response);
-      console.log(response.headers["x-auth-token"]);
       auth.loginWithJwt(response.headers["x-auth-token"]);
       window.location = "/";
     } catch (ex) {

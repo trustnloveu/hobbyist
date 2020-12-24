@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 
-// component
-import Dropdown from "../dropdown/dropdown";
-
 // icon
 import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 import { faMapMarkedAlt } from "@fortawesome/free-solid-svg-icons";
@@ -13,6 +10,7 @@ import "../../css/filter.css";
 import FilterMenu from "./filterMenu";
 
 const Filter = () => {
+  // dropdown contents
   const filterOptions = {
     dateFilter: {
       anytime: "상관없음",
@@ -46,10 +44,12 @@ const Filter = () => {
     },
   };
 
+  // dropdown visibility default
   const [visibleDate, setVisibleDate] = useState(false);
   const [visibleRegion, setVisibleRegion] = useState(false);
   const [visibleGroup, setVisibleGroup] = useState(false);
 
+  // dropdown visibility switch
   const filterToggleHandler = (option) => {
     switch (option) {
       case "date":
@@ -67,6 +67,8 @@ const Filter = () => {
         setVisibleDate(false);
         setVisibleRegion(false);
         break;
+      default:
+        return null;
     }
   };
 
