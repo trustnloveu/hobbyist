@@ -1,6 +1,7 @@
 import React from "react";
 import Joi from "joi-browser";
 import { toast } from "react-toastify";
+import { getCategories } from "./../services/categoryService";
 
 // filter option list
 import filterOptions from "../objects/filterOptions";
@@ -22,6 +23,7 @@ class NewGroup extends Form {
       launchedDate: "",
     },
     errors: {},
+    categories: [],
   };
 
   // {
@@ -43,6 +45,17 @@ class NewGroup extends Form {
     launchedDate: Joi.date().default(new Date()),
   };
 
+  // componentDidMount
+  componentDidMount() {
+    this.populateCategories();
+  }
+
+  async populateCategories() {
+    const { data: categories } = await getCategories();
+    this.setState({ categories });
+    console.log(this.state.categories);
+  }
+
   // submit
   doSubmit = async () => {
     try {
@@ -61,21 +74,18 @@ class NewGroup extends Form {
 
   // render
   render() {
-    // const categories = async () => {
-    //   await
-    // }
-
     return (
       <div className="NewGroup">
         <form onSubmit={this.handleSub}>
           {this.renderTitle("form_title", "새로운 그룹 만들기")}
           {this.renderInput("", "title", "그룹명", "그룹명을 입력해주세요.")}
-          {/* {this.renderSelect(
+          {this.renderSelect(
             "",
             "categoryId",
             "카테고리",
-            "모임 카테고리를 선택해주세요."
-          )} */}
+            "모임 카테고리를 선택해주세요.",
+            this.state.categories
+          )}
           {this.renderSelect(
             "",
             "location",

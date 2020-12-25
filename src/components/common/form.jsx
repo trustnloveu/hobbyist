@@ -92,13 +92,14 @@ class Form extends Component {
     return <Button conClass={conClass} btnClass={btnClass} label={label} />;
   }
 
-  // select
-  renderSelect(classNameObj, name, label, placeholder, filterOptions) {
-    const options = Object.keys(filterOptions).map((key) => [
-      key,
-      filterOptions[key],
-    ]);
+  // select   >   NOTE: Object.entries(obj) & Object.values(obj)
+  renderSelect(classNameObj, name, label, placeholder, lists) {
+    let options;
+    Array.isArray(lists)
+      ? (options = lists.map((list) => [list._id, list.name]))
+      : (options = Object.keys(lists).map((key) => [key, lists[key]]));
 
+    console.log(options);
     return (
       <div className="">
         <div className="">{label}</div>
