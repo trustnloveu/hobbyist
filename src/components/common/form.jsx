@@ -94,9 +94,11 @@ class Form extends Component {
 
   // select
   renderSelect(classNameObj, name, label, placeholder, filterOptions) {
-    console.log(filterOptions);
-    // const options = Object.values(filterOptions);
-    const options = filterOptions;
+    const options = Object.keys(filterOptions).map((key) => [
+      key,
+      filterOptions[key],
+    ]);
+
     return (
       <div className="">
         <div className="">{label}</div>
@@ -105,8 +107,8 @@ class Form extends Component {
             {placeholder}
           </option>
           {options.map((element) => (
-            <option key={element.key} value={element.key}>
-              {element.value}
+            <option key={element[0]} value={element[0]}>
+              {element[1]}
             </option>
           ))}
         </select>
