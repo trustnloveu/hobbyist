@@ -29,7 +29,6 @@ class Form extends Component {
     const schema = { [propertyName]: this.schema[propertyName] };
 
     const { error } = Joi.validate(obj, schema);
-    // const { error } = this.schema.validate(obj, schema);
     return error ? error.details[0].message : null;
   };
 
@@ -66,6 +65,7 @@ class Form extends Component {
   };
 
   // render components
+
   // title
   renderTitle(className, label) {
     return <div className={className}>{label}</div>;
@@ -90,6 +90,28 @@ class Form extends Component {
   // button
   renderButton(conClass, btnClass, label) {
     return <Button conClass={conClass} btnClass={btnClass} label={label} />;
+  }
+
+  // select
+  renderSelect(classNameObj, name, label, placeholder, filterOptions) {
+    console.log(filterOptions);
+    // const options = Object.values(filterOptions);
+    const options = filterOptions;
+    return (
+      <div className="">
+        <div className="">{label}</div>
+        <select name={name}>
+          <option value="" hidden>
+            {placeholder}
+          </option>
+          {options.map((element) => (
+            <option key={element.key} value={element.key}>
+              {element.value}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
   }
 }
 

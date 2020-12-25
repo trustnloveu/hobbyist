@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+// filter option list
+import filterOptions from "../../objects/filterOptions";
+
 // icon
 import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 import { faMapMarkedAlt } from "@fortawesome/free-solid-svg-icons";
@@ -11,38 +14,7 @@ import FilterMenu from "./filterMenu";
 
 const Filter = () => {
   // dropdown contents
-  const filterOptions = {
-    dateFilter: {
-      anytime: "상관없음",
-      today: "오늘",
-      tomorrow: "내일",
-      thisWeek: "이번주",
-      nextWeek: "다음주",
-      thisMonth: "이번달",
-    },
-    regionFilter: {
-      anywhere: "상관없음",
-      seoul: "서울",
-      busan: "부산",
-      daegu: "대구",
-      incheon: "인천",
-      gwangju: "광주",
-      daejeon: "대전",
-      ulsan: "울산",
-      jeju: "제주",
-      gyeonggi: "경기",
-      gangwon: "강원",
-      chungcheon: "충청",
-      jeolla: "전라",
-      gyeongsang: "경상",
-    },
-    groupFilter: {
-      anygroup: "상관없음",
-      small: "소그룹(5명 이하)",
-      medium: "중그룹(5~20명)",
-      large: "대그룹(20명 이상)",
-    },
-  };
+  const filters = { ...filterOptions };
 
   // dropdown visibility default
   const [visibleDate, setVisibleDate] = useState(false);
@@ -72,11 +44,12 @@ const Filter = () => {
     }
   };
 
+  // return
   return (
     <div className="filter_container">
       <FilterMenu
         className="filter_option"
-        options={filterOptions.dateFilter}
+        options={filters.dateFilter}
         onClick={() => filterToggleHandler("date")}
         visible={visibleDate}
         icon={faCalendarDay}
@@ -84,7 +57,7 @@ const Filter = () => {
       />
       <FilterMenu
         className="filter_option"
-        options={filterOptions.regionFilter}
+        options={filters.regionFilter}
         onClick={() => filterToggleHandler("region")}
         visible={visibleRegion}
         icon={faMapMarkedAlt}
@@ -92,7 +65,7 @@ const Filter = () => {
       />
       <FilterMenu
         className="filter_option"
-        options={filterOptions.groupFilter}
+        options={filters.groupFilter}
         onClick={() => filterToggleHandler("group")}
         visible={visibleGroup}
         icon={faUserFriends}

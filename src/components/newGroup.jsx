@@ -1,7 +1,11 @@
 import React from "react";
-import Joi from "joi";
+import Joi from "joi-browser";
 import { toast } from "react-toastify";
 
+// filter option list
+import filterOptions from "../objects/filterOptions";
+
+// components
 import Form from "./common/form";
 
 class NewGroup extends Form {
@@ -9,7 +13,7 @@ class NewGroup extends Form {
   state = {
     data: {
       title: "",
-      category: "",
+      categoryId: "",
       location: "",
       description: "",
       startTime: "",
@@ -20,28 +24,24 @@ class NewGroup extends Form {
     errors: {},
   };
 
+  // {
+  //   "string.empty": `최소 1글자 이상의 그룹명을 적어주세요.`,
+  //   "string.min": `최소 1글자 이상의 그룹명을 적어주세요.`,
+  //   "string.max": `최대 20자 이내의 그룹명을 적어주세요.`,
+  //   "any.required": `그룹명을 적어주세요.`,
+  // }
+
   // schema
-  schema = Joi.object({
-    title: Joi.string().min(1).max(20).required().messages({
-      "string.empty": `최소 1글자 이상의 그룹명을 적어주세요.`,
-      "string.min": `최소 1글자 이상의 그룹명을 적어주세요.`,
-      "string.max": `최대 20자 이내의 그룹명을 적어주세요.`,
-      "any.required": `그룹명을 적어주세요.`,
-    }),
-    category: Joi.string().required().messages({
-      "any.required": `그룹 카테고리를 지정해주세요.`,
-    }),
-    location: Joi.string().required().messages({
-      "any.required": `모임 지역을 선택해주세요.`,
-    }),
-    description: Joi.string().required().messages({
-      "any.required": `모임에 대한 자세한 내용을 적어주세요.`,
-    }),
-    startTime: Joi.string().required(),
-    endTime: Joi.string().required(),
-    meetingDate: Joi.string().required(),
-    launchedDate: Joi.date().default(() => new Date()),
-  });
+  schema = {
+    title: Joi.string().min(1).max(20).required().label("그룹명"),
+    categoryId: Joi.string().required().label("카테고리"),
+    location: Joi.string().required().label("지역"),
+    description: Joi.string().min(1).max(500).required().label("그룹 소개"),
+    startTime: Joi.string().required().label("시작 시간"),
+    endTime: Joi.string().required().label("끝나는 시간"),
+    meetingDate: Joi.string().required().label("모임 날짜"),
+    launchedDate: Joi.date().default(new Date()),
+  };
 
   // submit
   doSubmit = async () => {
@@ -61,25 +61,41 @@ class NewGroup extends Form {
 
   // render
   render() {
+    // const categories = async () => {
+    //   await
+    // }
+
     return (
       <div className="NewGroup">
         <form onSubmit={this.handleSub}>
           {this.renderTitle("form_title", "새로운 그룹 만들기")}
-          {this.renderInput("", "text", "그룹명", "그룹명을 입력해주세요.")}
-          <select>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
+          {this.renderInput("", "title", "그룹명", "그룹명을 입력해주세요.")}
+          {/* {this.renderSelect(
+            "",
+            "categoryId",
+            "카테고리",
+            "모임 카테고리를 선택해주세요."
+          )} */}
+          {this.renderSelect(
+            "",
+            "location",
+            "모임 지역",
+            "지역을 선택해주세요.",
+            filterOptions.regionFilter
+          )}
           {this.renderInput(
             "",
-            "text",
+            "description",
             "그룹소개",
             "모임에 대한 설명을 적어주세요."
           )}
           <input type="date" placeholder="시작 시간" />
           <input type="date" placeholder="끝나는 시간" />
-          {this.renderButton("", "", "그룹 만들기")}
+          {this.renderButton(
+            "new_group_btn_con",
+            "new_group_btn",
+            "그룹 만들기"
+          )}
         </form>
       </div>
     );
