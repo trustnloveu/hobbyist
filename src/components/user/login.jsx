@@ -1,5 +1,6 @@
 // library
 import React from "react";
+import { Link } from "react-router-dom";
 import Joi from "joi-browser";
 import { toast } from "react-toastify";
 
@@ -69,7 +70,11 @@ class Login extends Form {
             "password"
           )}
           {this.renderButton("input_con", "login_btn", "로그인")}
-          {this.renderButton("input_con", "register_btn", "회원가입")}
+          <div className="input_con">
+            <Link to="/register">
+              <button className="register_btn">회원가입</button>
+            </Link>
+          </div>
         </form>
       </div>
     );

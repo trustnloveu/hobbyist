@@ -5,6 +5,7 @@ import Joi from "joi-browser";
 import Input from "./input";
 import Button from "./button";
 import Select from "./select";
+import Textarea from "./textarea";
 
 class Form extends Component {
   state = {
@@ -88,6 +89,21 @@ class Form extends Component {
     );
   }
 
+  renderTextarea(classNameObj, name, label, placeholder = "") {
+    const { data, errors } = this.state;
+    return (
+      <Textarea
+        name={name}
+        label={label}
+        classNameObj={classNameObj}
+        placeholder={placeholder}
+        onChange={this.handleChange}
+        value={data[name]}
+        error={errors[name]}
+      />
+    );
+  }
+
   // button
   renderButton(conClass, btnClass, label) {
     return <Button conClass={conClass} btnClass={btnClass} label={label} />;
@@ -96,7 +112,6 @@ class Form extends Component {
   // select   >   NOTE: Object.entries(obj) & Object.values(obj)
   renderSelect(classNameObj, name, label, placeholder, lists) {
     const { data, errors } = this.state;
-
     return (
       <Select
         classNameObj={classNameObj}
@@ -105,6 +120,7 @@ class Form extends Component {
         placeholder={placeholder}
         lists={lists}
         error={errors[name]}
+        onChange={this.handleChange}
       />
     );
   }

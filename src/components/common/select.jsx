@@ -1,6 +1,14 @@
 import React from "react";
 
-const Select = ({ classNameObj, name, label, placeholder, lists, error }) => {
+const Select = ({
+  classNameObj,
+  name,
+  label,
+  onChange,
+  placeholder,
+  lists,
+  error,
+}) => {
   // select options
   let options;
   Array.isArray(lists)
@@ -13,7 +21,7 @@ const Select = ({ classNameObj, name, label, placeholder, lists, error }) => {
   return (
     <div className={classNameObj.container}>
       <div className={classNameObj.label}>{label}</div>
-      <select name={name}>
+      <select id={name} name={name} onChange={onChange}>
         <option hidden>{placeholder}</option>
         {options.map((element) => (
           <option key={element[0]} value={element[0]}>

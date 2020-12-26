@@ -53,6 +53,7 @@ class NewGroup extends Form {
     this.populateCategories();
   }
 
+  // get categories form DB
   async populateCategories() {
     const { data: categories } = await getCategories();
     this.setState({ categories });
@@ -100,8 +101,8 @@ class NewGroup extends Form {
             "지역을 선택해주세요.",
             filterOptions.regionFilter
           )}
-          {this.renderInput(
-            this.inputClassName,
+          {this.renderTextarea(
+            this.textareaClassName,
             "description",
             "그룹소개",
             "모임에 대한 설명을 적어주세요."
@@ -120,8 +121,8 @@ class NewGroup extends Form {
             "",
             "time"
           )}
-          {this.renderInput(
-            this.inputClassName,
+          {this.renderTextarea(
+            this.textareaClassName,
             "keywords",
             "모임 관련 키워드",
             "만드시는 모임 활동에 대한 키워드를 '#'과 함께 입력해주세요. 예) #동네친구 #커피좋아하는사람 #고민상담 ..."
@@ -148,6 +149,14 @@ class NewGroup extends Form {
   selectClassName = {
     container: "select_con",
     label: "select_label",
+  };
+
+  // textarea classNames
+  textareaClassName = {
+    container: "input_con",
+    textarea: "textarea_target",
+    labelCon: "input_label_con",
+    label: "input_label",
   };
 }
 
