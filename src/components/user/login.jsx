@@ -52,9 +52,9 @@ class Login extends Form {
 
   render() {
     return (
-      <div className="user_service_con">
+      <div className="Login">
         <form onSubmit={this.handleSubmit}>
-          {this.renderTitle("form_title", "로그인")}
+          {this.renderTitle("Title", "로그인")}
           {this.renderInput(
             this.inputClassName,
             "email",

@@ -2,15 +2,15 @@ import React from "react";
 import Joi from "joi-browser";
 import { toast } from "react-toastify";
 
-// server
+// services
 import * as userService from "../../services/userService";
+import auth from "../../services/authService";
 
 // components
 import Form from "../common/form";
 
 // css
 import "../../css/userService.css";
-import auth from "../../services/authService";
 
 class Register extends Form {
   state = {
@@ -65,9 +65,9 @@ class Register extends Form {
   // render
   render() {
     return (
-      <div className="user_service_con">
+      <div className="Register">
         <form onSubmit={this.handleSubmit}>
-          {this.renderTitle("form_title", "회원가입")}
+          {this.renderTitle("Title", "회원가입")}
           {this.renderInput(
             this.inputClassName,
             "email",

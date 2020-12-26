@@ -1,24 +1,18 @@
-/* login & register & my info */
+/* 회원가입 & 로그인 & 새그룹 만들기 */
 
-/* multi class */
+/* 복수 클래스 */
 .alert_mark {
   color: red;
 }
 
-.btn {
+.invalid_msg {
+  margin-top: 4px;
 }
 
-.btn:hover {
-  outline: none;
-}
-
-.btn:focus {
-  outline: none;
-}
-
-/* registeration form layout */
-.user_service_con {
-  width: 400px;
+/* 회원가입 & 로그인 & 새그룹 만들기 Form */
+.Register,
+.Login,
+.NewGroup {
   margin: 20px auto;
   padding: 30px 40px;
   border: 1px solid #95e1d3;
@@ -27,12 +21,24 @@
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.user_service_con:hover {
+.Register,
+.Login {
+  width: 400px;
+}
+
+.NewGroup {
+  width: 500px;
+}
+
+.Register:hover,
+.Login:hover,
+.NewGroup:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
+/* 로그인 & 회원가입 폼 */
 /* title */
-.form_title {
+.Title {
   text-indent: 3px;
   font-size: 17pt;
   font-weight: 600;
@@ -62,19 +68,19 @@
 .input_target:focus {
   outline: none;
 }
-.input_form {
-}
-
-.invalid_msg {
-  margin-top: 4px;
-}
 
 .input_label {
   cursor: pointer;
 }
 
+/* 버튼 */
+.new_group_btn {
+  display: block;
+}
+
 .login_btn,
-.register_btn {
+.register_btn,
+.new_group_btn {
   width: 100%;
   height: 40px;
   margin: 20px auto 0 auto;
@@ -85,7 +91,8 @@
 }
 
 .login_btn:hover,
-.register_btn:hover {
+.register_btn:hover,
+.new_group_btn:hover {
   cursor: pointer;
   transition: 0.3s ease-in;
   background-color: indigo;
@@ -99,13 +106,36 @@
   background-color: #95e1d3;
 }
 
+.new_group_btn {
+  background-color: #f38181;
+}
+
 .login_btn:focus,
-.register_btn:focus {
+.register_btn:focus,
+.new_group_btn:focus {
   outline: none;
 }
 
-.login_btn:disabled,
-.register_btn:disabled {
-  background-color: grey;
-  cursor: auto;
+/* select */
+.select_con {
+  display: block;
+}
+
+.select_label {
+  margin-top: 20px;
+  text-indent: 5px;
+}
+
+.select_con select {
+  width: 100%;
+  height: 35px;
+  margin-top: 7px;
+  border-radius: 5px;
+  border: 1px solid indigo;
+  text-indent: 5px;
+  box-sizing: border-box;
+}
+
+.select_con select:focus {
+  outline: none;
 }

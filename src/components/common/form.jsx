@@ -4,6 +4,7 @@ import Joi from "joi-browser";
 // components
 import Input from "./input";
 import Button from "./button";
+import Select from "./select";
 
 class Form extends Component {
   state = {
@@ -71,7 +72,7 @@ class Form extends Component {
     return <div className={className}>{label}</div>;
   }
   // input
-  renderInput(classNameObj, name, label, placeholder, type = "text") {
+  renderInput(classNameObj, name, label, placeholder = "", type = "text") {
     const { data, errors } = this.state;
     return (
       <Input
@@ -94,26 +95,17 @@ class Form extends Component {
 
   // select   >   NOTE: Object.entries(obj) & Object.values(obj)
   renderSelect(classNameObj, name, label, placeholder, lists) {
-    let options;
-    Array.isArray(lists)
-      ? (options = lists.map((list) => [list._id, list.name]))
-      : (options = Object.keys(lists).map((key) => [key, lists[key]]));
+    const { data, errors } = this.state;
 
-    console.log(options);
     return (
-      <div className="">
-        <div className="">{label}</div>
-        <select name={name}>
-          <option value="" hidden>
-            {placeholder}
-          </option>
-          {options.map((element) => (
-            <option key={element[0]} value={element[0]}>
-              {element[1]}
-            </option>
-          ))}
-        </select>
-      </div>
+      <Select
+        classNameObj={classNameObj}
+        name={name}
+        label={label}
+        placeholder={placeholder}
+        lists={lists}
+        error={errors[name]}
+      />
     );
   }
 }

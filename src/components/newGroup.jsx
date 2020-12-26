@@ -9,6 +9,9 @@ import filterOptions from "../objects/filterOptions";
 // components
 import Form from "./common/form";
 
+// css
+import "../css/userService.css";
+
 class NewGroup extends Form {
   // state
   state = {
@@ -18,8 +21,8 @@ class NewGroup extends Form {
       location: "",
       description: "",
       startTime: "",
-      endTime: "",
       meetingDate: "",
+      keywords: "",
       launchedDate: "",
     },
     errors: {},
@@ -40,8 +43,8 @@ class NewGroup extends Form {
     location: Joi.string().required().label("지역"),
     description: Joi.string().min(1).max(500).required().label("그룹 소개"),
     startTime: Joi.string().required().label("시작 시간"),
-    endTime: Joi.string().required().label("끝나는 시간"),
     meetingDate: Joi.string().required().label("모임 날짜"),
+    keywords: Joi.string().label("키워드"),
     launchedDate: Joi.date().default(new Date()),
   };
 
@@ -53,7 +56,6 @@ class NewGroup extends Form {
   async populateCategories() {
     const { data: categories } = await getCategories();
     this.setState({ categories });
-    console.log(this.state.categories);
   }
 
   // submit
@@ -77,30 +79,53 @@ class NewGroup extends Form {
     return (
       <div className="NewGroup">
         <form onSubmit={this.handleSub}>
-          {this.renderTitle("form_title", "새로운 그룹 만들기")}
-          {this.renderInput("", "title", "그룹명", "그룹명을 입력해주세요.")}
+          {this.renderTitle("Title", "새로운 그룹 만들기")}
+          {this.renderInput(
+            this.inputClassName,
+            "title",
+            "그룹명",
+            "그룹명을 입력해주세요."
+          )}
           {this.renderSelect(
-            "",
+            this.selectClassName,
             "categoryId",
             "카테고리",
             "모임 카테고리를 선택해주세요.",
             this.state.categories
           )}
           {this.renderSelect(
-            "",
+            this.selectClassName,
             "location",
             "모임 지역",
             "지역을 선택해주세요.",
             filterOptions.regionFilter
           )}
           {this.renderInput(
-            "",
+            this.inputClassName,
             "description",
             "그룹소개",
             "모임에 대한 설명을 적어주세요."
           )}
-          <input type="date" placeholder="시작 시간" />
-          <input type="date" placeholder="끝나는 시간" />
+          {this.renderInput(
+            this.inputClassName,
+            "meetingDate",
+            "모임 날짜",
+            "",
+            "date"
+          )}
+          {this.renderInput(
+            this.inputClassName,
+            "meetingDate",
+            "시작 시간",
+            "",
+            "time"
+          )}
+          {this.renderInput(
+            this.inputClassName,
+            "keywords",
+            "모임 관련 키워드",
+            "만드시는 모임 활동에 대한 키워드를 '#'과 함께 입력해주세요. 예) #동네친구 #커피좋아하는사람 #고민상담 ..."
+          )}
           {this.renderButton(
             "new_group_btn_con",
             "new_group_btn",
@@ -110,6 +135,20 @@ class NewGroup extends Form {
       </div>
     );
   }
+
+  // input classNames
+  inputClassName = {
+    container: "input_con",
+    input: "input_target",
+    labelCon: "input_label_con",
+    label: "input_label",
+  };
+
+  // select classNames
+  selectClassName = {
+    container: "select_con",
+    label: "select_label",
+  };
 }
 
 export default NewGroup;
