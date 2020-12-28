@@ -61,8 +61,6 @@ class Form extends Component {
     this.doSubmit();
   };
 
-  // render components
-
   // title
   renderTitle(className, label) {
     return <div className={className}>{label}</div>;
@@ -84,6 +82,7 @@ class Form extends Component {
     );
   }
 
+  // textarea
   renderTextarea(classNameObj, name, label, placeholder = "") {
     const { data, errors } = this.state;
     return (

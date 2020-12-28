@@ -8,8 +8,8 @@ export function getGroups() {
 }
 
 // GET some with filter
-export function getGroupsByCategory(filter) {
-  return http.get(`apiEndpoin/${filter}`);
+export function getGroupsByCategory(categoryId) {
+  return http.get(`${apiEndpoin}/${categoryId}`);
 }
 
 // POST
