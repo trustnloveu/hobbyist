@@ -5,7 +5,7 @@ import { getCategory } from "../services/categoryService";
 import { getGroups } from "../services/groupService";
 
 // components
-import FilterBox from "./common/filterList";
+import FilterList from "./common/filterList";
 import CategoryForm from "./common/categoryForm";
 import GroupList from "./groupList";
 
@@ -37,11 +37,11 @@ const CategoryBoard = (props) => {
 
   // return
   return (
-    <>
-      <FilterBox label={categoryName} />
+    <div style={{ width: "70%", margin: "auto" }}>
+      <FilterList label={categoryName} />
       <GroupList groups={groups} />
       <CategoryForm label={categoryLabel} />
-    </>
+    </div>
   );
 };
 

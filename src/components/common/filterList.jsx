@@ -9,7 +9,6 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 const FilterList = ({ label }) => {
   const style = {
     container: {
-      width: "60%",
       margin: "20px auto",
       minWidth: "800px",
     },
