@@ -8,10 +8,15 @@ const Group = ({ data }) => {
     <div className="Group">
       <img className="image" src="" alt="" />
       <ul className="info_con">
-        <li className="title">{data.title}</li>
+        <li className="title">
+          {data.title}
+          {data.host.name}
+        </li>
         <li className="keywords">
-          {data.keywords.map((keyword) => (
-            <span className="keyword">{"#" + keyword}</span>
+          {data.keywords.map((keyword, index) => (
+            <span className="keyword" key={index}>
+              {"#" + keyword}
+            </span>
           ))}
         </li>
         <li className="date">

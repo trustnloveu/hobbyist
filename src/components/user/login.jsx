@@ -32,7 +32,6 @@ class Login extends Form {
   };
 
   doSubmit = async () => {
-    console.log("login clicked");
     try {
       // validate
       const { data } = this.state;

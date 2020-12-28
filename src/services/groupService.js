@@ -16,6 +16,7 @@ export function getGroupsByCategory(categoryId) {
 export function createNewGroup(groupData) {
   return http.post(apiEndpoin, {
     title: groupData.title,
+    userId: groupData.userId,
     categoryId: groupData.categoryId,
     location: groupData.location,
     description: groupData.description,

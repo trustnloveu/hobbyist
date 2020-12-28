@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 // services
 import { getCategories } from "./../services/categoryService";
 import * as groupService from "./../services/groupService";
+import auth from "./../services/authService";
 
 // filter option list
 import filterOptions from "../objects/filterOptions";
@@ -15,11 +16,13 @@ import Form from "./common/form";
 // css
 import "../css/userService.css";
 
+// class
 class NewGroup extends Form {
   // state
   state = {
     data: {
       title: "",
+      userId: "",
       categoryId: "",
       location: "",
       description: "",
@@ -41,6 +44,7 @@ class NewGroup extends Form {
   // schema
   schema = {
     title: Joi.string().min(1).max(20).required().label("그룹명"),
+    userId: Joi.string().required("현재 유저 아이디"),
     categoryId: Joi.string().required().label("카테고리"),
     location: Joi.string().required().label("지역"),
     description: Joi.string().min(1).max(500).required().label("그룹 소개"),
@@ -52,6 +56,7 @@ class NewGroup extends Form {
   // componentDidMount
   async componentDidMount() {
     this.populateCategories();
+    this.populateUserId();
   }
 
   //componentDidUpdate
@@ -65,12 +70,19 @@ class NewGroup extends Form {
     this.setState({ categories });
   }
 
+  populateUserId() {
+    const data = { ...this.state.data };
+    data.userId = auth.getCurrentUser()._id;
+    this.setState({ data });
+  }
+
   // submit
   doSubmit = async () => {
     try {
       // launch group
+      console.log(this.state.data);
       await groupService.createNewGroup(this.state.data);
-      // window.location = "/";
+      window.location = "/";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };

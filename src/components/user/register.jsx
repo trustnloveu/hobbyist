@@ -48,8 +48,8 @@ class Register extends Form {
 
       // registration > login with token > home
       const response = await userService.registerUser(this.state.data);
-      console.log(response);
-      console.log(response.headers["x-auth-token"]);
+      // console.log(response);
+      // console.log(response.headers["x-auth-token"]);
       auth.loginWithJwt(response.headers["x-auth-token"]);
       window.location = "/";
     } catch (ex) {

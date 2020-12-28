@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 // services
 import { getCategory } from "../services/categoryService";
-import { getGroups, getGroupsByCategory } from "../services/groupService";
+import { getGroupsByCategory } from "../services/groupService";
 
 // components
 import FilterList from "./common/filterList";
@@ -25,10 +25,10 @@ const CategoryBoard = (props) => {
 
     // keywords, launchedDate, _id, title, category, location, description, startTime, meetingDate
     // group list
-    async function getGroupList() {
-      const { data } = await getGroups();
-      setGroups(data);
-    }
+    // async function getGroupList() {
+    //   const { data } = await getGroups();
+    //   setGroups(data);
+    // }
 
     async function getGroupListByCategory() {
       const { data } = await getGroupsByCategory(props.match.params.id);
