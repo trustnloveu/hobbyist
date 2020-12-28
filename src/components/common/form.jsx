@@ -46,11 +46,6 @@ class Form extends Component {
     data[input.name] = input.value;
 
     this.setState({ data, errors });
-
-    // if (!this.validate()) {
-    //   console.log(true);
-    //   this.setState({ errors: {} });
-    // }
   };
 
   // submit event
@@ -111,7 +106,7 @@ class Form extends Component {
 
   // select   >   NOTE: Object.entries(obj) & Object.values(obj)
   renderSelect(classNameObj, name, label, placeholder, lists) {
-    const { data, errors } = this.state;
+    const { errors } = this.state;
     return (
       <Select
         classNameObj={classNameObj}

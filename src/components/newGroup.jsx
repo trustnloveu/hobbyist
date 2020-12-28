@@ -1,7 +1,10 @@
 import React from "react";
 import Joi from "joi-browser";
 import { toast } from "react-toastify";
+
+// services
 import { getCategories } from "./../services/categoryService";
+import * as groupService from "./../services/groupService";
 
 // filter option list
 import filterOptions from "../objects/filterOptions";
@@ -23,7 +26,6 @@ class NewGroup extends Form {
       startTime: "",
       meetingDate: "",
       keywords: "",
-      launchedDate: "",
     },
     errors: {},
     categories: [],
@@ -45,13 +47,17 @@ class NewGroup extends Form {
     startTime: Joi.string().required().label("시작 시간"),
     meetingDate: Joi.string().required().label("모임 날짜"),
     keywords: Joi.string().label("키워드"),
-    launchedDate: Joi.date().default(new Date()),
   };
 
   // componentDidMount
-  componentDidMount() {
+  async componentDidMount() {
     this.populateCategories();
   }
+
+  //componentDidUpdate
+  // componentDidUpdate() {
+  //   console.log(this.state);
+  // }
 
   // get categories form DB
   async populateCategories() {
@@ -63,7 +69,7 @@ class NewGroup extends Form {
   doSubmit = async () => {
     try {
       // launch group
-      // const reqponse = await groupService.createGroup(this.state.data);
+      await groupService.createNewGroup(this.state.data);
       // window.location = "/";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
@@ -79,7 +85,7 @@ class NewGroup extends Form {
   render() {
     return (
       <div className="NewGroup">
-        <form onSubmit={this.handleSub}>
+        <form onSubmit={this.handleSubmit}>
           {this.renderTitle("Title", "새로운 그룹 만들기")}
           {this.renderInput(
             this.inputClassName,
@@ -116,7 +122,7 @@ class NewGroup extends Form {
           )}
           {this.renderInput(
             this.inputClassName,
-            "meetingDate",
+            "startTime",
             "시작 시간",
             "",
             "time"
