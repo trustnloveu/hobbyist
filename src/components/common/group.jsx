@@ -1,16 +1,25 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+import filterOptions from "../../objects/filterOptions";
 
 import "../../css/groupList.css";
 
 // keywords, launchedDate, _id, title, category, location, description, startTime, meetingDate
 const Group = ({ data }) => {
+  // 장소 key : value
+  const { regionFilter } = filterOptions;
+
   return (
     <div className="Group">
       <img className="image" src="" alt="" />
       <ul className="info_con">
-        <li className="title">
-          {data.title}
-          {data.host.name}
+        <li className="title_con">
+          <span>[{regionFilter[data.location]}]</span>
+          <Link to={`/group/${data._id}`}>
+            <span className="title">{data.title}</span>
+          </Link>
+          <span className="host">(모임장 '{data.host.name}')</span>
         </li>
         <li className="keywords">
           {data.keywords.map((keyword, index) => (

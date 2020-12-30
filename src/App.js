@@ -13,6 +13,7 @@ import Register from "./components/user/register";
 import MyPage from "./components/user/myPage";
 import CategoryBoard from "./components/categoryBoard";
 import NewGroup from "./components/newGroup";
+import Group from "./components/group";
 
 // module
 import auth from "./services/authService";
@@ -38,13 +39,14 @@ function App() {
       <main>
         <Switch>
           <Route path="/home" component={Home} />
-          <Route path="/createNewGroup" component={NewGroup} />
-          <Route path="/logout" component={Logout} />
-          <Route path="/login" component={Login} />
           <Route path="/categories/:id" component={CategoryBoard} />
           <Route path="/categories" component={Categories} />
-          <Route path="/register" component={Register} />
+          <Route path="/createNewGroup" component={NewGroup} />
+          <Route path="/group/:id" component={Group} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/login" component={Login} />
           <Route path="/myPage" component={MyPage} />
+          <Route path="/register" component={Register} />
           <Redirect from="/" exatc to="/home" />
           <Redirect to="/not-found" />
         </Switch>

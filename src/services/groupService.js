@@ -12,6 +12,11 @@ export function getGroupsByCategory(categoryId) {
   return http.get(`${apiEndpoin}/${categoryId}`);
 }
 
+// GET one by ID
+export function getGroup(groupId) {
+  return http.get(`${apiEndpoin}/group/${groupId}`);
+}
+
 // POST
 export function createNewGroup(groupData) {
   return http.post(apiEndpoin, {

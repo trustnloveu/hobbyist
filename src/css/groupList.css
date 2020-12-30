@@ -30,8 +30,20 @@
   margin-bottom: 12px;
 }
 
-.title {
+.title_con {
   font-size: 18pt;
+}
+
+.title:hover {
+  transition: 0.5s;
+  background-color: lightcoral;
+}
+
+.host {
+  font-size: medium;
+  margin-left: 10px;
+  color: darkblue;
+  font-weight: 500;
 }
 
 .keywords {
