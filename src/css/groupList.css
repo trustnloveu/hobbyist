@@ -5,8 +5,10 @@
 }
 
 .Group:hover {
-  transition: 1s;
-  background-color: violet;
+  transition: 0.5s;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  background-color: #eee;
 }
 
 .image {
@@ -36,7 +38,10 @@
 
 .title:hover {
   transition: 0.5s;
-  background-color: lightcoral;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-position: under;
+  border-radius: 5px;
 }
 
 .host {
