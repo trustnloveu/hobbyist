@@ -16,6 +16,9 @@ import Form from "./common/form";
 // css
 import "../css/userService.css";
 
+// image
+import defaultPhoto from "../images/defaultPhoto.jpg";
+
 // class
 class NewGroup extends Form {
   // state
@@ -29,7 +32,7 @@ class NewGroup extends Form {
       startTime: "",
       meetingDate: "",
       keywords: "",
-      image: "",
+      coverImage: "",
     },
     errors: {},
     categories: [],
@@ -52,7 +55,7 @@ class NewGroup extends Form {
     startTime: Joi.string().required().label("시작 시간"),
     meetingDate: Joi.string().required().label("모임 날짜"),
     keywords: Joi.string().label("키워드"),
-    image: Joi.string().required().label("소개 이미지"),
+    coverImage: Joi.string().label("모임 대표사진"),
   };
 
   // componentDidMount
@@ -147,23 +150,24 @@ class NewGroup extends Form {
             "모임 관련 키워드",
             "만드시는 모임 활동에 대한 키워드를 '#'과 함께 입력해주세요. 예) #동네친구 #커피좋아하는사람 #고민상담 ..."
           )}
-          {/* {uploadingImg ? (
-            <div>
-            <img src={uploadingImg.filePath} alt="" />
-            <h1>{uploadingImg.fileName}</h1>
-            </div>
-            ) : (
-              ""
-            )} */}
-          <div>
-            <input
-              type="img"
-              name="image"
-              onChange={this.handleChange}
-              multiple
-            />
-            <button onClick={}></button>
-          </div>
+          <input
+            id="image-upload"
+            type="file"
+            name="image"
+            accept=".jpg, .png, jpeg"
+            onChange={this.handleUploadPhoto}
+          />
+          <img
+            src={
+              this.state.data.coverImage === ""
+                ? defaultPhoto
+                : this.state.data.coverImage
+            }
+            alt=""
+          />
+          <label htmlFor="image-upload">
+            <div>이미지 업로드</div>
+          </label>
           {this.renderButton(
             "new_group_btn_con",
             "new_group_btn",

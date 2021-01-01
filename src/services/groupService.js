@@ -20,9 +20,9 @@ export function getGroup(groupId) {
 // POST
 export function createNewGroup(groupData) {
   // formData > res.data > fileName & filePath(`${BASE_URL}/image/${fileName}`)
-  const formData = new FormData();
-  formData.append("img", groupData.image);
-  console.log(formData);
+  // const formData = new FormData();
+  // formData.append("img", groupData.image);
+  // console.log(formData);
 
   return http.post(apiEndpoin, {
     title: groupData.title,
@@ -33,6 +33,6 @@ export function createNewGroup(groupData) {
     startTime: groupData.startTime,
     meetingDate: groupData.meetingDate,
     keywords: groupData.keywords,
-    image: formData,
+    image: groupData.coverImage,
   });
 }

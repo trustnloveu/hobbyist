@@ -49,18 +49,25 @@ class Form extends Component {
   };
 
   // Image event
-  // handleImageChange = (e) => {
-  //   const errors = { ...this.state.errors };
-  //   const errorMsg = this.validateProperty(e.target.value);
+  handleUploadPhoto = (event) => {
+    const reader = new FileReader();
 
-  //   if (errorMsg) errors[e.target.name] = errorMsg;
-  //   else delete errors[e.target.name];
+    reader.onloadend = () => {
+      const base64 = reader.result;
+      if (base64) {
+        const data = { ...this.state.data };
+        data.coverImage = base64.toString(); // file update in status base64
+        this.setState({ data });
+      }
+    };
+    if (event.target.files[0]) {
+      reader.readAsDataURL(event.target.files[0]); // read file > svae into buffer
 
-  //   const data = { ...this.state.data };
-  //   data[e.target.name] = e.target.value;
-
-  //   this.setState({ data, errors });
-  // };
+      const data = { ...this.state.data };
+      data.coverImage = event.target.files[0];
+      this.setState({ data }); // update file status
+    }
+  };
 
   // submit event
   handleSubmit = (e) => {
@@ -84,6 +91,7 @@ class Form extends Component {
   // input
   renderInput(classNameObj, name, label, placeholder = "", type = "text") {
     const { data, errors } = this.state;
+
     return (
       <Input
         type={type}
