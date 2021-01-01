@@ -48,6 +48,20 @@ class Form extends Component {
     this.setState({ data, errors });
   };
 
+  // Image event
+  // handleImageChange = (e) => {
+  //   const errors = { ...this.state.errors };
+  //   const errorMsg = this.validateProperty(e.target.value);
+
+  //   if (errorMsg) errors[e.target.name] = errorMsg;
+  //   else delete errors[e.target.name];
+
+  //   const data = { ...this.state.data };
+  //   data[e.target.name] = e.target.value;
+
+  //   this.setState({ data, errors });
+  // };
+
   // submit event
   handleSubmit = (e) => {
     e.preventDefault();
@@ -59,7 +73,6 @@ class Form extends Component {
     // console.log(errors);
 
     if (errors) return;
-    // if (errors) console.log(errors);
 
     this.doSubmit();
   };
