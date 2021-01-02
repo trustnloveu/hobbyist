@@ -33,6 +33,6 @@ export function createNewGroup(groupData) {
     startTime: groupData.startTime,
     meetingDate: groupData.meetingDate,
     keywords: groupData.keywords,
-    image: groupData.coverImage,
+    coverImage: groupData.coverImage,
   });
 }
