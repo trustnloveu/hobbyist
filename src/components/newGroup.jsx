@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 // services
 import { getCategories } from "./../services/categoryService";
+import * as userService from "./../services/userService";
 import * as groupService from "./../services/groupService";
 import auth from "./../services/authService";
 
@@ -84,10 +85,16 @@ class NewGroup extends Form {
   // submit
   doSubmit = async () => {
     try {
-      // launch group
-      console.log(this.state.data);
-      await groupService.createNewGroup(this.state.data);
-      window.location = "/";
+      // create new group
+      const { data: group } = await groupService.createNewGroup(
+        this.state.data
+      );
+
+      console.log(group._id);
+      // update user role(host > manager > true)
+      // await userService.openNewGroup(group._id);
+
+      // window.location = "/";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
@@ -150,24 +157,16 @@ class NewGroup extends Form {
             "모임 관련 키워드",
             "만드시는 모임 활동에 대한 키워드를 '#'과 함께 입력해주세요. 예) #동네친구 #커피좋아하는사람 #고민상담 ..."
           )}
-          <input
-            id="image-upload"
-            type="file"
-            name="image"
-            accept=".jpg, .png, jpeg"
-            onChange={this.handleUploadPhoto}
-          />
-          <img
-            src={
-              this.state.data.coverImage === ""
-                ? defaultPhoto
-                : this.state.data.coverImage
-            }
-            alt=""
-          />
-          <label htmlFor="image-upload">
-            <div>이미지 업로드</div>
-          </label>
+          {this.renderFileInput(
+            "image-upload",
+            this.state.data.coverImage === ""
+              ? defaultPhoto
+              : this.state.data.coverImage,
+            "모임 대표 사진 업로드(썸네일)",
+            "image",
+            ".jpg, .png, jpeg",
+            this.handleUploadPhoto
+          )}
           {this.renderButton(
             "new_group_btn_con",
             "new_group_btn",
@@ -198,6 +197,15 @@ class NewGroup extends Form {
     textarea: "textarea_target",
     labelCon: "input_label_con",
     label: "input_label",
+  };
+
+  // textarea classNames
+  fileClassName = {
+    container: "input_con",
+    input: "file_input",
+    labelCon: "input_label_con",
+    label: "input_label",
+    button: "upload_button",
   };
 }
 

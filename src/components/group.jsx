@@ -24,7 +24,7 @@ const Group = (props) => {
         }
       }
 
-      setGroup(data);
+      setGroup("data:image/png;base64" + data);
     }
 
     getSingleGroup();
@@ -35,11 +35,7 @@ const Group = (props) => {
     { group } && (
       <div>
         {group.title}
-        {/* <img
-          src={group ? Buffer.from(group.coverImage, "base64") : null}
-          alt=""
-        /> */}
-        <img src={"data:image/png;base64" + image} alt="" />
+        <img src={image} alt="" />
       </div>
     )
   );

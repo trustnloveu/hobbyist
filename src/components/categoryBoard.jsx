@@ -41,9 +41,14 @@ const CategoryBoard = (props) => {
     getGroupListByCategory();
   }, [props.match.params.id]);
 
+  const style = {
+    width: "70%",
+    margin: "auto",
+  };
+
   // return
   return (
-    <div style={{ width: "70%", margin: "auto" }}>
+    <div style={style}>
       <FilterList label={categoryName} />
       <GroupList groups={groups} />
       <CategoryForm label={categoryLabel} />
