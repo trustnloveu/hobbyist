@@ -159,13 +159,12 @@ class NewGroup extends Form {
           )}
           {this.renderFileInput(
             "image-upload",
+            "coverImage",
+            "모임 대표 사진 업로드(썸네일)",
+            this.handleUploadPhoto,
             this.state.data.coverImage === ""
               ? defaultPhoto
-              : this.state.data.coverImage,
-            "모임 대표 사진 업로드(썸네일)",
-            "image",
-            ".jpg, .png, jpeg",
-            this.handleUploadPhoto
+              : this.state.data.coverImage
           )}
           {this.renderButton(
             "new_group_btn_con",
@@ -200,13 +199,11 @@ class NewGroup extends Form {
   };
 
   // textarea classNames
-  fileClassName = {
-    container: "input_con",
-    input: "file_input",
-    labelCon: "input_label_con",
-    label: "input_label",
-    button: "upload_button",
-  };
+  // fileClassName = {
+  //   container: "input_con",
+  //   label: "input_label",
+  //   button: "upload_button",
+  // };
 }
 
 export default NewGroup;

@@ -1,15 +1,30 @@
 import React from "react";
 
-const FileInput = () => {
+const FileInput = ({ label, src, id, onChange, error, name }) => {
+  // onMouseEnter > Preview with wider size
+  const isUploaded = true;
+  const tepFunction = () => {
+    console.log("123");
+  };
+
   return (
-    <div className={classNameObj.container}>
-      <div className={classNameObj.label}>{label}</div>
-      <input id={id} type="file" {...rest} />
-      <img src={src} alt="" />
+    <div className="input_con">
+      <div className="input_label_con">{label}</div>
+      <input
+        id={id}
+        name={name}
+        type="file"
+        accept=".jpg, .png, .jpeg"
+        style={{ display: "none" }}
+        onChange={onChange}
+      />
+      <div className="preview">
+        <img src={src} alt="" onMouseEnter={tepFunction} />
+        <label htmlFor={id}>
+          <div className="open_upload">사진 찾기</div>
+        </label>
+      </div>
       {error && <div className="invalid_msg alert_mark">{error}</div>}
-      <label htmlFor={id}>
-        <div>이미지 업로드</div>
-      </label>
     </div>
   );
 };

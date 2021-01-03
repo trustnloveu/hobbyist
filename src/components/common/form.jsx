@@ -6,6 +6,7 @@ import Input from "./input";
 import Button from "./button";
 import Select from "./select";
 import Textarea from "./textarea";
+import FileInput from "./fileInput";
 
 class Form extends Component {
   state = {
@@ -143,19 +144,18 @@ class Form extends Component {
     );
   }
 
-  // input[file] > rest = id, name, accept, onChange
-  renderFileInput(classNameObj, id, src, label, ...rest) {
+  // input[file] > Image
+  renderFileInput(id, name, label, onChange, src) {
+    const { errors } = this.state;
     return (
-      <FileInput classNameObj={classNameObj} />
-      // <div className={classNameObj.container}>
-      //   <div className={classNameObj.label}>{label}</div>
-      //   <input id={id} type="file" {...rest} />
-      //   <img src={src} alt="" />
-      //   {error && <div className="invalid_msg alert_mark">{error}</div>}
-      //   <label htmlFor={id}>
-      //     <div>이미지 업로드</div>
-      //   </label>
-      // </div>
+      <FileInput
+        id={id}
+        name={name}
+        label={label}
+        onChange={onChange}
+        src={src}
+        error={errors[name]}
+      />
     );
   }
 }
