@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import filterOptions from "../../objects/filterOptions";
@@ -10,9 +10,24 @@ const Group = ({ data }) => {
   // 장소 key : value
   const { regionFilter } = filterOptions;
 
+  const [image, setImage] = useState();
+
+  useEffect(() => {
+    for (let key in data) {
+      if (key === "coverImage") {
+        let binary = "";
+        let bytes = new Uint8Array(data[key].data);
+        for (let i = 0; i < bytes.length; i++) {
+          binary += String.fromCharCode(bytes[i]);
+        }
+        setImage("data:image/png;base64" + binary);
+      }
+    }
+  }, [data]);
+
   return (
     <div className="Group">
-      <img className="image" src="" alt="" />
+      <img className="image" src={image} alt="" />
       <ul className="info_con">
         <li className="title_con">
           <span>[{regionFilter[data.location]}]</span>
@@ -38,7 +53,7 @@ const Group = ({ data }) => {
         </li>
         <li className="member">
           <div className="tag">참여자 수</div>
-          <div className="value">16명(임시)</div>
+          <div className="value">{data.member} 명</div>
         </li>
       </ul>
     </div>
