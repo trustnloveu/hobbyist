@@ -31,8 +31,6 @@ export function logout() {
 export function getCurrentUser() {
   try {
     const jwt = localStorage.getItem(tokenKey);
-    // console.log(jwt);
-    // console.log(jwtDecoded(jwt));
     return jwtDecode(jwt); // return obj(user)
   } catch (ex) {
     console.log("Local Storage에 토큰이 없습니다.");

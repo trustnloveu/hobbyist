@@ -19,11 +19,6 @@ export function getGroup(groupId) {
 
 // POST
 export function createNewGroup(groupData) {
-  // formData > res.data > fileName & filePath(`${BASE_URL}/image/${fileName}`)
-  // const formData = new FormData();
-  // formData.append("img", groupData.image);
-  // console.log(formData);
-
   return http.post(apiEndpoin, {
     title: groupData.title,
     userId: groupData.userId,

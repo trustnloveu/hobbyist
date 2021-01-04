@@ -6,7 +6,12 @@ import React from "react";
 import MainSlider from "./slides/mainSlider";
 
 const Home = () => {
-  return <MainSlider />;
+  return (
+    <>
+      <MainSlider />
+      <div>지도</div>
+    </>
+  );
 };
 
 export default Home;

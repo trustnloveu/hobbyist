@@ -92,7 +92,11 @@ class NewGroup extends Form {
 
       console.log(group._id);
       // update user role(host > manager > true)
-      // await userService.openNewGroup(group._id);
+      await userService.createNewGroup({
+        groupId: group._id,
+        groupName: group.name,
+        userId: auth.getCurrentUser()._id,
+      });
 
       // window.location = "/";
     } catch (ex) {
