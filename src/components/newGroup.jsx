@@ -89,16 +89,14 @@ class NewGroup extends Form {
       const { data: group } = await groupService.createNewGroup(
         this.state.data
       );
-
-      console.log(group._id);
-      // update user role(host > manager > true)
+      // update user info about group activity with his role
       await userService.createNewGroup({
         groupId: group._id,
         groupName: group.name,
         userId: auth.getCurrentUser()._id,
       });
-
-      // window.location = "/";
+      // redirect
+      window.location = "/";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
