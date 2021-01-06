@@ -14,6 +14,7 @@ import MyPage from "./components/user/myPage";
 import CategoryBoard from "./components/categoryBoard";
 import NewGroup from "./components/newGroup";
 import Group from "./components/group";
+// import Modal from "./components/modal";
 
 // module
 import auth from "./services/authService";

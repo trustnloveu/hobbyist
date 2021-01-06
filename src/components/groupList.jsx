@@ -4,6 +4,7 @@ import React from "react";
 import Group from "./common/group";
 
 const GroupList = ({ groups }) => {
+  // Group List
   const copiedGroups = [];
   if (groups) {
     groups.map((element) => copiedGroups.push(element));
