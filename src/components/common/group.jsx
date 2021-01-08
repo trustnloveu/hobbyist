@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import Modal from "../modal";
 import filterOptions from "../../objects/filterOptions";
 
+// service
+import * as groupService from "./../../services/groupService";
+
+// css & icon
 import "../../css/groupList.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearchPlus } from "@fortawesome/free-solid-svg-icons";
@@ -22,9 +26,10 @@ const Group = ({ data }) => {
   };
 
   // join group
-  const joinGroup = () => {
+  const joinGroup = async () => {
     console.log(data._id);
     console.log("Try to join this group");
+    await groupService.joinNewGroup(data._id);
   };
 
   // useEffect > image

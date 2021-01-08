@@ -1,4 +1,5 @@
 import http from "./httpService";
+import auth from "./authService";
 
 const apiEndpoin = "/groups";
 
@@ -29,5 +30,13 @@ export function createNewGroup(groupData) {
     meetingDate: groupData.meetingDate,
     keywords: groupData.keywords,
     coverImage: groupData.coverImage,
+  });
+}
+
+// PUT (join new group)
+export function joinNewGroup(groupId) {
+  return http.put(apiEndpoin, {
+    userId: auth.getCurrentUser()._id,
+    groupId: groupId,
   });
 }
