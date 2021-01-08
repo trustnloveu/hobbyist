@@ -35,8 +35,7 @@ const CategoryBoard = (props) => {
       setGroups(data);
     }
 
-    // execution
-    getName();
+    getName(); // execution
     // getGroupList();
     getGroupListByCategory();
   }, [props.match.params.id]);

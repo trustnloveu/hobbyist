@@ -7,6 +7,7 @@ import filterOptions from "../../objects/filterOptions";
 import "../../css/groupList.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearchPlus } from "@fortawesome/free-solid-svg-icons";
+import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 
 // keywords, launchedDate, _id, title, category, location, description, startTime, meetingDate
 const Group = ({ data }) => {
@@ -15,9 +16,15 @@ const Group = ({ data }) => {
   const [visible, setVisible] = useState(false); // Modal
   const [image, setImage] = useState(); // thumbnail
 
-  const handleClick = () => {
-    console.log("clicked");
+  // open modal
+  const modalToggle = () => {
     setVisible(!visible);
+  };
+
+  // join group
+  const joinGroup = () => {
+    console.log(data._id);
+    console.log("Try to join this group");
   };
 
   // useEffect > image
@@ -36,6 +43,7 @@ const Group = ({ data }) => {
 
   return (
     <>
+      <Modal visible={visible} group={data} onClick={modalToggle} />
       <div className="Group">
         <img className="image" src={image} alt="" />
         <ul className="info_con">
@@ -45,8 +53,9 @@ const Group = ({ data }) => {
               <span className="title">{data.title}</span>
             </Link>
             <span className="host">(모임장 '{data.host.name}')</span>
-            <div onClick={handleClick}>
-              <FontAwesomeIcon icon={faSearchPlus} />
+            <div className="group_icon">
+              <FontAwesomeIcon icon={faSearchPlus} onClick={modalToggle} />
+              <FontAwesomeIcon icon={faSignInAlt} onClick={joinGroup} />
             </div>
           </li>
           <li className="keywords">
@@ -70,7 +79,6 @@ const Group = ({ data }) => {
           </li>
         </ul>
       </div>
-      <Modal visible={visible} group={data} />
     </>
   );
 };

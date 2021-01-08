@@ -23,9 +23,10 @@
 .info_con {
   list-style: none;
   display: block;
-  padding: 0 20px;
+  padding: 0 5px 0 20px;
   margin-top: 0;
   margin-bottom: 0;
+  width: calc(100% - 270px);
 }
 
 .info_con li {
@@ -34,6 +35,7 @@
 
 .title_con {
   font-size: 18pt;
+  position: relative;
 }
 
 .title:hover {
@@ -42,6 +44,27 @@
   text-decoration: underline;
   text-underline-position: under;
   border-radius: 5px;
+}
+
+.group_icon {
+  position: absolute;
+  right: 10px;
+  top: 0;
+}
+
+.group_icon svg {
+  cursor: pointer;
+  border-radius: 10px;
+  text-align: center;
+  padding: 5px;
+  font-size: 16pt;
+  margin-left: 6px;
+}
+
+.group_icon svg:hover {
+  background-color: navy;
+  transition: 0.5s;
+  color: white;
 }
 
 .host {

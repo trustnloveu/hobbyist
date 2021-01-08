@@ -2,13 +2,38 @@ import React from "react";
 import propTypes from "prop-types";
 import styled from "styled-components";
 
-const Modal = ({ className, visible, group }) => {
+const Modal = ({ className, visible, group, onClick }) => {
+  // Prevent background scroll
+  //   useEffect(() => {
+  //     document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`;
+  //     return () => {
+  //       const scrollY = document.body.style.top;
+  //       document.body.style.cssText = `position: ""; top: "";`;
+  //       window.scrollTo(0, parseInt(scrollY || "0") * -1);
+  //     };
+  //   }, []);
+
   return (
     <>
       <ModalOverlay visible={visible} />
-      <ModalWrapper className={className} tabIndex="-1" visible={visible}>
-        <ModalInner tabIndex="0" className="modal_inner">
+      <ModalWrapper
+        className={className}
+        tabIndex="-1"
+        visible={visible}
+        onClick={onClick}
+      >
+        <ModalInner tabIndex="0">
+          <CloseButton onClick={onClick}>&times;</CloseButton>
           {group.title}
+          {group.keywords}
+          {group.meetingDate}
+          {group.startTime}
+          {group.host.name}
+          {group.host.phone}
+          {group.host.email}
+          {group.description}
+          {group.launchedDate}
+          {group.member}
         </ModalInner>
       </ModalWrapper>
     </>
@@ -52,12 +77,22 @@ const ModalInner = styled.div`
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   background-color: #fff;
   border-radius: 10px;
-  width: 360px;
-  max-width: 480px;
+  width: 70%;
+  min-width: 800px;
   top: 50%;
   transform: translateY(-50%);
   margin: 0 auto;
   padding: 40px 20px;
+`;
+
+const CloseButton = styled.div`
+  text-align: right;
+  cursor: pointer;
+  font-size: 25pt;
+  font-weight: 600;
+  position: absolute;
+  right: 20px;
+  top: 0px;
 `;
 
 export default Modal;
