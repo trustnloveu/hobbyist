@@ -54,9 +54,9 @@ const Group = ({ data }) => {
         <ul className="info_con">
           <li className="title_con">
             <span>[{regionFilter[data.location]}]</span>
-            <Link to={`/group/${data._id}`}>
-              <span className="title">{data.title}</span>
-            </Link>
+            {/* <Link to={`/group/${data._id}`}> */}
+            <span className="title">{data.title}</span>
+            {/* </Link> */}
             <span className="host">(모임장 '{data.host.name}')</span>
             <div className="group_icon">
               <FontAwesomeIcon icon={faSearchPlus} onClick={modalToggle} />

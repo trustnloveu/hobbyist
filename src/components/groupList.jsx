@@ -1,22 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // compoents
 import Group from "./common/group";
 
 const GroupList = ({ groups }) => {
-  // Group List
-  const copiedGroups = [];
-  if (groups) {
-    groups.map((element) => copiedGroups.push(element));
-  }
+  const [groupList, setGroupList] = useState();
 
-  // Iterate all group components
-  const groupList = copiedGroups.map((group) => (
-    <Group key={group._id} data={group} />
-  ));
+  useEffect(() => {
+    setGroupList(groups);
+  }, [groups]);
+
+  // // Group List
+  // const copiedGroups = [];
+  // if (groups) {
+  //   groups.map((element) => copiedGroups.push(element));
+  // }
+
+  // // Iterate all group components
+  // const groupList = copiedGroups.map((group) => (
+  //   <Group key={group._id} data={group} />
+  // ));
 
   // return
-  return <div>{groupList}</div>;
+  return (
+    <div>
+      {groupList &&
+        groupList.map((group) => <Group key={group._id} data={group} />)}
+    </div>
+  );
 };
 
 export default GroupList;
