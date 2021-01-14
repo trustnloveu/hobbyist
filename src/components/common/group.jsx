@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 import Modal from "../modal";
 import filterOptions from "../../objects/filterOptions";

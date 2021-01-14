@@ -13,6 +13,8 @@ import filterOptions from "../objects/filterOptions";
 
 // components
 import Form from "./common/form";
+import PostcodeModal from "./postcodeModal";
+import Postcode from "./common/postcode";
 
 // css
 import "../css/userService.css";
@@ -37,6 +39,7 @@ class NewGroup extends Form {
     },
     errors: {},
     categories: [],
+    visible: false,
   };
 
   // {
@@ -82,6 +85,11 @@ class NewGroup extends Form {
     this.setState({ data });
   }
 
+  modalToggle = () => {
+    const visible = !this.state.visible;
+    this.setState({ visible });
+  };
+
   // submit
   doSubmit = async () => {
     try {
@@ -110,71 +118,76 @@ class NewGroup extends Form {
   // render
   render() {
     return (
-      <div className="NewGroup">
-        <form onSubmit={this.handleSubmit}>
-          {this.renderTitle("Title", "새로운 그룹 만들기")}
-          {this.renderInput(
-            this.inputClassName,
-            "title",
-            "그룹명",
-            "그룹명을 입력해주세요."
-          )}
-          {this.renderSelect(
-            this.selectClassName,
-            "categoryId",
-            "카테고리",
-            "모임 카테고리를 선택해주세요.",
-            this.state.categories
-          )}
-          {this.renderSelect(
-            this.selectClassName,
-            "location",
-            "모임 지역",
-            "지역을 선택해주세요.",
-            filterOptions.regionFilter
-          )}
-          {this.renderTextarea(
-            this.textareaClassName,
-            "description",
-            "그룹소개",
-            "모임에 대한 설명을 적어주세요."
-          )}
-          {this.renderInput(
-            this.inputClassName,
-            "meetingDate",
-            "모임 날짜",
-            "",
-            "date"
-          )}
-          {this.renderInput(
-            this.inputClassName,
-            "startTime",
-            "시작 시간",
-            "",
-            "time"
-          )}
-          {this.renderTextarea(
-            this.textareaClassName,
-            "keywords",
-            "모임 관련 키워드",
-            "만드시는 모임 활동에 대한 키워드를 '#'과 함께 입력해주세요. 예) #동네친구 #커피좋아하는사람 #고민상담 ..."
-          )}
-          {this.renderFileInput(
-            "image-upload",
-            "coverImage",
-            "모임 대표 사진 업로드(썸네일)",
-            this.handleUploadPhoto,
-            this.state.data.coverImage === ""
-              ? defaultPhoto
-              : this.state.data.coverImage
-          )}
-          {this.renderButton(
-            "new_group_btn_con",
-            "new_group_btn",
-            "그룹 만들기"
-          )}
-        </form>
-      </div>
+      <>
+        <div className="NewGroup">
+          <form onSubmit={this.handleSubmit}>
+            {this.renderTitle("Title", "새로운 그룹 만들기")}
+            {this.renderInput(
+              this.inputClassName,
+              "title",
+              "그룹명",
+              "그룹명을 입력해주세요."
+            )}
+            {this.renderSelect(
+              this.selectClassName,
+              "categoryId",
+              "카테고리",
+              "모임 카테고리를 선택해주세요.",
+              this.state.categories
+            )}
+            {this.renderSelect(
+              this.selectClassName,
+              "location",
+              "모임 지역",
+              "지역을 선택해주세요.",
+              filterOptions.regionFilter
+            )}
+            {this.renderTextarea(
+              this.textareaClassName,
+              "description",
+              "그룹소개",
+              "모임에 대한 설명을 적어주세요."
+            )}
+            {this.renderInput(
+              this.inputClassName,
+              "meetingDate",
+              "모임 날짜",
+              "",
+              "date"
+            )}
+            {this.renderInput(
+              this.inputClassName,
+              "startTime",
+              "시작 시간",
+              "",
+              "time"
+            )}
+            {this.renderTextarea(
+              this.textareaClassName,
+              "keywords",
+              "모임 관련 키워드",
+              "만드시는 모임 활동에 대한 키워드를 '#'과 함께 입력해주세요. 예) #동네친구 #커피좋아하는사람 #고민상담 ..."
+            )}
+            {this.renderFileInput(
+              "image-upload",
+              "coverImage",
+              "모임 대표 사진 업로드(썸네일)",
+              this.handleUploadPhoto,
+              this.state.data.coverImage === ""
+                ? defaultPhoto
+                : this.state.data.coverImage
+            )}
+            {this.renderButton(
+              "new_group_btn_con",
+              "new_group_btn",
+              "그룹 만들기"
+            )}
+          </form>
+        </div>
+        <PostcodeModal visible={this.state.visible} onClick={this.modalToggle}>
+          <Postcode />
+        </PostcodeModal>
+      </>
     );
   }
 
@@ -199,13 +212,6 @@ class NewGroup extends Form {
     labelCon: "input_label_con",
     label: "input_label",
   };
-
-  // textarea classNames
-  // fileClassName = {
-  //   container: "input_con",
-  //   label: "input_label",
-  //   button: "upload_button",
-  // };
 }
 
 export default NewGroup;

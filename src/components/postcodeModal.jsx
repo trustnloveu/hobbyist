@@ -2,7 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import styled from "styled-components";
 
-const Modal = ({ visible, group, onClick }) => {
+const PostcodeModal = ({ children, visible, onClick }) => {
   // Prevent background scroll
   //   useEffect(() => {
   //     document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`;
@@ -19,16 +19,7 @@ const Modal = ({ visible, group, onClick }) => {
       <ModalWrapper tabIndex="-1" visible={visible} onClick={onClick}>
         <ModalInner tabIndex="0">
           <CloseButton onClick={onClick}>&times;</CloseButton>
-          {group.title}
-          {group.keywords}
-          {group.meetingDate}
-          {group.startTime}
-          {group.host.name}
-          {group.host.phone}
-          {group.host.email}
-          {group.description}
-          {group.launchedDate}
-          {group.member}
+          {children}
         </ModalInner>
       </ModalWrapper>
     </>
@@ -36,7 +27,7 @@ const Modal = ({ visible, group, onClick }) => {
 };
 
 // protoTypes
-Modal.propTypes = {
+PostcodeModal.propTypes = {
   visible: propTypes.bool,
 };
 
@@ -90,4 +81,4 @@ const CloseButton = styled.div`
   top: 0px;
 `;
 
-export default Modal;
+export default PostcodeModal;
