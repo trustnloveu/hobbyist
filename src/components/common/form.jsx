@@ -7,6 +7,7 @@ import Button from "./button";
 import Select from "./select";
 import Textarea from "./textarea";
 import FileInput from "./fileInput";
+import AddressInput from "./addressInput";
 
 class Form extends Component {
   state = {
@@ -160,7 +161,17 @@ class Form extends Component {
   }
 
   // input > address > Modal >Daum
-  renderAddressInput() {}
+  renderAddressInput(name, label, onClick) {
+    const { errors } = this.state;
+    return (
+      <AddressInput
+        name={name}
+        label={label}
+        onClick={onClick}
+        error={errors[name]}
+      />
+    );
+  }
 }
 
 export default Form;

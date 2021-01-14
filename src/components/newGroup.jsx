@@ -9,12 +9,11 @@ import * as groupService from "./../services/groupService";
 import auth from "./../services/authService";
 
 // filter option list
-import filterOptions from "../objects/filterOptions";
+// import filterOptions from "../objects/filterOptions";
 
 // components
 import Form from "./common/form";
 import PostcodeModal from "./postcodeModal";
-import Postcode from "./common/postcode";
 
 // css
 import "../css/userService.css";
@@ -54,7 +53,7 @@ class NewGroup extends Form {
     title: Joi.string().min(1).max(20).required().label("그룹명"),
     userId: Joi.string().required("현재 유저 아이디"),
     categoryId: Joi.string().required().label("카테고리"),
-    location: Joi.string().required().label("지역"),
+    location: Joi.string().required().label("장소"),
     description: Joi.string().min(1).max(500).required().label("그룹 소개"),
     startTime: Joi.string().required().label("시작 시간"),
     meetingDate: Joi.string().required().label("모임 날짜"),
@@ -85,7 +84,17 @@ class NewGroup extends Form {
     this.setState({ data });
   }
 
-  modalToggle = () => {
+  modalToggle = (e) => {
+    e.preventDefault();
+    const visible = !this.state.visible;
+    this.setState({ visible });
+  };
+
+  setAddress = (address) => {
+    const data = { ...this.state.data };
+    data.location = address;
+    this.setState({ data });
+
     const visible = !this.state.visible;
     this.setState({ visible });
   };
@@ -135,13 +144,14 @@ class NewGroup extends Form {
               "모임 카테고리를 선택해주세요.",
               this.state.categories
             )}
-            {this.renderSelect(
+            {/* {this.renderSelect(
               this.selectClassName,
               "location",
               "모임 지역",
               "지역을 선택해주세요.",
               filterOptions.regionFilter
-            )}
+            )} */}
+            {this.renderAddressInput("location", "모임장소", this.modalToggle)}
             {this.renderTextarea(
               this.textareaClassName,
               "description",
@@ -184,9 +194,11 @@ class NewGroup extends Form {
             )}
           </form>
         </div>
-        <PostcodeModal visible={this.state.visible} onClick={this.modalToggle}>
-          <Postcode />
-        </PostcodeModal>
+        <PostcodeModal
+          visible={this.state.visible}
+          setAddress={this.setAddress}
+          onClick={this.modalToggle}
+        />
       </>
     );
   }
