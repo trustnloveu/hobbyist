@@ -93,7 +93,6 @@ class NewGroup extends Form {
   setAddress = (address) => {
     const data = { ...this.state.data };
     data.location = address;
-    this.setState({ data });
 
     const visible = !this.state.visible;
     this.setState({ visible });
