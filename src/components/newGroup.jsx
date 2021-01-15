@@ -30,6 +30,7 @@ class NewGroup extends Form {
       userId: "",
       categoryId: "",
       location: "",
+      address: "",
       description: "",
       startTime: "",
       meetingDate: "",
@@ -53,7 +54,9 @@ class NewGroup extends Form {
     title: Joi.string().min(1).max(20).required().label("그룹명"),
     userId: Joi.string().required("현재 유저 아이디"),
     categoryId: Joi.string().required().label("카테고리"),
-    location: Joi.string().required().label("장소"),
+    location: Joi.string().required().label("지역"),
+    mainAddress: Joi.string().required().label("주소"),
+    detailAddress: Joi.string().max(100).label("상세주소"),
     description: Joi.string().min(1).max(500).required().label("그룹 소개"),
     startTime: Joi.string().required().label("시작 시간"),
     meetingDate: Joi.string().required().label("모임 날짜"),
@@ -86,13 +89,12 @@ class NewGroup extends Form {
 
   modalToggle = (e) => {
     e.preventDefault();
-    const visible = !this.state.visible;
     this.setState({ visible: !this.state.visible });
   };
 
-  setAddress = (address) => {
+  setMainAddress = (address) => {
     const data = { ...this.state.data };
-    data.location = address;
+    data.mainAddress = address;
     this.setState({ data });
 
     const visible = !this.state.visible;
@@ -102,6 +104,8 @@ class NewGroup extends Form {
   // submit
   doSubmit = async () => {
     try {
+      console.log(this.state);
+      /*
       // create new group
       const { data: group } = await groupService.createNewGroup(
         this.state.data
@@ -114,6 +118,7 @@ class NewGroup extends Form {
       });
       // redirect
       window.location = "/";
+      */
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
@@ -147,13 +152,14 @@ class NewGroup extends Form {
             {this.renderSelect(
               this.selectClassName,
               "location",
-              "모임 지역",
+              "모임지역",
               "지역을 선택해주세요.",
               filterOptions.regionFilter
             )}
             {this.renderAddressInput(
-              this.state.data.location,
-              "location",
+              this.state.data.mainAddress,
+              "mainAddress",
+              "detailAddress",
               "모임장소",
               this.modalToggle
             )}
@@ -166,14 +172,14 @@ class NewGroup extends Form {
             {this.renderInput(
               this.inputClassName,
               "meetingDate",
-              "모임 날짜",
+              "모임날짜",
               "",
               "date"
             )}
             {this.renderInput(
               this.inputClassName,
               "startTime",
-              "시작 시간",
+              "시작시간",
               "",
               "time"
             )}
@@ -198,7 +204,7 @@ class NewGroup extends Form {
         <PostcodeModal
           visible={this.state.visible}
           onClick={this.modalToggle}
-          setAddress={this.setAddress}
+          setAddress={this.setMainAddress}
         />
       </>
     );

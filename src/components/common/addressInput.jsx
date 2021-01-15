@@ -1,19 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 
-const AddressInput = ({ value, name, label, onClick, error }) => {
+const AddressInput = ({
+  value,
+  mainName,
+  detailName,
+  label,
+  onClick,
+  onChange,
+  error,
+}) => {
   return (
     <>
       <InputWrapper>
         <InputLabel>
-          <label htmlFor={name} style={{ pointer: "cursor" }}>
+          <label htmlFor={mainName} style={{ pointer: "cursor" }}>
             {label}
           </label>
         </InputLabel>
         <MainAddressCon>
           <MainAddressInput
-            id={name}
-            name={name}
+            id={mainName}
+            name={mainName}
             value={value}
             disabled
             placeholder="모임 장소에 대한 주소를 입력해주세요."
@@ -21,7 +29,8 @@ const AddressInput = ({ value, name, label, onClick, error }) => {
           <SearchButton onClick={onClick}>주소찾기</SearchButton>
         </MainAddressCon>
         <DetailAddressInput
-          name="detailAddress"
+          name={detailName}
+          onChange={onChange}
           placeholder="상세주소를 입력해주세요."
         />
       </InputWrapper>
@@ -45,6 +54,7 @@ const MainAddressCon = styled.div`
 `;
 
 const MainAddressInput = styled.input`
+  background-color: white;
   width: 80%;
   height: 35px;
   margin-top: 7px;
@@ -73,6 +83,15 @@ const SearchButton = styled.button`
   outline: none;
   border: 1px solid indigo;
   background-color: #eee;
+
+  &:hover {
+    cursor: pointer;
+    transition: 0.5s;
+    background-color: #f38181;
+    border: transparent;
+    color: white;
+    font-weight: 600;
+  }
 `;
 
 export default AddressInput;

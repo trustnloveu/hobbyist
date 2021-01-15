@@ -1,7 +1,7 @@
 import React from "react";
 import DaumPostcode from "react-daum-postcode"; // https://www.npmjs.com/package/react-daum-postcode
 
-const Postcode = ({ setAddress }) => {
+const Postcode = ({ setMainAddress }) => {
   const handleComplete = (data) => {
     let fullAddress = data.address;
     let extraAddress = "";
@@ -17,7 +17,8 @@ const Postcode = ({ setAddress }) => {
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
 
-    setAddress(fullAddress);
+    // update address input value
+    setMainAddress(fullAddress);
   };
 
   const postcodeStyle = {
@@ -30,7 +31,6 @@ const Postcode = ({ setAddress }) => {
       onComplete={handleComplete}
       style={postcodeStyle}
       height={700}
-      autoClose
     />
   );
 };

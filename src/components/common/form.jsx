@@ -164,14 +164,16 @@ class Form extends Component {
   }
 
   // input > address > Modal >Daum
-  renderAddressInput(value, name, label, onClick) {
+  renderAddressInput(value, nameMain, detailName, label, onClick) {
     const { errors } = this.state;
     return (
       <AddressInput
         value={value}
-        name={name}
+        nameMain={nameMain}
+        detailName={detailName}
         label={label}
         onClick={onClick}
+        onChange={this.handleChange}
         error={errors[name]}
       />
     );

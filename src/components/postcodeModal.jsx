@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import Postcode from "./common/postcode";
 
-const PostcodeModal = ({ setAddress, visible, onClick }) => {
+const PostcodeModal = ({ setAddress: setMainAddress, visible, onClick }) => {
   return (
     <>
       <ModalOverlay visible={visible} />
@@ -14,7 +14,7 @@ const PostcodeModal = ({ setAddress, visible, onClick }) => {
         onClick={onClick}
         style={{ cursor: "pointer" }}
       >
-        <Postcode visible={visible} setAddress={setAddress} />
+        <Postcode visible={visible} setMainAddress={setMainAddress} />
       </ModalWrapper>
     </>
   );
