@@ -3,7 +3,6 @@ import Joi from "joi-browser";
 
 // components
 import Input from "./input";
-import Button from "./button";
 import Select from "./select";
 import Textarea from "./textarea";
 import FileInput from "./fileInput";
@@ -125,8 +124,12 @@ class Form extends Component {
   }
 
   // button
-  renderButton(conClass, btnClass, label) {
-    return <Button conClass={conClass} btnClass={btnClass} label={label} />;
+  renderButton(label) {
+    return (
+      <div className="new_group_btn_con">
+        <button className="new_group_btn">{label}</button>
+      </div>
+    );
   }
 
   // select   >   NOTE: Object.entries(obj) & Object.values(obj)
@@ -161,10 +164,11 @@ class Form extends Component {
   }
 
   // input > address > Modal >Daum
-  renderAddressInput(name, label, onClick) {
+  renderAddressInput(value, name, label, onClick) {
     const { errors } = this.state;
     return (
       <AddressInput
+        value={value}
         name={name}
         label={label}
         onClick={onClick}

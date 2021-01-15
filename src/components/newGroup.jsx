@@ -9,7 +9,7 @@ import * as groupService from "./../services/groupService";
 import auth from "./../services/authService";
 
 // filter option list
-// import filterOptions from "../objects/filterOptions";
+import filterOptions from "../objects/filterOptions";
 
 // components
 import Form from "./common/form";
@@ -87,12 +87,13 @@ class NewGroup extends Form {
   modalToggle = (e) => {
     e.preventDefault();
     const visible = !this.state.visible;
-    this.setState({ visible });
+    this.setState({ visible: !this.state.visible });
   };
 
   setAddress = (address) => {
     const data = { ...this.state.data };
     data.location = address;
+    this.setState({ data });
 
     const visible = !this.state.visible;
     this.setState({ visible });
@@ -143,14 +144,19 @@ class NewGroup extends Form {
               "모임 카테고리를 선택해주세요.",
               this.state.categories
             )}
-            {/* {this.renderSelect(
+            {this.renderSelect(
               this.selectClassName,
               "location",
               "모임 지역",
               "지역을 선택해주세요.",
               filterOptions.regionFilter
-            )} */}
-            {this.renderAddressInput("location", "모임장소", this.modalToggle)}
+            )}
+            {this.renderAddressInput(
+              this.state.data.location,
+              "location",
+              "모임장소",
+              this.modalToggle
+            )}
             {this.renderTextarea(
               this.textareaClassName,
               "description",
@@ -186,17 +192,13 @@ class NewGroup extends Form {
                 ? defaultPhoto
                 : this.state.data.coverImage
             )}
-            {this.renderButton(
-              "new_group_btn_con",
-              "new_group_btn",
-              "그룹 만들기"
-            )}
+            {this.renderButton("그룹 만들기")}
           </form>
         </div>
         <PostcodeModal
           visible={this.state.visible}
-          setAddress={this.setAddress}
           onClick={this.modalToggle}
+          setAddress={this.setAddress}
         />
       </>
     );

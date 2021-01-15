@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const AddressInput = ({ name, label, onClick, error }) => {
+const AddressInput = ({ value, name, label, onClick, error }) => {
   return (
     <>
       <InputWrapper>
@@ -14,7 +14,8 @@ const AddressInput = ({ name, label, onClick, error }) => {
           <MainAddressInput
             id={name}
             name={name}
-            onClick={onClick}
+            value={value}
+            disabled
             placeholder="모임 장소에 대한 주소를 입력해주세요."
           />
           <SearchButton onClick={onClick}>주소찾기</SearchButton>

@@ -8,8 +8,13 @@ const PostcodeModal = ({ setAddress, visible, onClick }) => {
   return (
     <>
       <ModalOverlay visible={visible} />
-      <ModalWrapper tabIndex="-1" visible={visible} onClick={onClick}>
-        <Postcode setAddress={setAddress} />
+      <ModalWrapper
+        tabIndex="-1"
+        visible={visible}
+        onClick={onClick}
+        style={{ cursor: "pointer" }}
+      >
+        <Postcode visible={visible} setAddress={setAddress} />
       </ModalWrapper>
     </>
   );
