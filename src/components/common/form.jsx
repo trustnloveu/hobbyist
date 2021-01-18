@@ -174,7 +174,8 @@ class Form extends Component {
         label={label}
         onClick={onClick}
         onChange={this.handleChange}
-        error={errors[name]}
+        mainError={errors[nameMain]}
+        detailError={errors[detailName]}
       />
     );
   }

@@ -25,6 +25,7 @@ export function createNewGroup(groupData) {
     userId: groupData.userId,
     categoryId: groupData.categoryId,
     location: groupData.location,
+    address: groupData.mainAddress + ", " + groupData.detailAddress,
     description: groupData.description,
     startTime: groupData.startTime,
     meetingDate: groupData.meetingDate,

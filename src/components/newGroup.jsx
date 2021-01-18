@@ -30,7 +30,8 @@ class NewGroup extends Form {
       userId: "",
       categoryId: "",
       location: "",
-      address: "",
+      mainAddress: "",
+      detailAddress: "",
       description: "",
       startTime: "",
       meetingDate: "",
@@ -104,8 +105,6 @@ class NewGroup extends Form {
   // submit
   doSubmit = async () => {
     try {
-      console.log(this.state);
-      /*
       // create new group
       const { data: group } = await groupService.createNewGroup(
         this.state.data
@@ -113,12 +112,10 @@ class NewGroup extends Form {
       // update user info about group activity with his role
       await userService.createNewGroup({
         groupId: group._id,
-        groupName: group.name,
         userId: auth.getCurrentUser()._id,
       });
       // redirect
       window.location = "/";
-      */
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };

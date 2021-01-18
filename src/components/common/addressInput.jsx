@@ -8,7 +8,8 @@ const AddressInput = ({
   label,
   onClick,
   onChange,
-  error,
+  mainError,
+  detailError,
 }) => {
   return (
     <>
@@ -34,7 +35,10 @@ const AddressInput = ({
           placeholder="상세주소를 입력해주세요."
         />
       </InputWrapper>
-      {error && <div className="invalid_msg alert_mark">{error}</div>}
+      {mainError && <div className="invalid_msg alert_mark">{mainError}</div>}
+      {detailError && (
+        <div className="invalid_msg alert_mark">{detailError}</div>
+      )}
     </>
   );
 };

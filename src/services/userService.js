@@ -22,7 +22,6 @@ export function registerUser(userData) {
 // create new group > manager role
 export function createNewGroup(data) {
   return http.put(`${apiEndpoint}/createNewGroup/${data.groupId}`, {
-    groupName: data.groupName,
     userId: data.userId,
   });
 }
