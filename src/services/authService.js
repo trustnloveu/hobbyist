@@ -9,7 +9,7 @@ const tokenKey = "token";
 http.setJwt(getJwt());
 
 // login
-export async function login(email, password) {
+async function login(email, password) {
   const { data: jwt } = await http.post(apiEndPoint, {
     email,
     password,
@@ -18,17 +18,17 @@ export async function login(email, password) {
 }
 
 // register > login
-export function loginWithJwt(jwt) {
+function loginWithJwt(jwt) {
   localStorage.setItem(tokenKey, jwt);
 }
 
 // logout
-export function logout() {
+function logout() {
   localStorage.removeItem(tokenKey);
 }
 
 // get user info from tokon
-export function getCurrentUser() {
+function getCurrentUser() {
   try {
     const jwt = localStorage.getItem(tokenKey);
     return jwtDecode(jwt); // return obj(user)
@@ -38,7 +38,7 @@ export function getCurrentUser() {
   }
 }
 
-export function getJwt() {
+function getJwt() {
   return localStorage.getItem(tokenKey);
 }
 

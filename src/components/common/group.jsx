@@ -19,18 +19,6 @@ const Group = ({ data }) => {
   const [visible, setVisible] = useState(false); // Modal
   const [image, setImage] = useState(); // thumbnail
 
-  // open modal
-  const modalToggle = () => {
-    setVisible(!visible);
-  };
-
-  // join group
-  const joinGroup = async () => {
-    console.log(data._id);
-    console.log("Try to join this group");
-    await groupService.joinNewGroup(data._id);
-  };
-
   // useEffect > image
   useEffect(() => {
     for (let key in data) {
@@ -45,6 +33,18 @@ const Group = ({ data }) => {
     }
   }, [data]);
 
+  // open modal
+  const modalToggle = () => {
+    setVisible(!visible);
+  };
+
+  // join group
+  const joinGroup = async () => {
+    console.log(data._id);
+    console.log("Try to join this group");
+    await groupService.joinNewGroup(data._id);
+  };
+
   return (
     <>
       <Modal visible={visible} group={data} onClick={modalToggle} />
@@ -53,9 +53,7 @@ const Group = ({ data }) => {
         <ul className="info_con">
           <li className="title_con">
             <span>[{regionFilter[data.location]}]</span>
-            {/* <Link to={`/group/${data._id}`}> */}
             <span className="title">{data.title}</span>
-            {/* </Link> */}
             <span className="host">(모임장 '{data.host.name}')</span>
             <div className="group_icon">
               <FontAwesomeIcon icon={faSearchPlus} onClick={modalToggle} />
@@ -79,7 +77,7 @@ const Group = ({ data }) => {
           </li>
           <li className="member">
             <div className="tag">참여자 수</div>
-            <div className="value">{data.member} 명</div>
+            <div className="value">{data.members.length} 명</div>
           </li>
         </ul>
       </div>

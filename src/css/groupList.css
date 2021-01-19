@@ -38,13 +38,17 @@
   position: relative;
 }
 
-.title:hover {
+.title {
+  margin-left: 8px;
+}
+
+/* .title:hover {
   transition: 0.5s;
   cursor: pointer;
   text-decoration: underline;
   text-underline-position: under;
   border-radius: 5px;
-}
+} */
 
 .group_icon {
   position: absolute;
