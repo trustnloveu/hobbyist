@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 // services
-import { getCategory } from "../services/categoryService";
-import { getGroupsByCategory } from "../services/groupService";
+import { getCategory } from "../../services/categoryService";
+import { getGroupsByCategory } from "../../services/groupService";
 
 // components
-import FilterList from "./common/filterList";
-import CategoryForm from "./common/categoryForm";
-import GroupList from "./groupList";
+import FilterList from "../common/filterList";
+import CategoryForm from "../common/categoryForm";
+import GroupList from "../group/groupList";
 
 // main
 const CategoryBoard = (props) => {

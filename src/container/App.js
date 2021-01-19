@@ -4,20 +4,20 @@ import { Route, Redirect, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 // user components
-import NavBar from "./components/navBar";
-import Home from "./components/home";
-import Categories from "./components/categories";
-import Login from "./components/user/login";
-import Logout from "./components/user/logout";
-import Register from "./components/user/register";
-import MyPage from "./components/user/myPage";
-import CategoryBoard from "./components/categoryBoard";
-import NewGroup from "./components/newGroup";
-import Group from "./components/group";
+import NavBar from "../components/navBar";
+import Home from "../components/home";
+import Categories from "../components/category/categories";
+import Login from "../components/user/login";
+import Logout from "../components/user/logout";
+import Register from "../components/user/register";
+import MyPage from "../components/user/myPage";
+import CategoryBoard from "../components/category/categoryBoard";
+import NewGroup from "./../components/group/newGroup";
+import Group from "../components/group/group";
 // import Modal from "./components/modal";
 
 // module
-import auth from "./services/authService";
+import auth from "../services/authService";
 
 // css
 import "./App.css";

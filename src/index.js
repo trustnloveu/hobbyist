@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 
 // components
-import App from "./App";
+import App from "./container/App";
 import reportWebVitals from "./reportWebVitals";
 
 // css

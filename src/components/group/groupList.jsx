@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 // compoents
-import Group from "./common/group";
+import Group from "../common/group";
 
 const GroupList = ({ groups }) => {
   const [groupList, setGroupList] = useState();

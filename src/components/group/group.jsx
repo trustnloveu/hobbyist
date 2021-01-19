@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getGroup } from "../services/groupService";
+import { getGroup } from "../../services/groupService";
 
 const Group = (props) => {
   // state

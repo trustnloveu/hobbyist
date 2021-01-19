@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import Modal from "../modal";
+import Modal from "../modal/modal";
 import filterOptions from "../../objects/filterOptions";
 
 // service

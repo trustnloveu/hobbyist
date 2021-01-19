@@ -3,23 +3,23 @@ import Joi from "joi-browser";
 import { toast } from "react-toastify";
 
 // services
-import { getCategories } from "./../services/categoryService";
-import * as userService from "./../services/userService";
-import * as groupService from "./../services/groupService";
-import auth from "./../services/authService";
+import { getCategories } from "../../services/categoryService";
+import * as userService from "../../services/userService";
+import * as groupService from "../../services/groupService";
+import auth from "../../services/authService";
 
 // filter option list
-import filterOptions from "../objects/filterOptions";
+import filterOptions from "../../objects/filterOptions";
 
 // components
-import Form from "./common/form";
-import PostcodeModal from "./postcodeModal";
+import Form from "../common/form";
+import PostcodeModal from "../modal/postcodeModal";
 
 // css
-import "../css/userService.css";
+import "../../css/userService.css";
 
 // image
-import defaultPhoto from "../images/defaultPhoto.jpg";
+import defaultPhoto from "../../images/defaultPhoto.jpg";
 
 // class
 class NewGroup extends Form {
