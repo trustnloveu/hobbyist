@@ -42,13 +42,10 @@ const Group = ({ data }) => {
   // join group
   const joinGroup = async () => {
     try {
-      console.log("Try to join this group");
       await groupService.joinNewGroup(data._id);
       window.location.reload();
-      console.log("123");
     } catch (ex) {
-      if (ex.response && ex.response.status === 400) {
-        console.log("ex.response.data" + ex.response.data);
+      if (ex.response && ex.response.status === 404) {
         toast.error(ex.response.data);
       }
     }
