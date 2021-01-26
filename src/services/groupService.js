@@ -36,8 +36,7 @@ export function createNewGroup(groupData) {
 
 // PUT (join new group)
 export function joinNewGroup(groupId) {
-  return http.put(apiEndpoin, {
+  return http.put(`${apiEndpoin}/joinNewGroup/${groupId}`, {
     userId: auth.getCurrentUser()._id,
-    groupId: groupId,
   });
 }

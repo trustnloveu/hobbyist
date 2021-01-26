@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 import Modal from "../modal/modal";
 import filterOptions from "../../objects/filterOptions";
@@ -40,9 +41,17 @@ const Group = ({ data }) => {
 
   // join group
   const joinGroup = async () => {
-    console.log(data._id);
-    console.log("Try to join this group");
-    await groupService.joinNewGroup(data._id);
+    try {
+      console.log("Try to join this group");
+      await groupService.joinNewGroup(data._id);
+      window.location.reload();
+      console.log("123");
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        console.log("ex.response.data" + ex.response.data);
+        toast.error(ex.response.data);
+      }
+    }
   };
 
   return (
