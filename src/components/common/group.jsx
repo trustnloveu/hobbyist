@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-import Modal from "../modal/modal";
+import GroupModal from "../modal/groupModal";
 import filterOptions from "../../objects/filterOptions";
 
 // service
@@ -42,18 +42,44 @@ const Group = ({ data }) => {
   // join group
   const joinGroup = async () => {
     try {
-      await groupService.joinNewGroup(data._id);
-      window.location.reload();
+      if (window.confirm(data.title + " 모임에 참여하시겠습니까?")) {
+        const group = await groupService.joinNewGroup(data._id);
+        toast.info(group.title + "에 가입하였습니다.", {
+          position: "top-center",
+        });
+        window.location.reload();
+      } else {
+        return;
+      }
     } catch (ex) {
       if (ex.response && ex.response.status === 404) {
-        toast.error(ex.response.data);
+        toast.error(ex.response.data, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     }
   };
 
+  // sign-out group
+  const signOutGroup = async () => {
+    console.log("123");
+  };
+
   return (
     <>
-      <Modal visible={visible} group={data} onClick={modalToggle} />
+      <GroupModal
+        visible={visible}
+        group={data}
+        modalToggle={modalToggle}
+        joinGroup={joinGroup}
+        signOutGroup={signOutGroup}
+      />
       <div className="Group">
         <img className="image" src={image} alt="" />
         <ul className="info_con">

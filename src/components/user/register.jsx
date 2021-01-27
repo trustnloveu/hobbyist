@@ -43,13 +43,14 @@ class Register extends Form {
       // 비밀번호 일치 검사
       const { password } = this.state.data;
       const { repeat_password } = this.state.data;
+
       if (password !== repeat_password)
-        return toast("입력하신 두 비밀번호가 일치하지 않습니다.");
+        return toast.error("입력하신 두 비밀번호가 일치하지 않습니다.", {
+          position: "top-center",
+        });
 
       // registration > login with token > home
       const response = await userService.registerUser(this.state.data);
-      // console.log(response);
-      // console.log(response.headers["x-auth-token"]);
       auth.loginWithJwt(response.headers["x-auth-token"]);
       window.location = "/";
     } catch (ex) {
@@ -57,7 +58,9 @@ class Register extends Form {
         const errors = { ...this.state.errors };
         errors.invalidInfo = ex.response.data;
         this.setState({ errors });
-        toast(`${this.state.errors.invalidInfo}`);
+        toast.error(`${this.state.errors.invalidInfo}`, {
+          position: "top-center",
+        });
       }
     }
   };
@@ -100,7 +103,7 @@ class Register extends Form {
             "전화번호",
             "Ex) 010-1234-1234"
           )}
-          {this.renderButton("input_con", "register_btn", "회원가입")}
+          {this.renderButton("회원가입")}
         </form>
       </div>
     );

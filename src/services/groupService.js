@@ -40,3 +40,10 @@ export function joinNewGroup(groupId) {
     userId: auth.getCurrentUser()._id,
   });
 }
+
+// DELETE (sign-out group)
+export function signOutGroup(groupId) {
+  return http.delete(`${apiEndpoin}/signOutGroup/${groupId}`, {
+    userId: auth.getCurrentUser()._id,
+  });
+}

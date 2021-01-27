@@ -2,7 +2,13 @@ import React from "react";
 import propTypes from "prop-types";
 import styled from "styled-components";
 
-const Modal = ({ visible, group, onClick }) => {
+const GroupModal = ({
+  visible,
+  group,
+  modalToggle,
+  joinGroup,
+  signOutGroup,
+}) => {
   // Prevent background scroll
   //   useEffect(() => {
   //     document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`;
@@ -16,9 +22,9 @@ const Modal = ({ visible, group, onClick }) => {
   return (
     <>
       <ModalOverlay visible={visible} />
-      <ModalWrapper tabIndex="-1" visible={visible} onClick={onClick}>
+      <ModalWrapper tabIndex="-1" visible={visible} onClick={modalToggle}>
         <ModalInner tabIndex="0">
-          <CloseButton onClick={onClick}>&times;</CloseButton>
+          <CloseButton onClick={modalToggle}>&times;</CloseButton>
           {group.title}
           {group.keywords}
           {group.meetingDate}
@@ -29,6 +35,8 @@ const Modal = ({ visible, group, onClick }) => {
           {group.description}
           {group.launchedDate}
           {group.member}
+          <button onClick={joinGroup}>모임 참가</button>
+          <button onClick={signOutGroup}>모임 나가기</button>
         </ModalInner>
       </ModalWrapper>
     </>
@@ -36,7 +44,7 @@ const Modal = ({ visible, group, onClick }) => {
 };
 
 // protoTypes
-Modal.propTypes = {
+GroupModal.propTypes = {
   visible: propTypes.bool,
 };
 
@@ -90,4 +98,4 @@ const CloseButton = styled.div`
   top: 0px;
 `;
 
-export default Modal;
+export default GroupModal;

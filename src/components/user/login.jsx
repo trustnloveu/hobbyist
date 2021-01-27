@@ -68,7 +68,7 @@ class Login extends Form {
             "비밀번호 입력",
             "password"
           )}
-          {this.renderButton("input_con", "login_btn", "로그인")}
+          {this.renderButton("로그인")}
           <div className="input_con">
             <Link to="/register">
               <button className="register_btn">회원가입</button>
