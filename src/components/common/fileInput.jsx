@@ -2,7 +2,6 @@ import React from "react";
 
 const FileInput = ({ label, src, id, onChange, error, name }) => {
   // onMouseEnter > Preview with wider size
-  const isUploaded = true;
   const tepFunction = () => {
     console.log("123");
   };

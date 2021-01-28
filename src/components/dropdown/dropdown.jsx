@@ -5,7 +5,7 @@ import "../../css/filter.css";
 const Dropdown = ({ options, visible }) => {
   // dropdown display option
   const [display, setDisplay] = useState("block");
-  const [filters, setFilters] = useState([...Object.values(options)]);
+  const filters = [...Object.values(options)];
 
   useEffect(() => {
     setDisplay(visible ? "block" : "none");

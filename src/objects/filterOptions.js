@@ -1,4 +1,4 @@
-export default {
+const filter = {
   dateFilter: {
     anytime: "상관없음",
     today: "오늘",
@@ -30,3 +30,5 @@ export default {
     large: "대그룹(20명 이상)",
   },
 };
+
+export default filter;

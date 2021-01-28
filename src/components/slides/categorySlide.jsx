@@ -7,23 +7,27 @@ import "../../css/slide.css";
 const slides = [
   {
     id: 0,
-    url: "aaa",
+    url: "CwSiAVlXOWQ",
     content: "친구",
+    className: "firstSub",
   },
   {
     id: 1,
-    url: "aaa",
+    url: "eCktzGjC-iU",
     content: "모임",
+    className: "secondSub",
   },
   {
     id: 2,
-    url: "ccc",
+    url: "j3XiFJPF6Js",
     content: "배움",
+    className: "thirdSub",
   },
   {
     id: 3,
-    url: "ddd",
+    url: "h4i9G-de7Po",
     content: "나눔",
+    className: "forthSub",
   },
 ];
 
@@ -47,11 +51,11 @@ const CategorySlider = () => {
       className="category_slide"
       style={{
         ...props,
-        backgroundImage: `url(https://images.unsplash.com/${item.url}&auto=format&fit=crop)`,
+        backgroundImage: `url(https://source.unsplash.com/${item.url})`,
         backgroundColor: "pink",
       }}
     >
-      <div>{item.content}</div>
+      <div className={item.className}>{item.content}</div>
     </animated.div>
   ));
 };

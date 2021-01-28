@@ -9,25 +9,27 @@ import "../../css/slide.css";
 const slides = [
   {
     id: 0,
-    url:
-      "photo-1544511916-0148ccdeb877?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1901&q=80i",
+    url: "g1Kr4Ozfoac",
     content: "Slide 1",
+    className: "firstMain",
   },
   {
     id: 1,
-    url:
-      "photo-1544572571-ab94fd872ce4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1534&q=80",
+    url: "KrfID_ZQxWs",
     content: "Slide 2",
+    className: "secondMain",
   },
   {
     id: 2,
-    url: "reserve/bnW1TuTV2YGcoh1HyWNQ_IMG_0207.JPG?ixlib=rb-1.2.1&w=1534&q=80",
+    url: "hCb3lIB8L8E",
     content: "Slide 3",
+    className: "thirdMain",
   },
   {
     id: 3,
-    url: "photo-1540206395-68808572332f?ixlib=rb-1.2.1&w=1181&q=80",
+    url: "1K8pIbIrhkQ",
     content: "Slide 4",
+    className: "forthMain",
   },
 ];
 
@@ -52,7 +54,7 @@ const MainSlider = () => {
       className="main_slide"
       style={{
         ...props,
-        backgroundImage: `url(https://images.unsplash.com/${item.url}&auto=format&fit=crop)`,
+        backgroundImage: `url(https://source.unsplash.com/${item.url})`,
       }}
     >
       <h1>{item.content}</h1>
