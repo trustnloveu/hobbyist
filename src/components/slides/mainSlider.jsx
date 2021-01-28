@@ -10,26 +10,22 @@ const slides = [
   {
     id: 0,
     url: "g1Kr4Ozfoac",
-    content: "Slide 1",
-    className: "firstMain",
+    content: "같은 흥미, 같은 취미",
   },
   {
     id: 1,
     url: "KrfID_ZQxWs",
-    content: "Slide 2",
-    className: "secondMain",
+    content: "공부 혹은 놀이",
   },
   {
     id: 2,
     url: "hCb3lIB8L8E",
-    content: "Slide 3",
-    className: "thirdMain",
+    content: "함께 만드는 시간",
   },
   {
     id: 3,
     url: "1K8pIbIrhkQ",
-    content: "Slide 4",
-    className: "forthMain",
+    content: "어서오세요. 그룹 활동 플랫폼 '하비스트'입니다.",
   },
 ];
 
@@ -44,7 +40,7 @@ const MainSlider = () => {
   });
 
   useEffect(
-    () => void setInterval(() => setIndex((state) => (state + 1) % 4), 3000),
+    () => void setInterval(() => setIndex((state) => (state + 1) % 4), 5000),
     []
   );
 
@@ -57,7 +53,7 @@ const MainSlider = () => {
         backgroundImage: `url(https://source.unsplash.com/${item.url})`,
       }}
     >
-      <h1>{item.content}</h1>
+      <h3>{item.content}</h3>
     </animated.div>
   ));
 };

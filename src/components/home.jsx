@@ -9,7 +9,6 @@ const Home = () => {
   return (
     <>
       <MainSlider />
-      <div>지도</div>
     </>
   );
 };
