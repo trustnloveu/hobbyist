@@ -6,19 +6,23 @@ import filterOptions from "../../objects/filterOptions";
 
 // service
 import * as groupService from "./../../services/groupService";
+import authService from "./../../services/authService";
 
 // css & icon
 import "../../css/groupList.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearchPlus } from "@fortawesome/free-solid-svg-icons";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkedAlt } from "@fortawesome/free-solid-svg-icons";
 
-// keywords, launchedDate, _id, title, category, location, description, startTime, meetingDate
+// Group
 const Group = ({ data }) => {
   const { regionFilter } = filterOptions; // 장소 key : value
 
   const [visible, setVisible] = useState(false); // Modal
   const [image, setImage] = useState(); // thumbnail
+  const [joined, isJoined] = useState(false);
+  const userToken = authService.getCurrentUser(); // user-info from token
 
   // useEffect > image
   useEffect(() => {
@@ -36,45 +40,62 @@ const Group = ({ data }) => {
 
   // open modal
   const modalToggle = () => {
+    if (userToken) {
+      const result = data.members.includes(userToken._id);
+      isJoined(result);
+    }
     setVisible(!visible);
   };
 
+  // preview map
+  const openMapPreview = () => {};
+
   // join group
   const joinGroup = async () => {
-    try {
-      if (window.confirm(data.title + " 모임에 참여하시겠습니까?")) {
-        const group = await groupService.joinNewGroup(data._id);
-        toast.info(group.title + "에 가입하였습니다.", {
-          position: "top-center",
-        });
-        window.location.reload();
-      } else {
-        return;
+    if (userToken) {
+      try {
+        if (window.confirm(data.title + " 모임에 참여하시겠습니까?")) {
+          const group = await groupService.joinNewGroup(data._id);
+          toast.info(group.title + "에 가입하였습니다.", {
+            position: "top-center",
+          });
+          window.location.reload();
+        } else {
+          return;
+        }
+      } catch (ex) {
+        if (ex.response && ex.response.status === 404) {
+          toast.error(ex.response.data, {
+            position: "top-center",
+          });
+        }
       }
-    } catch (ex) {
-      if (ex.response && ex.response.status === 404) {
-        toast.error(ex.response.data, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      }
+    } else {
+      toast.info("로그인이 필요한 서비스입니다.", {
+        position: "top-center",
+      });
     }
   };
 
   // sign-out group
   const signOutGroup = async () => {
-    console.log("123");
+    try {
+      await groupService.signOutGroup(data._id);
+      window.location.reload();
+    } catch (ex) {
+      if (ex.response && ex.response.status === 404) {
+        toast.error(ex.response.data, {
+          position: "top-center",
+        });
+      }
+    }
   };
 
   return (
     <>
       <GroupModal
         visible={visible}
+        joined={joined}
         group={data}
         modalToggle={modalToggle}
         joinGroup={joinGroup}
@@ -88,6 +109,7 @@ const Group = ({ data }) => {
             <span className="title">{data.title}</span>
             <span className="host">(모임장 '{data.host.name}')</span>
             <div className="group_icon">
+              <FontAwesomeIcon icon={faMapMarkedAlt} onClick={openMapPreview} />
               <FontAwesomeIcon icon={faSearchPlus} onClick={modalToggle} />
               <FontAwesomeIcon icon={faSignInAlt} onClick={joinGroup} />
             </div>

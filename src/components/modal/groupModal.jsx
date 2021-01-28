@@ -8,6 +8,7 @@ const GroupModal = ({
   modalToggle,
   joinGroup,
   signOutGroup,
+  joined,
 }) => {
   // Prevent background scroll
   //   useEffect(() => {
@@ -36,7 +37,7 @@ const GroupModal = ({
           {group.launchedDate}
           {group.member}
           <button onClick={joinGroup}>모임 참가</button>
-          <button onClick={signOutGroup}>모임 나가기</button>
+          {joined && <button onClick={signOutGroup}>모임 나가기</button>}
         </ModalInner>
       </ModalWrapper>
     </>
