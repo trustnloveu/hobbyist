@@ -79,15 +79,21 @@ const Group = ({ data }) => {
 
   // sign-out group
   const signOutGroup = async () => {
-    try {
-      await groupService.signOutGroup(data._id);
-      window.location.reload();
-    } catch (ex) {
-      if (ex.response && ex.response.status === 404) {
-        toast.error(ex.response.data, {
-          position: "top-center",
-        });
+    if (userToken) {
+      try {
+        await groupService.signOutGroup(data._id);
+        window.location.reload();
+      } catch (ex) {
+        if (ex.response && ex.response.status === 404) {
+          toast.error(ex.response.data, {
+            position: "top-center",
+          });
+        }
       }
+    } else {
+      toast.info("로그인이 필요한 서비스입니다.", {
+        position: "top-center",
+      });
     }
   };
 
