@@ -1,4 +1,5 @@
 import React from "react";
+import SearchBox from "./common/searchBox";
 
 // import $ from "jquery";
 
@@ -9,6 +10,7 @@ const Home = () => {
   return (
     <>
       <MainSlider />
+      <SearchBox />
     </>
   );
 };

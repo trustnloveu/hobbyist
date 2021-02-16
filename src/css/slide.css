@@ -3,6 +3,7 @@
 .main_slide,
 .category_slide {
   position: absolute;
+  /* margin-bottom: 400px; */
   top: 70px;
   left: 0;
   width: 100vw;
@@ -12,7 +13,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 400px;
 }
 
 .main_slide {
