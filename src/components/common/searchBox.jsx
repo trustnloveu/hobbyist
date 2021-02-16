@@ -1,22 +1,33 @@
 import React from "react";
 import styled from "styled-components";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch,
+  faLocationArrow,
+  faCalendarDay,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const iconStyle = {
+  "margin-top": "12px",
+  position: "absolute",
+  "margin-left": "7px",
+  "font-size": "13pt",
+};
 
 const SearchBox = () => {
   return (
     <Container>
       <SearchWrapper>
         <TagWrapper>
-          <FontAwesomeIcon style={{ position: "absolute" }} icon={faSearch} />
+          <FontAwesomeIcon style={iconStyle} icon={faSearch} />
           <TagInput />
         </TagWrapper>
         <DateWrapper>
-          <FontAwesomeIcon style={{ position: "absolute" }} icon={faSearch} />
+          <FontAwesomeIcon style={faLocationArrow} icon={faSearch} />
           <DateInput />
         </DateWrapper>
         <LocationWrapper>
-          <FontAwesomeIcon style={{ position: "absolute" }} icon={faSearch} />
+          <FontAwesomeIcon style={faCalendarDay} icon={faSearch} />
           <LocationInput />
         </LocationWrapper>
       </SearchWrapper>
@@ -32,12 +43,14 @@ const Container = styled.div`
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  padding: 5px;
 `;
 
 const SearchWrapper = styled.div`
   display: flex;
   width: 600px;
+  overflow: hidden;
+  border-radius: 5px;
 `;
 
 const TagWrapper = styled.div`
@@ -46,10 +59,10 @@ const TagWrapper = styled.div`
 
 const TagInput = styled.input`
   width: 100%;
-  border: none;
   height: 40px;
-  text-indent: 5px;
-  border-right: 1px solid black;
+  border: none;
+  text-indent: 30px;
+  font-size: 14pt;
 
   &:focus {
     outline: none;
@@ -58,14 +71,16 @@ const TagInput = styled.input`
 `;
 
 const DateWrapper = styled.div`
+  border-left: 1px solid #eee;
   width: 25%;
 `;
 
 const DateInput = styled.input`
   width: 100%;
-  border: none;
   height: 40px;
-  text-indent: 5px;
+  border: none;
+  text-indent: 30px;
+  font-size: 14pt;
 
   &:focus {
     outline: none;
@@ -74,15 +89,16 @@ const DateInput = styled.input`
 `;
 
 const LocationWrapper = styled.div`
+  border-left: 1px solid #eee;
   width: 25%;
 `;
 
 const LocationInput = styled.input`
   width: 100%;
-  border: none;
   height: 40px;
-  text-indent: 5px;
-  border-left: 1px solid black;
+  border: none;
+  text-indent: 30px;
+  font-size: 14pt;
 
   &:focus {
     outline: none;
