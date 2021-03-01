@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const iconStyle = {
   "margin-top": "12px",
-  position: "absolute",
   "margin-left": "7px",
   "font-size": "13pt",
 };
@@ -19,15 +18,24 @@ const SearchBox = () => {
     <Container>
       <SearchWrapper>
         <TagWrapper>
-          <FontAwesomeIcon style={iconStyle} icon={faSearch} />
+          <FontAwesomeIcon
+            style={(iconStyle, { postion: "absolute" })}
+            icon={faSearch}
+          />
           <TagInput />
         </TagWrapper>
         <DateWrapper>
-          <FontAwesomeIcon style={faLocationArrow} icon={faSearch} />
+          <FontAwesomeIcon
+            style={(iconStyle, { postion: "absolute" })}
+            icon={faLocationArrow}
+          />
           <DateInput />
         </DateWrapper>
         <LocationWrapper>
-          <FontAwesomeIcon style={faCalendarDay} icon={faSearch} />
+          <FontAwesomeIcon
+            style={(iconStyle, { postion: "absolute" })}
+            icon={faCalendarDay}
+          />
           <LocationInput />
         </LocationWrapper>
       </SearchWrapper>
