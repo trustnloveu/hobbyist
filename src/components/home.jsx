@@ -5,6 +5,7 @@ import SearchBox from "./common/searchBox";
 
 // components
 import MainSlider from "./slides/mainSlider";
+import MainGroupsByCate from "./main/mainGroupsByCate";
 
 // services
 import { getCategories } from "./../services/categoryService";
@@ -12,24 +13,25 @@ import { getCategories } from "./../services/categoryService";
 // main (Home)
 const Home = () => {
   const [categories, setCategories] = useState([]);
-  const [index, setIndex] = useState([]);
 
   // useEffect
   useEffect(() => {
     // get categories from DB
     async function loadCategories() {
-      const { data } = await getCategories();
-      setCategories(data); // to set category array
-      loadRandom(data.length); // to get random categories
+      const { data: allCate } = await getCategories();
+
+      const indexArray = loadRandomIndex(allCate.length); // to get random indexes
+      loadRandomCategories(allCate, indexArray); // to set random categories
     }
 
     // execute
     loadCategories();
   }, []);
 
-  // set random index array for rendering group list in Home component
-  const loadRandom = (length) => {
+  // loadRandomIndex
+  const loadRandomIndex = (length) => {
     const ranIndex = [];
+
     for (let i = 0; i < 4; i++) {
       const number = Math.floor(Math.random() * length); // 0 ~ category length
       const isFound = ranIndex.find((value) => value === number);
@@ -38,33 +40,27 @@ const Home = () => {
         ranIndex.push(number);
       } else i--;
     }
-    // setIndex
-    setIndex(ranIndex);
+    return ranIndex;
   };
 
-  // call function to render groups one by one
-  const renderGroups = () => {
-    let output = "";
+  // loadRandomCategories
+  const loadRandomCategories = (all, index) => {
+    const array = [];
 
     for (let i = 0; i < index.length; i++) {
-      output += renderGroup(categories[index[i]]);
+      array.push(all[index[i]]);
     }
 
-    return <div>{output}</div>;
+    // setCategories
+    setCategories(array);
   };
 
-  // render one group
-  const renderGroup = (categoryData) => {
-    console.log(categoryData);
-    if (categoryData === undefined) return;
-    return categoryData.name;
-  };
-
+  // return
   return (
     <>
       <MainSlider />
       <SearchBox />
-      {categories && renderGroups()}
+      {categories && <MainGroupsByCate categories={categories} />}
     </>
   );
 };

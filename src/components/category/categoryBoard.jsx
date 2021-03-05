@@ -23,21 +23,14 @@ const CategoryBoard = (props) => {
       setCategoryName(result.data.name);
     }
 
-    // keywords, launchedDate, _id, title, category, location, description, startTime, meetingDate
-    // group list
-    // async function getGroupList() {
-    //   const { data } = await getGroups();
-    //   setGroups(data);
-    // }
-
     async function getGroupListByCategory() {
       const { data } = await getGroupsByCategory(props.match.params.id);
       setGroups(data);
     }
 
-    getName(); // execution
-    // getGroupList();
-    getGroupListByCategory();
+    // execute
+    getName();
+    getGroupListByCategory(); // getGroupList();
   }, [props.match.params.id]);
 
   const style = {
