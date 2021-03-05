@@ -12,22 +12,24 @@ import { getCategories } from "./../services/categoryService";
 // main (Home)
 const Home = () => {
   const [categories, setCategories] = useState([]);
-  const ranIndex = [];
+  const [index, setIndex] = useState([]);
 
   // useEffect
   useEffect(() => {
     // get categories from DB
     async function loadCategories() {
       const { data } = await getCategories();
-      setCategories(data);
+      setCategories(data); // to set category array
+      loadRandom(data.length); // to get random categories
     }
 
     // execute
     loadCategories();
-  });
+  }, []);
 
   // set random index array for rendering group list in Home component
   const loadRandom = (length) => {
+    const ranIndex = [];
     for (let i = 0; i < 4; i++) {
       const number = Math.floor(Math.random() * length); // 0 ~ category length
       const isFound = ranIndex.find((value) => value === number);
@@ -36,29 +38,33 @@ const Home = () => {
         ranIndex.push(number);
       } else i--;
     }
-    console.log(ranIndex);
-    return true;
+    // setIndex
+    setIndex(ranIndex);
   };
 
   // call function to render groups one by one
   const renderGroups = () => {
-    for (let i = 0; i < ranIndex.length; i++) {
-      const index = ranIndex[i];
-      renderGroup(categories[index]);
+    let output = "";
+
+    for (let i = 0; i < index.length; i++) {
+      output += renderGroup(categories[index[i]]);
     }
+
+    return <div>{output}</div>;
   };
 
   // render one group
-  const renderGroup = (props) => {
-    // console.log(props);
-    return <div>1</div>;
+  const renderGroup = (categoryData) => {
+    console.log(categoryData);
+    if (categoryData === undefined) return;
+    return categoryData.name;
   };
 
   return (
     <>
       <MainSlider />
       <SearchBox />
-      {categories && loadRandom(categories.length) && renderGroups()}
+      {categories && renderGroups()}
     </>
   );
 };
