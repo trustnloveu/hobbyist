@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 // services
@@ -12,7 +13,7 @@ import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Main
-const MainGroupList = ({ data }) => {
+const MainGroupList = ({ data: group }) => {
   const [groups, setGroups] = useState([]);
   const [title, setTitle] = useState();
 
@@ -24,8 +25,8 @@ const MainGroupList = ({ data }) => {
     }
 
     // execute
-    setTitle(data.name);
-    getGroupListData(data._id);
+    setTitle(group.name);
+    getGroupListData(group._id);
   }, []);
 
   const emptyText = "등록된 모임이 없습니다.";
@@ -35,7 +36,13 @@ const MainGroupList = ({ data }) => {
     <Container>
       <GroupListTitleCon>
         <GroupListTitle>{title}</GroupListTitle>
-        <GroupAllList>전체보기</GroupAllList>
+        <NavLink
+          style={{ textDecoration: "none", color: "black" }}
+          activeStyle={{ color: "inherit" }}
+          to={`/categories/${group._id}`}
+        >
+          <GroupAllList>전체보기</GroupAllList>
+        </NavLink>
       </GroupListTitleCon>
       <GroupListCon>
         {groups.length > 0 &&
@@ -58,6 +65,7 @@ const Container = styled.div`
 const GroupListTitleCon = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 5px;
 `;
 
 const GroupListTitle = styled.div`
@@ -67,14 +75,19 @@ const GroupListTitle = styled.div`
 
 const GroupAllList = styled.div`
   cursor: pointer;
-  text-decoration: underline;
-  text-underline-position: under;
+  padding: 3px;
+  border-radius: 5px;
+
+  &:hover {
+    transition: all 1s;
+    background-color: #95e1d3;
+    color: navy;
+  }
 `;
 
 const GroupListCon = styled.div`
   display: flex;
   height: 220px;
-  border-radius: 10px;
   overflow-x: hidden;
   background-color: #eee;
 `;

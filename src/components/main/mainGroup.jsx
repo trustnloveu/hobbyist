@@ -9,12 +9,15 @@ const MainGroup = ({ data: group }) => {
 
   const title =
     group.title.length >= 10
-      ? group.title.substring(0, 7) + "..."
+      ? group.title.substring(0, 10) + "..."
       : group.title;
 
   return (
     <Container>
-      <CoverImage src={Buffer.from(group.coverImage, "base64")}></CoverImage>
+      <CoverImage
+        src={Buffer.from(group.coverImage, "base64")}
+        alt="등록된 그룹이미지"
+      ></CoverImage>
       <GroupNameCon>
         <GroupRegion>{region}</GroupRegion>
         <GroupName>{title}</GroupName>
