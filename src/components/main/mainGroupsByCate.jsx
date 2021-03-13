@@ -15,6 +15,9 @@ const MainGroupsByCate = ({ categories }) => {
   );
 };
 
-const Container = styled.div``;
+const Container = styled.div`
+  width: 1000px;
+  margin: 10px auto;
+`;
 
 export default MainGroupsByCate;
