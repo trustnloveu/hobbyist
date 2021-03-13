@@ -49,7 +49,7 @@ const MainGroupList = ({ data: group }) => {
           groups.map((group) => <MainGroup key={group._id} data={group} />)}
         {groups.length === 0 && (
           <EmptyList>
-            <FontAwesomeIcon icon={faExclamationTriangle}></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faExclamationTriangle} />
             &nbsp;{emptyText}
           </EmptyList>
         )}
@@ -65,7 +65,7 @@ const Container = styled.div`
 const GroupListTitleCon = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 `;
 
 const GroupListTitle = styled.div`
@@ -87,9 +87,7 @@ const GroupAllList = styled.div`
 
 const GroupListCon = styled.div`
   display: flex;
-  height: 220px;
   overflow-x: hidden;
-  background-color: #eee;
 `;
 
 const EmptyList = styled.div`
