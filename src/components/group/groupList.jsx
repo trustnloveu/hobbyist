@@ -23,10 +23,10 @@ const GroupList = ({ groups }) => {
 
   // return
   return (
-    <div>
+    <>
       {groupList &&
         groupList.map((group) => <Group key={group._id} data={group} />)}
-    </div>
+    </>
   );
 };
 

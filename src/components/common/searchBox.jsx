@@ -7,33 +7,42 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const iconStyle = {
-  "margin-top": "12px",
-  "margin-left": "7px",
-  "font-size": "13pt",
-};
-
 const SearchBox = () => {
   return (
     <Container>
       <SearchWrapper>
         <TagWrapper>
           <FontAwesomeIcon
-            style={(iconStyle, { postion: "absolute" })}
+            style={{
+              position: "absolute",
+              height: "100%",
+              fontSize: "14pt",
+              marginLeft: "8px",
+            }}
             icon={faSearch}
           />
           <TagInput />
         </TagWrapper>
         <DateWrapper>
           <FontAwesomeIcon
-            style={(iconStyle, { postion: "absolute" })}
+            style={{
+              position: "absolute",
+              height: "100%",
+              fontSize: "14pt",
+              marginLeft: "8px",
+            }}
             icon={faLocationArrow}
           />
           <DateInput />
         </DateWrapper>
         <LocationWrapper>
           <FontAwesomeIcon
-            style={(iconStyle, { postion: "absolute" })}
+            style={{
+              position: "absolute",
+              height: "100%",
+              fontSize: "14pt",
+              marginLeft: "8px",
+            }}
             icon={faCalendarDay}
           />
           <LocationInput />
@@ -51,10 +60,11 @@ const Container = styled.div`
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
-  padding: 5px;
+  padding: 1px;
 `;
 
 const SearchWrapper = styled.div`
+  position: relative;
   display: flex;
   width: 600px;
   overflow: hidden;
@@ -79,6 +89,7 @@ const TagInput = styled.input`
 `;
 
 const DateWrapper = styled.div`
+  position: relative;
   border-left: 1px solid #eee;
   width: 25%;
 `;
@@ -97,6 +108,7 @@ const DateInput = styled.input`
 `;
 
 const LocationWrapper = styled.div`
+  position: relative;
   border-left: 1px solid #eee;
   width: 25%;
 `;
@@ -125,6 +137,10 @@ const SearchButton = styled.button`
   &:hover {
     transition: 0.5s;
     background-color: #95e1d3;
+  }
+  &:focus {
+    border: transparent;
+    outline: none;
   }
 `;
 

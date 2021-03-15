@@ -54,6 +54,21 @@ const MainGroupList = ({ data: group }) => {
           </EmptyList>
         )}
       </GroupListCon>
+      {/* {groups.length > 0 && (
+        <GroupListCon>
+          {groups.map((group) => (
+            <MainGroup key={group._id} data={group} />
+          ))}
+        </GroupListCon>
+      )}
+      {groups.length === 0 && (
+        <EmptyListCon>
+          <EmptyList>
+            <FontAwesomeIcon icon={faExclamationTriangle} />
+            &nbsp;{emptyText}
+          </EmptyList>
+        </EmptyListCon>
+      )} */}
     </Container>
   );
 };
@@ -88,7 +103,15 @@ const GroupAllList = styled.div`
 const GroupListCon = styled.div`
   display: flex;
   overflow-x: hidden;
+  padding: 5px;
 `;
+
+// const EmptyListCon = styled.div`
+//   display: flex;
+//   overflow-x: hidden;
+//   border: 1px solid #ccc;
+//   height: 200px;
+// `;
 
 const EmptyList = styled.div`
   margin: auto;
