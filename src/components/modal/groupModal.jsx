@@ -2,6 +2,14 @@ import React from "react";
 import propTypes from "prop-types";
 import styled from "styled-components";
 
+// components
+import ContentInfo from "../common/modal/ContentInfo";
+
+// icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+
 const GroupModal = ({
   visible,
   group,
@@ -19,25 +27,52 @@ const GroupModal = ({
   //       window.scrollTo(0, parseInt(scrollY || "0") * -1);
   //     };
   //   }, []);
+  console.log(group);
 
   return (
     <>
       <ModalOverlay visible={visible} />
       <ModalWrapper tabIndex="-1" visible={visible}>
         <ModalInner tabIndex="0">
-          <CloseButton onClick={modalToggle}>&times;</CloseButton>
-          {group.title}
-          {group.keywords}
-          {group.meetingDate}
-          {group.startTime}
-          {group.host.name}
-          {group.host.phone}
-          {group.host.email}
-          {group.description}
-          {group.launchedDate}
-          {group.member}
-          <button onClick={joinGroup}>모임 참가</button>
-          {joined && <button onClick={signOutGroup}>모임 나가기</button>}
+          <CloseButton onClick={modalToggle}>
+            <FontAwesomeIcon icon={faTimes} />
+          </CloseButton>
+          <ModalTitle>
+            <Category>{group.category.name}</Category>
+            <Arrow>
+              <FontAwesomeIcon icon={faChevronRight} />
+            </Arrow>
+            <Name>{group.title}</Name>
+          </ModalTitle>
+          <ContentWrapper>
+            <ModalLeft>
+              <GroupInfo>
+                <ContentTitle>그룹 정보</ContentTitle>
+                <ContentInfo title="소개글" data={group.description} />
+                <ContentInfo title="키워드" data={group.keywords} />
+                <ContentInfo
+                  title="그룹원"
+                  data={group.members.length + "명"}
+                />
+                <ContentInfo title="모임날짜" data={group.meetingDate} />
+                <ContentInfo title="모임시간" data={group.startTime} />
+                <ContentInfo title="모임장소" data={group.address} />
+              </GroupInfo>
+              <HostInfo>
+                <ContentTitle>호스트 정보</ContentTitle>
+                <ContentInfo title="이름" data={group.host.name} />
+                <ContentInfo title="연락처" data={group.host.phone} />
+                <ContentInfo title="이메일" data={group.host.email} />
+              </HostInfo>
+            </ModalLeft>
+            <ModalRight>
+              <CoverImage src={Buffer.from(group.coverImage, "base64")} />
+            </ModalRight>
+          </ContentWrapper>
+          <ButtomButton onClick={joinGroup}>모임 참가</ButtomButton>
+          {joined && (
+            <ButtomButton onClick={signOutGroup}>모임 나가기</ButtomButton>
+          )}
         </ModalInner>
       </ModalWrapper>
     </>
@@ -79,21 +114,78 @@ const ModalInner = styled.div`
   box-sizing: border-box;
   position: relative;
   background-color: #fff;
-  width: 900px;
+  width: 1000px;
   top: 50%;
   transform: translateY(-50%);
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 30px 20px;
 `;
 
 const CloseButton = styled.div`
-  text-align: right;
   cursor: pointer;
-  font-size: 25pt;
-  font-weight: 600;
+  font-size: 20pt;
   position: absolute;
   right: 20px;
-  top: 0px;
+  top: 10px;
+
+  &:hover {
+    transition: all 0.5s;
+    color: #fc5185;
+  }
 `;
+
+const ModalTitle = styled.div`
+  display: flex;
+  font-size: 20pt;
+  letter-spacing: 2px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 8px;
+`;
+
+const ContentWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+`;
+
+const Category = styled.div``;
+
+const Arrow = styled.div`
+  margin: 0 10px;
+  font-size: 15pt;
+  align-self: center;
+`;
+
+const Name = styled.div`
+  letter-spacing: 0px !important;
+`;
+
+const ModalLeft = styled.div`
+  width: 65%;
+`;
+
+const ModalRight = styled.div`
+  width: 300px;
+  height: 300px;
+`;
+
+const CoverImage = styled.img`
+  width: 100%;
+`;
+
+const GroupInfo = styled.div`
+  margin-bottom: 30px;
+`;
+
+const HostInfo = styled.div`
+  margin-bottom: 50px;
+`;
+
+const ContentTitle = styled.div`
+  font-size: 15pt;
+  font-weight: 600;
+`;
+
+const ButtomButton = styled.div``;
 
 export default GroupModal;
