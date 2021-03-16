@@ -20,7 +20,6 @@ const Wrapper = styled.div`
 
 const Title = styled.div`
   width: 20%;
-  border-right: 2px solid navy;
   border-right-style: double;
 `;
 

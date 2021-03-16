@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import styled from "styled-components";
 
 import GroupModal from "../modal/groupModal";
 import filterOptions from "../../objects/filterOptions";
 
 // service
-import * as groupService from "./../../services/groupService";
+// import * as groupService from "./../../services/groupService";
 import authService from "./../../services/authService";
+import { joinGroup, signOutGroup } from "../../utilities/signInOut";
 
 // css & icon
 import "../../css/groupList.css";
@@ -51,53 +52,7 @@ const Group = ({ data }) => {
   // preview map
   const openMapPreview = () => {};
 
-  // join group
-  const joinGroup = async () => {
-    if (userToken) {
-      try {
-        if (window.confirm(data.title + " 모임에 참여하시겠습니까?")) {
-          const group = await groupService.joinNewGroup(data._id);
-          toast.info(group.title + "에 가입하였습니다.", {
-            position: "top-center",
-          });
-          window.location.reload();
-        } else return;
-      } catch (ex) {
-        if (ex.response && ex.response.status === 404) {
-          toast.error(ex.response.data, {
-            position: "top-center",
-          });
-        }
-      }
-    } else {
-      toast.info("로그인이 필요한 서비스입니다.", {
-        position: "top-center",
-      });
-    }
-  };
-
-  // sign-out group
-  const signOutGroup = async () => {
-    if (userToken) {
-      try {
-        if (window.confirm(data.title + " 모임에서 나가겠습니까?")) {
-          await groupService.signOutGroup(data._id);
-          window.location.reload();
-        } else return;
-      } catch (ex) {
-        if (ex.response && ex.response.status === 404) {
-          toast.error(ex.response.data, {
-            position: "top-center",
-          });
-        }
-      }
-    } else {
-      toast.info("로그인이 필요한 서비스입니다.", {
-        position: "top-center",
-      });
-    }
-  };
-
+  // return
   return (
     <>
       <GroupModal
@@ -105,8 +60,8 @@ const Group = ({ data }) => {
         joined={joined}
         group={data}
         modalToggle={modalToggle}
-        joinGroup={joinGroup}
-        signOutGroup={signOutGroup}
+        joinGroup={() => joinGroup(userToken, data)}
+        signOutGroup={() => signOutGroup(userToken, data)}
       />
       <div className="Group">
         <img className="image" src={image} alt="" />
@@ -118,7 +73,10 @@ const Group = ({ data }) => {
             <div className="group_icon">
               <FontAwesomeIcon icon={faMapMarkedAlt} onClick={openMapPreview} />
               <FontAwesomeIcon icon={faSearchPlus} onClick={modalToggle} />
-              <FontAwesomeIcon icon={faSignInAlt} onClick={joinGroup} />
+              <FontAwesomeIcon
+                icon={faSignInAlt}
+                onClick={() => joinGroup(userToken, data)}
+              />
             </div>
           </li>
           <li className="keywords">

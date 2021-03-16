@@ -6,9 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const MainGroup = ({ data: group }) => {
-  console.log(group);
-  console.log(group.coverImage);
-
   const region =
     group.address.split(" ")[0] + " " + group.address.split(" ")[1];
 
