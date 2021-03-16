@@ -54,21 +54,6 @@ const MainGroupList = ({ data: group }) => {
           </EmptyList>
         )}
       </GroupListCon>
-      {/* {groups.length > 0 && (
-        <GroupListCon>
-          {groups.map((group) => (
-            <MainGroup key={group._id} data={group} />
-          ))}
-        </GroupListCon>
-      )}
-      {groups.length === 0 && (
-        <EmptyListCon>
-          <EmptyList>
-            <FontAwesomeIcon icon={faExclamationTriangle} />
-            &nbsp;{emptyText}
-          </EmptyList>
-        </EmptyListCon>
-      )} */}
     </Container>
   );
 };

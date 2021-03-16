@@ -1,40 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+
+// components
+import GroupModal from "../modal/groupModal";
+
+// services
+import authService from "../../services/authService";
+import { joinGroup, signOutGroup } from "../../utilities/signInOut";
 
 // icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
+// Main
 const MainGroup = ({ data: group }) => {
+  // states
+  const [visible, setVisible] = useState(false); // Modal
+  const [joined, isJoined] = useState(false);
+
+  // user token
+  const userToken = authService.getCurrentUser();
+
+  // region info
   const region =
     group.address.split(" ")[0] + " " + group.address.split(" ")[1];
 
+  // shorten group title if it's too long
   const title =
     group.title.length >= 10
       ? group.title.substring(0, 10) + "..."
       : group.title;
 
+  // member info
   const member = group.members.length + "명";
 
+  // open modal
+  const modalToggle = () => {
+    if (userToken) {
+      const result = group.members.includes(userToken._id);
+      isJoined(result);
+    }
+    setVisible(!visible);
+  };
+
+  // return
   return (
-    <Container>
-      <CoverImageCon>
-        <Image
-          src={Buffer.from(group.coverImage, "base64")}
-          alt="등록된 그룹이미지"
-        />
-      </CoverImageCon>
-      <GroupNameCon>
-        <GroupRegion>{region}</GroupRegion>
-        <GroupName>{title}</GroupName>
-        <GroupMemberCon>
-          <MemberIconCon>
-            <FontAwesomeIcon icon={faUser} color="grey" />
-          </MemberIconCon>
-          <MemberNumber>{member}</MemberNumber>
-        </GroupMemberCon>
-      </GroupNameCon>
-    </Container>
+    <>
+      <GroupModal
+        visible={visible}
+        joined={joined}
+        group={group}
+        modalToggle={modalToggle}
+        joinGroup={() => joinGroup(userToken, group)}
+        signOutGroup={() => signOutGroup(userToken, group)}
+      />
+      <Container onClick={modalToggle}>
+        <CoverImageCon>
+          <Image
+            src={Buffer.from(group.coverImage, "base64")}
+            alt="등록된 그룹이미지"
+          />
+        </CoverImageCon>
+        <GroupNameCon>
+          <GroupRegion>{region}</GroupRegion>
+          <GroupName>{title}</GroupName>
+          <GroupMemberCon>
+            <MemberIconCon>
+              <FontAwesomeIcon icon={faUser} color="grey" />
+            </MemberIconCon>
+            <MemberNumber>{member}</MemberNumber>
+          </GroupMemberCon>
+        </GroupNameCon>
+      </Container>
+    </>
   );
 };
 
