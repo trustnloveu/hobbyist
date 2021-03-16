@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import styled from "styled-components";
 
 import GroupModal from "../modal/groupModal";
 import filterOptions from "../../objects/filterOptions";
@@ -60,9 +61,7 @@ const Group = ({ data }) => {
             position: "top-center",
           });
           window.location.reload();
-        } else {
-          return;
-        }
+        } else return;
       } catch (ex) {
         if (ex.response && ex.response.status === 404) {
           toast.error(ex.response.data, {
@@ -81,8 +80,10 @@ const Group = ({ data }) => {
   const signOutGroup = async () => {
     if (userToken) {
       try {
-        await groupService.signOutGroup(data._id);
-        window.location.reload();
+        if (window.confirm(data.title + " 모임에서 나가겠습니까?")) {
+          await groupService.signOutGroup(data._id);
+          window.location.reload();
+        } else return;
       } catch (ex) {
         if (ex.response && ex.response.status === 404) {
           toast.error(ex.response.data, {

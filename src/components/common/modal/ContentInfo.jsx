@@ -13,18 +13,19 @@ const ContentInfo = ({ title, data }) => {
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  margin: 20px 0;
   font-size: 15pt;
   line-height: 33px;
 `;
 
 const Title = styled.div`
   width: 20%;
+  border-right: 2px solid navy;
+  border-right-style: double;
 `;
 
 const Content = styled.div`
   width: 75%;
-  background-color: #eee;
 `;
 //   padding: 5px 10px;
 //   border-radius: 5px;

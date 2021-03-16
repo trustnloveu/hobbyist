@@ -2,6 +2,9 @@ import React from "react";
 import propTypes from "prop-types";
 import styled from "styled-components";
 
+// utilities
+import { convertTime } from "../../utilities/convertTime";
+
 // components
 import ContentInfo from "../common/modal/ContentInfo";
 
@@ -27,7 +30,6 @@ const GroupModal = ({
   //       window.scrollTo(0, parseInt(scrollY || "0") * -1);
   //     };
   //   }, []);
-  console.log(group);
 
   return (
     <>
@@ -55,7 +57,10 @@ const GroupModal = ({
                   data={group.members.length + "명"}
                 />
                 <ContentInfo title="모임날짜" data={group.meetingDate} />
-                <ContentInfo title="모임시간" data={group.startTime} />
+                <ContentInfo
+                  title="모임시간"
+                  data={convertTime(group.startTime)}
+                />
                 <ContentInfo title="모임장소" data={group.address} />
               </GroupInfo>
               <HostInfo>
@@ -66,13 +71,28 @@ const GroupModal = ({
               </HostInfo>
             </ModalLeft>
             <ModalRight>
+              <ContentTitle>사진</ContentTitle>
               <CoverImage src={Buffer.from(group.coverImage, "base64")} />
             </ModalRight>
           </ContentWrapper>
-          <ButtomButton onClick={joinGroup}>모임 참가</ButtomButton>
-          {joined && (
-            <ButtomButton onClick={signOutGroup}>모임 나가기</ButtomButton>
-          )}
+          <ButtonWrapper>
+            {!joined && (
+              <ButtonButton
+                style={{ backgroundColor: "#95e1d3" }}
+                onClick={joinGroup}
+              >
+                모임 참가
+              </ButtonButton>
+            )}
+            {joined && (
+              <ButtonButton
+                style={{ backgroundColor: "#f38181" }}
+                onClick={signOutGroup}
+              >
+                모임 나가기
+              </ButtonButton>
+            )}
+          </ButtonWrapper>
         </ModalInner>
       </ModalWrapper>
     </>
@@ -171,6 +191,7 @@ const ModalRight = styled.div`
 
 const CoverImage = styled.img`
   width: 100%;
+  margin-top: 20px;
 `;
 
 const GroupInfo = styled.div`
@@ -186,6 +207,21 @@ const ContentTitle = styled.div`
   font-weight: 600;
 `;
 
-const ButtomButton = styled.div``;
+const ButtonWrapper = styled.div`
+  text-align: right;
+`;
+
+const ButtonButton = styled.span`
+  cursor: pointer;
+  padding: 10px 15px;
+  color: white;
+  border-radius: 5px;
+
+  &:hover {
+    transition: all 0.5s;
+    background-color: navy !important;
+    color: white;
+  }
+`;
 
 export default GroupModal;
