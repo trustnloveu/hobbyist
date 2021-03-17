@@ -5,6 +5,7 @@ import styled from "styled-components";
 import MainGroupList from "./mainGroupList";
 
 const MainGroupsByCate = ({ categories }) => {
+  console.log(categories);
   // return
   return (
     <Container>
