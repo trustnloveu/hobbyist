@@ -49,10 +49,9 @@ const MainGroupList = ({ data: group }) => {
         {groups.length > 0 &&
           groups.map((group) => <MainGroup key={group._id} data={group} />)}
         {groups.length === 0 && (
-          <Loader type="spin" color="#f38181" width="50px" height="350px" />
+          <Loader type="spin" color="#f38181" width="50px" />
         )}
       </GroupListCon>
-      {/* <Loader type="spin" color="#f38181" width="50px" height="350px" /> */}
     </Container>
   );
 };

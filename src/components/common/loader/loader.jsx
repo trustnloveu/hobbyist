@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import Loading from "react-loading";
 
-const Loader = ({ type, color, message, width, height }) => {
+const Loader = ({ type, color, message, width }) => {
   return (
     <Container>
-      <Loading type={type} color={color} width={width} height={height} />
+      <Loading type={type} color={color} width={width} />
       {message && <Message></Message>}
     </Container>
   );
@@ -18,6 +18,7 @@ const Container = styled.div`
 
   & div {
     margin: 20px auto;
+    padding: 100px 0;
 
     & svg {
       opacity: 0.7;
