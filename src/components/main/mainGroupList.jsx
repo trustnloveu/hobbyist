@@ -7,6 +7,7 @@ import { getGroupsByCategory } from "../../services/groupService";
 
 // components
 import MainGroup from "./mainGroup";
+import Loader from "../common/loader/loader";
 
 // icon
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
@@ -48,12 +49,10 @@ const MainGroupList = ({ data: group }) => {
         {groups.length > 0 &&
           groups.map((group) => <MainGroup key={group._id} data={group} />)}
         {groups.length === 0 && (
-          <EmptyList>
-            <FontAwesomeIcon icon={faExclamationTriangle} />
-            &nbsp;{emptyText}
-          </EmptyList>
+          <Loader type="spin" color="#f38181" width="50px" height="350px" />
         )}
       </GroupListCon>
+      {/* <Loader type="spin" color="#f38181" width="50px" height="350px" /> */}
     </Container>
   );
 };
