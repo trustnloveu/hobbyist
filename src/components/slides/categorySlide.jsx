@@ -55,7 +55,7 @@ const CategorySlider = () => {
         backgroundColor: "pink",
       }}
     >
-      <div className={item.className}>{item.content}</div>
+      {/* <div className={item.className}>{item.content}</div> */}
     </animated.div>
   ));
 };

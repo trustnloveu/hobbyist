@@ -3,6 +3,7 @@ import { getCategories } from "../../services/categoryService";
 
 // components
 import Li from "./categoryList";
+import Loader from "./loader/loader";
 
 // css
 import "../../css/category.css";
@@ -30,6 +31,9 @@ const CategoriesForm = ({ label, location }) => {
       }
     >
       <li className="category_title">{label}</li>
+      {categories.length === 0 && (
+        <Loader type="spin" color="#f38181" width="100px" />
+      )}
       {categories.map((category) => (
         <Li key={category._id} context={category.name} pathId={category._id} />
       ))}

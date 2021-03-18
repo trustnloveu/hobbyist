@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 // compoents
 import Group from "../common/group";
+import Loader from "../common/loader/loader";
 
 const GroupList = ({ groups }) => {
   const [groupList, setGroupList] = useState();
@@ -24,6 +25,7 @@ const GroupList = ({ groups }) => {
   // return
   return (
     <>
+      {!groupList && <Loader type="spin" color="#f38181" width="100px" />}
       {groupList &&
         groupList.map((group) => <Group key={group._id} data={group} />)}
     </>
