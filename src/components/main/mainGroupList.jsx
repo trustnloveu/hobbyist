@@ -11,8 +11,8 @@ import Loader from "../common/loader/loader";
 
 // icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowCircleLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
 
 // Main
 const MainGroupList = ({ data: group }) => {
@@ -50,20 +50,23 @@ const MainGroupList = ({ data: group }) => {
         <Loader type="spin" color="#f38181" width="50px" />
       )}
       {groups.length > 0 && (
-        <GroupListWrapper>
-          <GroupListCon>
-            {groups.map((group) => (
-              <MainGroup key={group._id} data={group} />
-            ))}
-          </GroupListCon>
-
-          <LeftMover>
-            <FontAwesomeIcon icon={faChevronLeft} />
-          </LeftMover>
-          <RightMover>
-            <FontAwesomeIcon icon={faChevronRight} />
-          </RightMover>
-        </GroupListWrapper>
+        <ListSlideCon>
+          <GroupListWrapper>
+            <GroupListCon>
+              {groups.map((group) => (
+                <MainGroup key={group._id} data={group} />
+              ))}
+            </GroupListCon>
+          </GroupListWrapper>
+          <MoverWrapper>
+            <LeftMover>
+              <FontAwesomeIcon icon={faArrowCircleLeft} />
+            </LeftMover>
+            <RightMover>
+              <FontAwesomeIcon icon={faArrowCircleRight} />
+            </RightMover>
+          </MoverWrapper>
+        </ListSlideCon>
       )}
     </Container>
   );
@@ -71,8 +74,7 @@ const MainGroupList = ({ data: group }) => {
 
 // styled components
 const Container = styled.div`
-overflow: hidden;
-  padding: 20px 0;
+padding: 20px 0;
 }
 `;
 
@@ -99,19 +101,33 @@ const GroupAllList = styled.div`
   }
 `;
 
+const ListSlideCon = styled.div`
+  position: relative;
+  display: flex;
+`;
+
 const GroupListWrapper = styled.div`
+  position: relative;
   width: 100%;
   padding: 5px;
+  overflow: hidden;
+  display: flex;
 `;
+
 const GroupListCon = styled.div`
-  position: relative;
   display: inline-flex;
 `;
 
-const RightMover = styled.div`
+const MoverWrapper = styled.div`
   position: absolute;
+  width: 100%;
+  height: 100%;
+`;
+
+const RightMover = styled.div`
+position: absolute;
   display: flex;
-  right: 10px;
+  right: -30px;
   height: 100%;
   font-size: 22px;
   cursor: pointer;
@@ -131,7 +147,7 @@ const RightMover = styled.div`
 const LeftMover = styled.div`
   position: absolute;
   display: flex;
-  left: 10px;
+  left: -30px;
   height: 100%;
   font-size: 22px;
   cursor: pointer;
