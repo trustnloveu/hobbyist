@@ -33,8 +33,7 @@ function App() {
     setUser(auth.getCurrentUser());
   }, []);
 
-  console.log(user);
-
+  // return
   return (
     <React.Fragment>
       <ToastContainer />

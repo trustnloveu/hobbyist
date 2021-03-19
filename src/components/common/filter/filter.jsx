@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // filter option list
-import filterOptions from "../../objects/filterOptions";
+import filterOptions from "../../../objects/filterOptions";
 
 // icon
 import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
@@ -9,7 +9,7 @@ import { faMapMarkedAlt } from "@fortawesome/free-solid-svg-icons";
 import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
 
 // css
-import "../../css/filter.css";
+import "../../../css/filter.css";
 import FilterMenu from "./filterMenu";
 
 const Filter = () => {

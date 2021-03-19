@@ -3,7 +3,7 @@ import { getCategories } from "../../services/categoryService";
 
 // components
 import Li from "./categoryList";
-import Loader from "./loader/loader";
+import Loader from "../common/loader/loader";
 
 // css
 import "../../css/category.css";

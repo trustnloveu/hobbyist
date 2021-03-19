@@ -2,7 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import styled from "styled-components";
 
-import Postcode from "../common/postcode";
+import Postcode from "../common/modal/postcode";
 
 const PostcodeModal = ({ setAddress: setMainAddress, visible, onClick }) => {
   return (

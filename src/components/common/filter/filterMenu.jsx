@@ -1,6 +1,6 @@
 import React from "react";
 
-import Dropdown from "../dropdown/dropdown";
+import Dropdown from "../../dropdown/dropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const FilterMenu = (props) => {

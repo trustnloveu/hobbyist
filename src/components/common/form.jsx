@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import Joi from "joi-browser";
 
 // components
-import Input from "./input";
-import Select from "./select";
-import Textarea from "./textarea";
-import FileInput from "./fileInput";
-import AddressInput from "./addressInput";
+import Input from "./input/input";
+import Select from "./input/select";
+import Textarea from "./input/textarea";
+import FileInput from "./input/fileInput";
+import AddressInput from "./input/addressInput";
 
 class Form extends Component {
   state = {

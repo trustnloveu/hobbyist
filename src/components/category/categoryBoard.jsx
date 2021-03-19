@@ -5,8 +5,8 @@ import { getCategory } from "../../services/categoryService";
 import { getGroupsByCategory } from "../../services/groupService";
 
 // components
-import FilterList from "../common/filterList";
-import CategoryForm from "../common/categoryForm";
+import FilterList from "../common/filter/filterList";
+import CategoryForm from "./categoryForm";
 import GroupList from "../group/groupList";
 
 // main

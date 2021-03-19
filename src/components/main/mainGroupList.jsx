@@ -10,8 +10,9 @@ import MainGroup from "./mainGroup";
 import Loader from "../common/loader/loader";
 
 // icon
-import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 // Main
 const MainGroupList = ({ data: group }) => {
@@ -30,7 +31,7 @@ const MainGroupList = ({ data: group }) => {
     getGroupListData(group._id);
   }, []);
 
-  const emptyText = "등록된 모임이 없습니다.";
+  // transform: translateX(-300px);
 
   // return
   return (
@@ -45,21 +46,36 @@ const MainGroupList = ({ data: group }) => {
           <GroupAllList>전체보기</GroupAllList>
         </NavLink>
       </GroupListTitleCon>
-      <GroupListCon>
-        {groups.length > 0 &&
-          groups.map((group) => <MainGroup key={group._id} data={group} />)}
-        {groups.length === 0 && (
-          <Loader type="spin" color="#f38181" width="50px" />
-        )}
-      </GroupListCon>
+      {groups.length === 0 && (
+        <Loader type="spin" color="#f38181" width="50px" />
+      )}
+      {groups.length > 0 && (
+        <GroupListWrapper>
+          <GroupListCon>
+            {groups.map((group) => (
+              <MainGroup key={group._id} data={group} />
+            ))}
+          </GroupListCon>
+
+          <LeftMover>
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </LeftMover>
+          <RightMover>
+            <FontAwesomeIcon icon={faChevronRight} />
+          </RightMover>
+        </GroupListWrapper>
+      )}
     </Container>
   );
 };
 
 // styled components
 const Container = styled.div`
+overflow: hidden;
   padding: 20px 0;
+}
 `;
+
 const GroupListTitleCon = styled.div`
   display: flex;
   justify-content: space-between;
@@ -83,22 +99,52 @@ const GroupAllList = styled.div`
   }
 `;
 
-const GroupListCon = styled.div`
-  display: flex;
-  overflow-x: hidden;
+const GroupListWrapper = styled.div`
+  width: 100%;
   padding: 5px;
 `;
+const GroupListCon = styled.div`
+  position: relative;
+  display: inline-flex;
+`;
 
-// const EmptyListCon = styled.div`
-//   display: flex;
-//   overflow-x: hidden;
-//   border: 1px solid #ccc;
-//   height: 200px;
-// `;
+const RightMover = styled.div`
+  position: absolute;
+  display: flex;
+  right: 10px;
+  height: 100%;
+  font-size: 22px;
+  cursor: pointer;
+  
+  & svg {
+    margin: auto 0;
+    opacity: 0.7;
+    
+    &:hover {
+      transition: 0.5s;
+      color: #f38181;
+    }
+  }
+}
+`;
 
-const EmptyList = styled.div`
-  margin: auto;
-  font-size: 15pt;
+const LeftMover = styled.div`
+  position: absolute;
+  display: flex;
+  left: 10px;
+  height: 100%;
+  font-size: 22px;
+  cursor: pointer;
+
+  & svg {
+    margin: auto 0;
+    opacity: 0.7;
+
+    &:hover {
+      transition: 0.5s;
+      color: #f38181;
+    }
+  }
 `;
 
 export default MainGroupList;

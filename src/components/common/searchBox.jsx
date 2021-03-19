@@ -148,6 +148,7 @@ const RegionCon = styled.ul`
   padding: 0;
   text-align: center;
   background-color: #a1eafb;
+  z-index: 100;
 `;
 
 const Region = styled.li`

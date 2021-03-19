@@ -96,8 +96,11 @@ const Container = styled.div`
 `;
 
 const CoverImageCon = styled.div`
-  height: 210px;
   overflow: hidden;
+  height: 210px;
+  display: flex;
+  align-items: center;
+  background-color: #eee;
 `;
 
 const Image = styled.img`
