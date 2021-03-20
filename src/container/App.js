@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import styled from "styled-components";
 
 // user components
 import NavBar from "../components/navBar";
@@ -16,6 +17,9 @@ import NewGroup from "./../components/group/newGroup";
 import Group from "../components/group/group";
 // import Modal from "./components/modal";
 
+// Routes
+import AuthRoute from "../components/authRoute";
+
 // module
 import auth from "../services/authService";
 
@@ -26,9 +30,11 @@ import "react-toastify/dist/ReactToastify.css";
 // user info from the server
 // const user = auth.getCurrentUser();
 
-function App() {
+const App = () => {
+  // user status
   const [user, setUser] = useState();
 
+  // useEffect
   useEffect(() => {
     setUser(auth.getCurrentUser());
   }, []);
@@ -37,24 +43,35 @@ function App() {
   return (
     <React.Fragment>
       <ToastContainer />
-      <NavBar user={user} />
-      <main>
+      <Container>
+        <NavBar user={user} />
         <Switch>
           <Route path="/home" component={Home} />
           <Route path="/categories/:id" component={CategoryBoard} />
           <Route path="/categories" component={Categories} />
-          <Route path="/createNewGroup" component={NewGroup} />
+          <AuthRoute path="/createNewGroup" component={NewGroup} user={user} />
           <Route path="/group/:id" component={Group} />
           <Route path="/logout" component={Logout} />
           <Route path="/login" component={Login} />
-          <Route path="/myPage" component={MyPage} />
+          <AuthRoute path="/myPage" component={MyPage} user={user} />
           <Route path="/register" component={Register} />
           <Redirect from="/" exatc to="/home" />
           <Redirect to="/not-found" />
         </Switch>
-      </main>
+      </Container>
     </React.Fragment>
   );
-}
+};
+
+const Container = styled.main`
+  &,
+  & * {
+    box-sizing: border-box;
+  }
+
+  & a {
+    text-decoration: none;
+  }
+`;
 
 export default App;
