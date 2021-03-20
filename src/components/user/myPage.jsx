@@ -6,23 +6,29 @@ import LeftInfo from "../mypage/LeftInfo";
 import RightInfo from "../mypage/RightInfo";
 
 // services
-import auth from "../../services/authService";
+import { getUserInfo } from "../../services/userService";
 
 // Main
 const MyPage = () => {
-  // const [user, setUser] = useState();
+  // state
+  const [user, setUser] = useState();
 
-  // useEffect(() => {
-  //   setUser(auth.getCurrentUser());
-  // }, []);
+  // useEffect
+  useEffect(() => {
+    async function getUserData() {
+      const { data } = await getUserInfo();
+      setUser(data);
+    }
 
-  // console.log(user);
+    // execute
+    getUserData();
+  }, []);
 
   // return
   return (
     <Container>
-      <LeftInfo />
-      <RightInfo />
+      <LeftInfo user={user} />
+      <RightInfo user={user} />
     </Container>
   );
 };

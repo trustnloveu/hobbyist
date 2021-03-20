@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const RightInfo = () => {
+const RightInfo = ({ user }) => {
   return <Container>2</Container>;
 };
 
 const Container = styled.div`
-  width: 75%;
+  width: 70%;
 `;
 
 export default RightInfo;

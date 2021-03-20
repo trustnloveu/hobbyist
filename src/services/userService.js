@@ -9,6 +9,11 @@ const apiEndpoint = "/users";
 //   });
 // }
 
+// get user data
+export function getUserInfo() {
+  return http.get(`${apiEndpoint}/myPage`);
+}
+
 // sign-up
 export function registerUser(userData) {
   return http.post(apiEndpoint, {

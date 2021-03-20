@@ -3,17 +3,14 @@ import { Route, Redirect } from "react-router-dom";
 
 // main
 const AuthRoute = ({ path, user, component: Component, ...rest }) => {
+  console.log(user);
   // return
   return (
     <Route
       {...rest}
       path={path}
-      render={(props) =>
-        user ? (
-          <Component user={user} />
-        ) : (
-          <Redirect to="/login" from={props.location} />
-        )
+      render={() =>
+        user ? <Component user={user} /> : <Redirect to="/login" />
       }
     />
   );
