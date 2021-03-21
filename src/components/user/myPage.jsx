@@ -9,26 +9,41 @@ import RightInfo from "../mypage/RightInfo";
 import { getUserInfo } from "../../services/userService";
 
 // Main
-const MyPage = () => {
-  // state
-  const [user, setUser] = useState();
+const MyPage = ({ user }) => {
+  // states
+  const [userPrivateInfo, setUserPrivateInfo] = useState(); // _id, name, phone, isAdmin, userImage
+  const [userGroupInfo, setUserGroupInfo] = useState(); // _id, hostingGroups, joinedGroups
 
   // useEffect
   useEffect(() => {
-    async function getUserData() {
-      const { data } = await getUserInfo();
-      setUser(data);
+    async function loadUserInfo() {
+      const { data } = await getUserInfo(); // I'll get token user id with JSON Web Token at the server
+      console.log(data);
+      setUserPrivateInfo({
+        id: data._id,
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+        isAdmin: data.isAdmin,
+      });
+
+      setUserGroupInfo({
+        id: data._id,
+        hostingGroups: data.hostingGroups,
+        joinedGroups: data.joinedGroups,
+      });
     }
 
-    // execute
-    getUserData();
+    loadUserInfo();
   }, []);
 
+  console.log(userPrivateInfo);
+  console.log(userGroupInfo);
   // return
   return (
     <Container>
-      <LeftInfo user={user} />
-      <RightInfo user={user} />
+      <LeftInfo userPrivateInfo={userPrivateInfo} />
+      <RightInfo userGroupInfo={userGroupInfo} />
     </Container>
   );
 };

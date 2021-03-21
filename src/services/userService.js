@@ -9,7 +9,7 @@ const apiEndpoint = "/users";
 //   });
 // }
 
-// get user data
+// get user data with JSON Web Token at the server
 export function getUserInfo() {
   return http.get(`${apiEndpoint}/myPage`);
 }

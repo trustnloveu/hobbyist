@@ -27,9 +27,7 @@ import auth from "../services/authService";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 
-// user info from the server
-// const user = auth.getCurrentUser();
-
+// App
 const App = () => {
   // user status
   const [user, setUser] = useState();
