@@ -50,7 +50,10 @@ const MainGroupList = ({ data: group }) => {
         <Loader type="spin" color="#f38181" width="50px" />
       )}
       {groups.length > 0 && (
-        <ListSlideCon>
+        <ListSlideCon
+          onMouseOver={() => console.log("123")}
+          onMouseOut={() => console.log("123")}
+        >
           <GroupListWrapper>
             <GroupListCon>
               {groups.map((group) => (
@@ -122,6 +125,9 @@ const MoverWrapper = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
+  z-index: 1;
+
+  transition: all 0.5s;
 `;
 
 const RightMover = styled.div`

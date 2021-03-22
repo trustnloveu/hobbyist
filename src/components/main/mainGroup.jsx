@@ -83,7 +83,7 @@ const Container = styled.div`
   padding: 5px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  padding: 5px;
+  z-index: 2;
 
   &: hover {
     transition: all 0.5s;
