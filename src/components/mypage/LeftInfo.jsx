@@ -74,7 +74,7 @@ const LowerBlock = styled.div`
   height: 600px;
   padding-top: 22%;
   text-align: center;
-  background-color: #cca8e9;
+  background-color: #dbf6e9;
 `;
 // background-color: #cadefc;
 
