@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 // components
 import PrivateInfo from "./privateInfo";
+import Loader from "../common/loader/loader";
 
 // icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,11 +21,11 @@ const LeftInfo = ({ userPrivateInfo }) => {
   return (
     <Container>
       <ProfileImageCon>
-        {userPrivateInfo && (
-          <ImageLabel>
-            <Image src={defaultPhoto} />
-          </ImageLabel>
-        )}
+        <ImageLabel htmlFor="profilePhoto">
+          {!userPrivateInfo && <Image src={defaultPhoto} />}
+          {userPrivateInfo && <Image src={defaultPhoto} />}
+          <ImageInput id="profilePhoto" type="file" />
+        </ImageLabel>
       </ProfileImageCon>
       <UpperBlock></UpperBlock>
       <LowerBlock>
@@ -38,6 +39,7 @@ const LeftInfo = ({ userPrivateInfo }) => {
             <PrivateInfo label="연락처" data={userPrivateInfo.phone} />
           </>
         )}
+        {!userPrivateInfo && <Loader type="balls" color="navy" width="50px" />}
       </LowerBlock>
     </Container>
   );
@@ -48,7 +50,17 @@ const Container = styled.div`
   position: relative;
   display: block;
   width: 30%;
+  overflow: hidden;
+  border: 1px solid #95e1d3;
+  border-radius: 10px;
+
+  &:hover {
+    transition: all 1s;
+    box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+  }
 `;
+// box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+// transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
 const UpperBlock = styled.div`
   width: 100%;
@@ -77,6 +89,7 @@ const ProfileImageCon = styled.div`
 
 const ImageLabel = styled.label`
   margin: auto;
+  cursor: pointer;
   z-index: 10;
 `;
 
@@ -85,6 +98,10 @@ const Image = styled.img`
   height: 250px;
   border-radius: 50%;
   border: transparent;
+`;
+
+const ImageInput = styled.input`
+  display: none;
 `;
 
 const EditButtonCon = styled.div`

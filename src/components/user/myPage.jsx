@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 // components
-import LeftInfo from "../mypage/LeftInfo";
-import RightInfo from "../mypage/RightInfo";
+import LeftInfo from "../mypage/leftInfo";
+import RightInfo from "../mypage/rightInfo";
 
 // services
 import { getUserInfo } from "../../services/userService";
@@ -37,8 +37,6 @@ const MyPage = ({ user }) => {
     loadUserInfo();
   }, []);
 
-  console.log(userPrivateInfo);
-  console.log(userGroupInfo);
   // return
   return (
     <Container>
@@ -49,7 +47,10 @@ const MyPage = ({ user }) => {
 };
 
 const Container = styled.div`
+  width: 1200px;
   display: flex;
+  margin: 50px auto;
+  justify-content: space-evenly;
 `;
 
 export default MyPage;
