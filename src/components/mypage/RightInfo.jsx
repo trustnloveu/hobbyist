@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 // components
 import MyHostingGroup from "./myHostingGroup";
-import MyJoinedGroup from "./myjoinedGroup";
+import MyJoinedGroup from "./myJoinedGroup";
 
 // Main
 const RightInfo = ({ userGroupInfo }) => {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 // components
-import Group from "../mypage/groupPreview";
+import Group from "./groupPreview";
 import Loader from "../common/loader/loader";
 
 // service
@@ -31,7 +31,7 @@ const MyJoinedGroup = ({ id }) => {
 
     // execute
     loadGroupData(id);
-  }, []);
+  }, [id]);
 
   // return
   return (
