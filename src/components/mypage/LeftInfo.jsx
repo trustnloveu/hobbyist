@@ -72,7 +72,7 @@ const LowerBlock = styled.div`
   position: relative;
   width: 100%;
   height: 600px;
-  padding-top: 22%;
+  padding-top: 35%;
   text-align: center;
   background-color: #dbf6e9;
 `;
@@ -109,6 +109,7 @@ const EditButtonCon = styled.div`
   top: 5px;
   right: 5px;
   font-size: 15pt;
+  cursor: pointer;
 `;
 
 export default LeftInfo;

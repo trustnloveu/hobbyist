@@ -12,7 +12,7 @@ const PrivateInfo = ({ label, data }) => {
 };
 
 const Container = styled.div`
-  margin: 20px 0;
+  margin: 30px 0;
 `;
 
 const Title = styled.div`
