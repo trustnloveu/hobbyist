@@ -11,7 +11,7 @@ import Categories from "../components/category/categories";
 import Login from "../components/user/login";
 import Logout from "../components/user/logout";
 import Register from "../components/user/register";
-import MyPage from "../components/user/myPage";
+import MyInfo from "../components/user/myInfo";
 import CategoryBoard from "../components/category/categoryBoard";
 import NewGroup from "./../components/group/newGroup";
 import Group from "../components/group/group";
@@ -51,7 +51,7 @@ const App = () => {
           <Route path="/group/:id" component={Group} />
           <Route path="/logout" component={Logout} />
           <Route path="/login" component={Login} />
-          <AuthRoute path="/myPage" component={MyPage} />
+          <AuthRoute path="/myPage" component={MyInfo} />
           <Route path="/register" component={Register} />
           <Redirect from="/" exatc to="/home" />
           <Redirect to="/not-found" />

@@ -32,7 +32,7 @@ const MyHostingGroup = ({ id }) => {
 
     // execute
     loadGroupData(id);
-  }, []);
+  }, [id]);
 
   // return
   return (

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 // components
-import LeftInfo from "../myPage/leftInfo";
-import RightInfo from "../myPage/rightInfo";
+import LeftInfo from "../myInfo/leftInfo";
+import RightInfo from "../myInfo/rightInfo";
 
 // services
 import { getUserInfo } from "../../services/userService";
