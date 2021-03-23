@@ -1,7 +1,8 @@
 {
   "name": "hobbyist",
-  "engines": { 
-    "node": "12.18.3"
+  "engines": {
+    "node": "12.18.3",
+    "npm": "6.14.6"
   },
   "version": "1.0.0",
   "private": true,
