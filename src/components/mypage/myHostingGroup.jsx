@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 // component
-import Group from "../mypage/groupPreview";
+import Group from "./groupPreview";
 import Loader from "../common/loader/loader";
 
 // service

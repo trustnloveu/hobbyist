@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 // components
-import LeftInfo from "../mypage/leftInfo";
-import RightInfo from "../mypage/rightInfo";
+import LeftInfo from "../myPage/leftInfo";
+import RightInfo from "../myPage/rightInfo";
 
 // services
 import { getUserInfo } from "../../services/userService";
@@ -18,7 +18,7 @@ const MyPage = () => {
   useEffect(() => {
     async function loadUserInfo() {
       const { data } = await getUserInfo(); // I'll get token user id with JSON Web Token at the server
-      console.log(data);
+
       setUserPrivateInfo({
         id: data._id,
         name: data.name,

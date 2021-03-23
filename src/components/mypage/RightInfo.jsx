@@ -8,7 +8,6 @@ import MyJoinedGroup from "./myJoinedGroup";
 // Main
 const RightInfo = ({ userGroupInfo }) => {
   // _id, hostingGroups, joinedGroups
-  console.log(userGroupInfo);
 
   // state
   const [hostList, setHostList] = useState();

@@ -29,7 +29,7 @@ const MainGroupList = ({ data: group }) => {
     // execute
     setTitle(group.name);
     getGroupListData(group._id);
-  }, []);
+  }, [group]);
 
   // transform: translateX(-300px);
 
@@ -51,8 +51,8 @@ const MainGroupList = ({ data: group }) => {
       )}
       {groups.length > 0 && (
         <ListSlideCon
-          onMouseOver={() => console.log("123")}
-          onMouseOut={() => console.log("123")}
+        // onMouseOver={() => console.log("123")}
+        // onMouseOut={() => console.log("123")}
         >
           <GroupListWrapper>
             <GroupListCon>
