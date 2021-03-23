@@ -51,7 +51,7 @@ const App = () => {
           <Route path="/group/:id" component={Group} />
           <Route path="/logout" component={Logout} />
           <Route path="/login" component={Login} />
-          <AuthRoute path="/myPage" component={MyPage} user={user} />
+          <AuthRoute path="/myPage" component={MyPage} />
           <Route path="/register" component={Register} />
           <Redirect from="/" exatc to="/home" />
           <Redirect to="/not-found" />

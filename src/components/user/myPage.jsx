@@ -9,7 +9,7 @@ import RightInfo from "../mypage/rightInfo";
 import { getUserInfo } from "../../services/userService";
 
 // Main
-const MyPage = ({ user }) => {
+const MyPage = () => {
   // states
   const [userPrivateInfo, setUserPrivateInfo] = useState(); // _id, name, phone, isAdmin, userImage
   const [userGroupInfo, setUserGroupInfo] = useState(); // _id, hostingGroups, joinedGroups
