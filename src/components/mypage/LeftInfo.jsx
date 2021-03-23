@@ -75,15 +75,16 @@ const ProfileImageCon = styled.div`
 `;
 // background-color: #defcf9;
 
-const ImageLabel = styled.label``;
+const ImageLabel = styled.label`
+  margin: auto;
+  z-index: 10;
+`;
 
 const Image = styled.img`
-  margin: auto;
   width: 250px;
   height: 250px;
   border-radius: 50%;
   border: transparent;
-  z-index: 10;
 `;
 
 const EditButtonCon = styled.div`
