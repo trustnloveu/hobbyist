@@ -1,5 +1,8 @@
 {
   "name": "hobbyist",
+  "engines": { 
+    "node": "12.18.3"
+  },
   "version": "0.1.1",
   "private": true,
   "dependencies": {
